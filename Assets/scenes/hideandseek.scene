@@ -66,32 +66,10 @@
             "_type": "gameobject",
             "prefab": "player.prefab"
           },
-          "SpawnPoints": [
-            {
-              "_type": "gameobject",
-              "go": "5f0ff639-6541-4603-b93c-7912cebc861d"
-            }
-          ],
+          "SpawnPoints": [],
           "StartServer": true
         }
       ],
-      "Children": []
-    },
-    {
-      "__guid": "5f0ff639-6541-4603-b93c-7912cebc861d",
-      "__version": 1,
-      "Flags": 0,
-      "Name": "SpawnPoint",
-      "Position": "160.9981,0,47.62976",
-      "Rotation": "0,0,0,1",
-      "Scale": "1,1,1",
-      "Tags": "",
-      "Enabled": true,
-      "NetworkMode": 2,
-      "NetworkInterpolation": true,
-      "NetworkOrphaned": 0,
-      "OwnerTransfer": 1,
-      "Components": [],
       "Children": []
     },
     {
@@ -190,7 +168,7 @@
           "__enabled": true,
           "__version": 1,
           "EnableCollision": true,
-          "MapName": "facepunch.flatgrass",
+          "MapName": "facepunch.datacore",
           "NoOrigin": false,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
@@ -200,7 +178,7 @@
           "OnComponentUpdate": null,
           "OnMapLoaded": null,
           "OnMapUnloaded": null,
-          "UseMapFromLaunch": false
+          "UseMapFromLaunch": true
         }
       ],
       "Children": []
