@@ -1,4 +1,5 @@
 using Sandbox;
+using Sandbox.Diagnostics;
 
 public sealed class PlayerRole : Component
 {
@@ -32,7 +33,7 @@ public sealed class PlayerRole : Component
 
 	void OnRoleChanged( Role oldRole, Role newRole )
 	{
-		Log.Error( "new role: " + newRole );
+		HideAndSeekLogger.Info( $"Player '{Network.Owner.DisplayName}' is now a {newRole.ToString()}" );
 
 		if ( newRole == Role.Hider )
 		{
