@@ -18,8 +18,14 @@ public sealed class PlayerRole : Component, Component.ITriggerListener
 
 	[Property]
 	List<ClothingContainer.ClothingEntry> hiderClothing;
+	
 	[Property]
 	List<ClothingContainer.ClothingEntry> seekerClothing;
+
+	[Property]
+	CapsuleCollider standingCollider;
+	[Property]
+	CapsuleCollider crouchingCollider;
 	
 	Dresser dresser;
 	PlayerController playerController;
@@ -54,6 +60,17 @@ public sealed class PlayerRole : Component, Component.ITriggerListener
 			{
 				playerController.ThirdPerson = false;
 			}
+		}
+
+		if ( !playerController.IsDucking )
+		{
+			standingCollider.Enabled = true;
+			crouchingCollider.Enabled = false;
+		}
+		else
+		{
+			standingCollider.Enabled = false;
+			crouchingCollider.Enabled = true;
 		}
 	}
 	
