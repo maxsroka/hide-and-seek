@@ -47,9 +47,12 @@ public sealed class PlayerRole : Component
 
 	protected override void OnUpdate()
 	{
-		if (CurrentRole == Role.Seeker)
+		if (Network.IsOwner)
         {
-			playerController.ThirdPerson = false;
+			if (CurrentRole == Role.Seeker)
+			{
+				playerController.ThirdPerson = false;
+			}
         }
 	}
 
