@@ -1,7 +1,7 @@
 using Sandbox;
 using Sandbox.Diagnostics;
 
-public sealed class PlayerRole : Component
+public sealed class PlayerRole : Component, Component.ITriggerListener
 {
 	public void Hide() => CurrentRole = Role.Hider;
 	public void Seek() => CurrentRole = Role.Seeker;
@@ -48,14 +48,41 @@ public sealed class PlayerRole : Component
 
 	protected override void OnUpdate()
 	{
-		if (Network.IsOwner)
-        {
-			if (CurrentRole == Role.Seeker)
+		if ( Network.IsOwner )
+		{
+			if ( CurrentRole == Role.Seeker )
 			{
 				playerController.ThirdPerson = false;
 			}
-        }
+		}
 	}
+	
+	public void OnTriggerEnter( Collider other )
+	{
+		if (Connection.Local.IsHost)
+		{
+			if (CurrentRole == Role.Seeker)
+			{			
+				if (other.Tags.Contains("player"))
+				{
+					var playerRole = other.GetComponent<PlayerRole>();
+
+					if (playerRole != null)
+                    {
+						if(playerRole.CurrentRole == Role.Hider)
+						{
+							playerRole.Seek();
+						}
+                    }
+				}
+			}
+        }
+    }
+
+	public void OnTriggerExit( Collider other )
+    {
+        
+    }
 
 	void ChangeClothing( List<ClothingContainer.ClothingEntry> clothing )
 	{
