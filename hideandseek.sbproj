@@ -1,7 +1,7 @@
 {
   "Title": "Hide & Seek",
   "Type": "game",
-  "Org": "local",
+  "Org": "maxsroka",
   "Ident": "hideandseek",
   "Schema": 1,
   "IncludeSourceFiles": false,
@@ -23,6 +23,8 @@
     "PerMapRanking": false,
     "LeaderboardType": "None",
     "CsProjName": "",
-    "StartupScene": "scenes/minimal.scene"
+    "MapStartupScene": "scenes/hideandseek.scene",
+    "LaunchMode": "Launcher",
+    "StartupScene": "scenes/hideandseek.scene"
   }
 }
