@@ -183,18 +183,7 @@
         "__type": "PlayerRole",
         "__guid": "e767addf-57be-481c-8bb6-5adbc9125185",
         "__enabled": true,
-        "OnComponentDestroy": null,
-        "OnComponentDisabled": null,
-        "OnComponentEnabled": null,
-        "OnComponentFixedUpdate": null,
-        "OnComponentStart": null,
-        "OnComponentUpdate": null
-      },
-      {
-        "__type": "PlayerRole+HiderRole",
-        "__guid": "6490bac1-7a61-4712-84dc-dfabac5799a8",
-        "__enabled": true,
-        "Clothing": [
+        "hiderClothing": [
           {
             "Clothing": "models/citizen_clothes/shirt/jumpsuit/blue_jumpsuit.clothing"
           }
@@ -204,23 +193,12 @@
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
-        "OnComponentUpdate": null
-      },
-      {
-        "__type": "PlayerRole+SeekerRole",
-        "__guid": "1e178ee9-442f-47e6-8abf-91bd26bcfa17",
-        "__enabled": true,
-        "Clothing": [
+        "OnComponentUpdate": null,
+        "seekerClothing": [
           {
             "Clothing": "models/citizen_clothes/shirt/jumpsuit/prison_jumpsuit.clothing"
           }
-        ],
-        "OnComponentDestroy": null,
-        "OnComponentDisabled": null,
-        "OnComponentEnabled": null,
-        "OnComponentFixedUpdate": null,
-        "OnComponentStart": null,
-        "OnComponentUpdate": null
+        ]
       },
       {
         "__type": "Sandbox.CapsuleCollider",

@@ -2,61 +2,55 @@ using Sandbox;
 
 public sealed class PlayerRole : Component
 {
-	[Sync(SyncFlags.FromHost), Change(nameof(OnRoleChanged))]
-	IRole Role { get; set; }
+	public void Hide() => CurrentRole = Role.Hider;
+	public void Seek() => CurrentRole = Role.Seeker;
 
-	HiderRole hiderRole;
-	SeekerRole seekerRole;
+	[Sync( SyncFlags.FromHost ), Change( nameof( OnRoleChanged ) )]
+	Role CurrentRole { get; set; } = Role.None;
+
+	enum Role
+	{
+		None,
+		Hider,
+		Seeker
+	}
+
+	[Property]
+	List<ClothingContainer.ClothingEntry> hiderClothing;
+	[Property]
+	List<ClothingContainer.ClothingEntry> seekerClothing;
+	
 	Dresser dresser;
-
-	public void Hide() => Role = hiderRole;
-	public void Seek() => Role = seekerRole;
+	PlayerController playerController;
 
 	protected override void OnStart()
 	{
-		hiderRole = GetComponent<HiderRole>();
-		seekerRole = GetComponent<SeekerRole>();
 		dresser = GetComponent<Dresser>();
+		playerController = GetComponent<PlayerController>();
+		Hide();
 	}
 
-	void OnRoleChanged(IRole oldRole, IRole newRole)
+	void OnRoleChanged( Role oldRole, Role newRole )
 	{
-		oldRole?.OnChanged( false, this);
-		newRole.OnChanged( true, this);
-		Log.Error( "new role: " + newRole.GetType().Name );
-    }
+		Log.Error( "new role: " + newRole );
 
-	public interface IRole
-	{
-		public void OnChanged( bool assigned, PlayerRole playerRole );
+		if ( newRole == Role.Hider )
+		{
+			ChangeClothing( hiderClothing );
+			playerController.ThirdPerson = true;
+		}
+		else if ( newRole == Role.Seeker )
+		{
+			ChangeClothing( seekerClothing );
+		}
 	}
 
-	public class HiderRole : Component, IRole
+	protected override void OnUpdate()
 	{
-		[Property]
-		List<ClothingContainer.ClothingEntry> Clothing { get; set; }
-
-        public void OnChanged( bool assigned , PlayerRole playerRole)
-		{
-			if ( assigned )
-			{
-				playerRole.ChangeClothing( Clothing );
-			}
-		}
-    }
-
-	public class SeekerRole : Component, IRole
-	{
-		[Property]
-		List<ClothingContainer.ClothingEntry> Clothing { get; set; }
-
-		public void OnChanged( bool assigned , PlayerRole playerRole)
-		{
-			if ( assigned )
-			{
-				playerRole.ChangeClothing( Clothing );
-			}
-		}
+		if (CurrentRole == Role.Seeker)
+        {
+			playerController.ThirdPerson = false;
+        }
 	}
 
 	void ChangeClothing( List<ClothingContainer.ClothingEntry> clothing )
@@ -68,7 +62,7 @@ public sealed class PlayerRole : Component
 	[ConCmd( "seek", ConVarFlags.Server )]
 	static void Seek( Connection caller )
 	{
-		var player = Game.ActiveScene.FindAllWithTag( "Player" ).First( p => p.Network.OwnerId == caller.Id );
+		var player = Game.ActiveScene.FindAllWithTag( "player" ).First( p => p.Network.OwnerId == caller.Id );
 		var playerRole = player.GetComponent<PlayerRole>();
 		playerRole.Seek();
 	}
@@ -76,7 +70,7 @@ public sealed class PlayerRole : Component
 	[ConCmd( "hide", ConVarFlags.Server )]
 	static void Hide( Connection caller )
     {
-		var player = Game.ActiveScene.FindAllWithTag( "Player" ).First( p => p.Network.OwnerId == caller.Id );
+		var player = Game.ActiveScene.FindAllWithTag( "player" ).First( p => p.Network.OwnerId == caller.Id );
 		var playerRole = player.GetComponent<PlayerRole>();
 		playerRole.Hide();
     }
