@@ -1,3 +1,4 @@
+using System;
 using Sandbox;
 using Sandbox.Diagnostics;
 
@@ -8,6 +9,7 @@ public sealed class PlayerRole : Component, Component.ITriggerListener
 
 	[Sync( SyncFlags.FromHost ), Change( nameof( OnRoleChanged ) )]
 	Role CurrentRole { get; set; } = Role.None;
+	float stamina = 5f;
 
 	enum Role
 	{
@@ -72,6 +74,29 @@ public sealed class PlayerRole : Component, Component.ITriggerListener
 			standingCollider.Enabled = false;
 			crouchingCollider.Enabled = true;
 		}
+
+		var maxStamina = CurrentRole == Role.Hider ? 8f : 10f; 
+
+		if ( Input.Down( "run" ) )
+		{
+			stamina = MathF.Max( 0, stamina - Time.Delta );
+		}
+		else
+		{
+			stamina = Math.Min( maxStamina, stamina + Time.Delta );
+		}
+
+		HideAndSeekLogger.Error( stamina );
+
+		if ( stamina > 0f )
+		{
+			playerController.AltMoveButton = "run";
+		}
+		else
+		{
+            
+			playerController.AltMoveButton = "";
+        }
 	}
 	
 	public void OnTriggerEnter( Collider other )
