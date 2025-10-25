@@ -75,15 +75,13 @@ public sealed class PlayerRole : Component, Component.ITriggerListener
 			crouchingCollider.Enabled = true;
 		}
 
-		var maxStamina = CurrentRole == Role.Hider ? 8f : 10f; 
-
 		if ( Input.Down( "run" ) )
 		{
 			stamina = MathF.Max( 0, stamina - Time.Delta );
 		}
 		else
 		{
-			stamina = Math.Min( maxStamina, stamina + Time.Delta );
+			stamina = Math.Min( 5f, stamina + Time.Delta );
 		}
 
 		HideAndSeekLogger.Error( stamina );
@@ -94,8 +92,17 @@ public sealed class PlayerRole : Component, Component.ITriggerListener
 		}
 		else
 		{
-            
+
 			playerController.AltMoveButton = "";
+		}
+
+		if ( CurrentRole == Role.Seeker)
+		{
+			playerController.RunSpeed = 400;
+		}
+		else if (CurrentRole == Role.Hider)
+        {
+			playerController.RunSpeed = 350;
         }
 	}
 	
