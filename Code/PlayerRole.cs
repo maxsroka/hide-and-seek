@@ -84,8 +84,6 @@ public sealed class PlayerRole : Component, Component.ITriggerListener
 			stamina = Math.Min( 5f, stamina + Time.Delta );
 		}
 
-		HideAndSeekLogger.Error( stamina );
-
 		if ( stamina > 0f )
 		{
 			playerController.AltMoveButton = "run";
