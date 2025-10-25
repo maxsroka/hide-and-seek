@@ -4,7 +4,7 @@ using Sandbox.Diagnostics;
 
 public static class HideAndSeekLogger
 {
-    static Logger logger = new Logger( "HideAndSeek" );
+    static Logger logger = new Logger( "Hide&Seek" );
 
     public static void Info(object message) => logger.Info(message);
     public static void Info(FormattableString message) => logger.Info(message);
