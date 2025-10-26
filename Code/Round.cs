@@ -32,7 +32,7 @@ public sealed class Round : Component
 	static float EndTime { get; set; } = 5f;
 
 	[ConCmd("start", ConVarFlags.Server)]
-	static void Start() => Game.ActiveScene.Get<Round>().Prepare();
+	static void Start() => Instance.Prepare();
 
 	[Property, ReadOnly]
 	float timer = 0f;
