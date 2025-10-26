@@ -2,8 +2,8 @@ using Sandbox;
 
 public interface IRoundEvent : ISceneEvent<IRoundEvent>
 {
-    void OnWaiting();
-    void OnPreparing();
-    void OnPlaying();
-    void OnEnding();
+    void OnWaiting() { }
+    void OnPreparing() { }
+    void OnPlaying() { }
+    void OnEnding() { }
 }

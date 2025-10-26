@@ -99,6 +99,17 @@
           "OnComponentUpdate": null,
           "Stage": "Waiting",
           "timer": 0
+        },
+        {
+          "__type": "PreparingStage",
+          "__guid": "d943d50f-8751-45d8-bf09-6912c361bf4e",
+          "__enabled": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         }
       ],
       "Children": []
@@ -134,17 +145,6 @@
           "ScaleStrategy": "ConsistentHeight",
           "TargetCamera": null,
           "ZIndex": 100
-        },
-        {
-          "__type": "RootPanel",
-          "__guid": "91335107-6e5b-409d-857c-ab47d7249554",
-          "__enabled": true,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null
         }
       ],
       "Children": []
