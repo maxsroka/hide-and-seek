@@ -2,10 +2,10 @@
   "__guid": "325a4042-0696-43dd-a79d-dcc314299ba3",
   "GameObjects": [
     {
-      "__guid": "0a89b0e6-45e2-43ec-a5bc-bc0594eb63a3",
+      "__guid": "91f3ce0a-2ac4-473d-aa9d-46791172cc90",
       "__version": 1,
       "Flags": 0,
-      "Name": "Scene Information",
+      "Name": "Game Manager",
       "Position": "0,0,0",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
@@ -18,7 +18,7 @@
       "Components": [
         {
           "__type": "Sandbox.SceneInformation",
-          "__guid": "6c637ba8-a0a5-4956-80e1-b408b161ffa4",
+          "__guid": "fa8b5dbf-4e93-443c-a434-2ed0c3563e44",
           "__enabled": true,
           "Author": null,
           "Changes": null,
@@ -33,25 +33,7 @@
           "SceneTags": "",
           "Title": "hideandseek",
           "Version": null
-        }
-      ],
-      "Children": []
-    },
-    {
-      "__guid": "91f3ce0a-2ac4-473d-aa9d-46791172cc90",
-      "__version": 1,
-      "Flags": 0,
-      "Name": "Network Manager",
-      "Position": "0,0,0",
-      "Rotation": "0,0,0,1",
-      "Scale": "1,1,1",
-      "Tags": "",
-      "Enabled": true,
-      "NetworkMode": 2,
-      "NetworkInterpolation": true,
-      "NetworkOrphaned": 0,
-      "OwnerTransfer": 1,
-      "Components": [
+        },
         {
           "__type": "Sandbox.NetworkHelper",
           "__guid": "e03e0d2d-96fa-42cf-8772-dcdf7c0ef3d7",
@@ -68,28 +50,10 @@
           },
           "SpawnPoints": [],
           "StartServer": true
-        }
-      ],
-      "Children": []
-    },
-    {
-      "__guid": "b8e3e6dd-912a-485a-90e0-54dfab19b403",
-      "__version": 1,
-      "Flags": 0,
-      "Name": "Round Manager",
-      "Position": "0,0,0",
-      "Rotation": "0,0,0,1",
-      "Scale": "1,1,1",
-      "Tags": "",
-      "Enabled": true,
-      "NetworkMode": 2,
-      "NetworkInterpolation": true,
-      "NetworkOrphaned": 0,
-      "OwnerTransfer": 1,
-      "Components": [
+        },
         {
-          "__type": "RoundTimer",
-          "__guid": "106b3fe2-9c49-4180-add1-b64cb70166ca",
+          "__type": "Round",
+          "__guid": "f7ced295-00ef-439e-b558-eb29575a27df",
           "__enabled": true,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
@@ -99,52 +63,6 @@
           "OnComponentUpdate": null,
           "Stage": "Waiting",
           "timer": 0
-        },
-        {
-          "__type": "PreparingStage",
-          "__guid": "d943d50f-8751-45d8-bf09-6912c361bf4e",
-          "__enabled": true,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null
-        }
-      ],
-      "Children": []
-    },
-    {
-      "__guid": "a9f30cbf-a463-47bc-8235-3cb41ab16e4c",
-      "__version": 1,
-      "Flags": 0,
-      "Name": "UI Manager",
-      "Position": "0,0,0",
-      "Rotation": "0,0,0,1",
-      "Scale": "1,1,1",
-      "Tags": "",
-      "Enabled": true,
-      "NetworkMode": 2,
-      "NetworkInterpolation": true,
-      "NetworkOrphaned": 0,
-      "OwnerTransfer": 1,
-      "Components": [
-        {
-          "__type": "Sandbox.ScreenPanel",
-          "__guid": "60a182eb-434b-487d-a22a-007e4168b850",
-          "__enabled": true,
-          "AutoScreenScale": true,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "Opacity": 1,
-          "Scale": 1,
-          "ScaleStrategy": "ConsistentHeight",
-          "TargetCamera": null,
-          "ZIndex": 100
         }
       ],
       "Children": []

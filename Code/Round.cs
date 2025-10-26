@@ -1,12 +1,21 @@
 using System;
-using Sandbox;
 
-public sealed class RoundTimer : Component
+public enum RoundStage
 {
+    Waiting,
+    Preparing,
+    Playing,
+    Ending
+}
+
+public sealed class Round : Component
+{
+	public static Round Instance => Game.ActiveScene.Get<Round>();
+
 	[Property, ReadOnly]
 	[Sync(SyncFlags.FromHost)]
 	public RoundStage Stage { get; private set; } = RoundStage.Waiting;
-	
+
 	[ConVar("min_players", ConVarFlags.GameSetting)]
 	static int MinPlayers { get; set; } = 2;
 
@@ -22,13 +31,11 @@ public sealed class RoundTimer : Component
 	[ConVar("end_time", ConVarFlags.GameSetting)]
 	static float EndTime { get; set; } = 5f;
 
+	[ConCmd("start", ConVarFlags.Server)]
+	static void Start() => Game.ActiveScene.Get<Round>().Prepare();
+
 	[Property, ReadOnly]
 	float timer = 0f;
-
-	protected override void OnStart()
-	{
-		base.OnStart();
-	}
 
 	protected override void OnUpdate()
 	{
@@ -37,7 +44,7 @@ public sealed class RoundTimer : Component
 		timer += Time.Delta;
 
 		if (Stage == RoundStage.Waiting)
-        {
+		{
 			if (timer >= WaitTime)
 			{
 				Prepare();
@@ -46,8 +53,8 @@ public sealed class RoundTimer : Component
 			if (PlayerFinder.All.Count() < MinPlayers)
 			{
 				timer = 0f;
-            }
-        }
+			}
+		}
 		else if (Stage == RoundStage.Preparing)
 		{
 			if (timer >= PrepTime)
@@ -72,37 +79,60 @@ public sealed class RoundTimer : Component
 	}
 
 	void Wait()
-    {
+	{
 		Stage = RoundStage.Waiting;
 		timer = 0f;
-		IRoundEvent.Post(e => e.OnWaiting());
-    }
+	}
 
 	void Prepare()
 	{
 		Stage = RoundStage.Preparing;
 		timer = 0f;
-		IRoundEvent.Post(e => e.OnPreparing());
+
+		var spawnPoint = GetRandomSpawnPoint();
+		TeleportPlayersTo(spawnPoint.WorldPosition);
+
+		var player = GetRandomPlayer();
+		MakeSeeker(player);
 	}
 
 	void Play()
-    {
+	{
 		Stage = RoundStage.Playing;
 		timer = 0f;
-		IRoundEvent.Post(e => e.OnPlaying());
-    }
-	
+	}
+
 	void End()
-    {
+	{
 		Stage = RoundStage.Ending;
 		timer = 0f;
-		IRoundEvent.Post(e => e.OnEnding());
+	}
+
+	GameObject GetRandomPlayer()
+    {
+		return Game.Random.FromArray(PlayerFinder.All.ToArray());
     }
 
-	[ConCmd("start", ConVarFlags.Server)]
-	static void Start()
+	GameObject GetRandomSpawnPoint()
 	{
-		var roundTimer = Game.ActiveScene.Get<RoundTimer>();
-		roundTimer.Prepare();
+		var spawnPoints = Game.ActiveScene.GetAllComponents<SpawnPoint>().ToArray();
+		var spawnPoint = Game.Random.FromArray(spawnPoints);
+
+		return spawnPoint.GameObject;
 	}
+
+	void MakeSeeker(GameObject player)
+	{
+		var playerRole = player.GetComponent<PlayerRole>();
+		playerRole.Role = Role.Seeker;
+	}
+	
+	void TeleportPlayersTo(Vector3 worldPosition)
+    {
+        foreach (var player in PlayerFinder.All)
+        {
+            var utils = player.GetComponent<PlayerControllerUtils>();
+            utils.Teleport(worldPosition);
+        }
+    }
 }

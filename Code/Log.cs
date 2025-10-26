@@ -1,5 +1,3 @@
-using System;
-using Sandbox;
 using Sandbox.Diagnostics;
 
 public static class Log
