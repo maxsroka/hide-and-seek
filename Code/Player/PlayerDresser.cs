@@ -1,19 +1,30 @@
 using Sandbox;
 
-public sealed class PlayerDresser : Component
+public sealed class PlayerDresser : Component, IRoleEvent
 {
     [Property]
     Clothing.Slots slotsFilter;
 
+    [Property]
+    Clothing hiderSuit;
+    
+    [Property]
+    Clothing seekerSuit;
+
     [RequireComponent]
     Dresser Dresser { get; set; }
 
-    protected override void OnStart()
+    void IRoleEvent.OnHider() => WearSuit(hiderSuit);
+	void IRoleEvent.OnSeeker() => WearSuit(seekerSuit);
+
+    void WearSuit(Clothing suit)
     {
         var userClothingContainer = GetUserClothingContainer();
-        var filteredClothingContainer = FilterClothingContainer(userClothingContainer, slotsFilter);
+        var newClothingContainer = FilterClothingContainer(userClothingContainer, slotsFilter);
 
-        Dresser.Clothing = filteredClothingContainer.Clothing;
+        newClothingContainer.Add(suit);
+        
+        Dresser.Clothing = newClothingContainer.Clothing;
         Dresser.Apply();
     }
 

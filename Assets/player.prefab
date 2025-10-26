@@ -194,12 +194,14 @@
         "__type": "PlayerDresser",
         "__guid": "0680f9c5-3b4f-4be7-936d-d8ae9177f6ed",
         "__enabled": true,
+        "hiderSuit": "models/citizen_clothes/shirt/jumpsuit/blue_jumpsuit.clothing",
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
+        "seekerSuit": "models/citizen_clothes/shirt/jumpsuit/prison_jumpsuit.clothing",
         "slotsFilter": "Chest, LeftArm, RightArm, Groin, LeftThigh, RightThigh, LeftKnee, RightKnee, LeftShin, RightShin, Waist"
       },
       {
@@ -262,6 +264,18 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null
+      },
+      {
+        "__type": "PlayerRole",
+        "__guid": "26168451-8b45-4fc9-8199-94113124680a",
+        "__enabled": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "Role": "Uninitialized"
       }
     ],
     "Children": [
