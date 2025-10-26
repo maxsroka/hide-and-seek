@@ -1,6 +1,6 @@
 using Sandbox;
 
-public sealed class PlayerTeleporter : Component
+public sealed class PlayerControllerUtils : Component
 {
     [Rpc.Owner(NetFlags.HostOnly)]
     public void Teleport(Vector3 worldPosition)
