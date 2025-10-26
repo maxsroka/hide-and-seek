@@ -5,7 +5,7 @@ public sealed class PlayerRole : Component
     [Property, ReadOnly]
     [Sync(SyncFlags.FromHost)]
     [Change(nameof(OnRoleChanged))]
-    Role Role { get; set; } = Role.Uninitialized;
+    public Role Role { get; set; } = Role.Uninitialized;
 
 	protected override void OnStart()
 	{
