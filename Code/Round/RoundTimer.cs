@@ -7,19 +7,19 @@ public sealed class RoundTimer : Component
 	[Sync(SyncFlags.FromHost)]
 	public RoundStage Stage { get; private set; } = RoundStage.Waiting;
 	
-	[ConVar("min_players")]
+	[ConVar("min_players", ConVarFlags.GameSetting)]
 	static int MinPlayers { get; set; } = 2;
 
-	[ConVar("wait_time")]
+	[ConVar("wait_time", ConVarFlags.GameSetting)]
 	static float WaitTime { get; set; } = 30f;
 
-	[ConVar("prep_time")]
+	[ConVar("prep_time", ConVarFlags.GameSetting)]
 	static float PrepTime { get; set; } = 5f;
 
-	[ConVar("play_time")]
+	[ConVar("play_time", ConVarFlags.GameSetting)]
 	static float PlayTime { get; set; } = 10f;
 
-	[ConVar("end_time")]
+	[ConVar("end_time", ConVarFlags.GameSetting)]
 	static float EndTime { get; set; } = 5f;
 
 	[Property, ReadOnly]
