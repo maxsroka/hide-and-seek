@@ -41,7 +41,7 @@ public sealed class PlayerRole : Component, Component.ITriggerListener
 
 	void OnRoleChanged( Role oldRole, Role newRole )
 	{
-		HideAndSeekLogger.Info( $"Player '{Network.Owner.DisplayName}' is now a {newRole.ToString()}" );
+		Log.HideAndSeek.Info( $"Player '{Network.Owner.DisplayName}' is now a {newRole.ToString()}" );
 
 		if ( newRole == Role.Hider )
 		{
