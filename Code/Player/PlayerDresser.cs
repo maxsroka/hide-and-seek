@@ -3,7 +3,7 @@ using Sandbox;
 public sealed class PlayerDresser : Component
 {
     [Property]
-    Clothing.Slots slotFilter;
+    Clothing.Slots slotsFilter;
 
     [RequireComponent]
     Dresser Dresser { get; set; }
@@ -11,7 +11,7 @@ public sealed class PlayerDresser : Component
     protected override void OnStart()
     {
         var userClothingContainer = GetUserClothingContainer();
-        var filteredClothingContainer = FilterClothingContainer(userClothingContainer, slotFilter);
+        var filteredClothingContainer = FilterClothingContainer(userClothingContainer, slotsFilter);
 
         Dresser.Clothing = filteredClothingContainer.Clothing;
         Dresser.Apply();

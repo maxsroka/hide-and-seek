@@ -200,7 +200,7 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "slotFilter": "Chest, LeftArm, RightArm, Groin, LeftThigh, RightThigh, LeftKnee, RightKnee, LeftShin, RightShin, Waist"
+        "slotsFilter": "Chest, LeftArm, RightArm, Groin, LeftThigh, RightThigh, LeftKnee, RightKnee, LeftShin, RightShin, Waist"
       },
       {
         "__type": "Sandbox.CapsuleCollider",
