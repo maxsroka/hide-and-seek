@@ -88,18 +88,17 @@
       "OwnerTransfer": 1,
       "Components": [
         {
-          "__type": "RoundManager",
-          "__guid": "ebd42f69-d14a-488c-8571-0f43120e19e8",
+          "__type": "RoundTimer",
+          "__guid": "106b3fe2-9c49-4180-add1-b64cb70166ca",
           "__enabled": true,
-          "endingTime": 5,
-          "gameplayTime": 10,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "preparingTime": 5
+          "Stage": "Waiting",
+          "timer": 0
         }
       ],
       "Children": []

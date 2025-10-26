@@ -2,7 +2,7 @@ using Sandbox;
 
 public enum RoundStage
 {
-    Idle,
+    Waiting,
     Preparing,
     Playing,
     Ending
