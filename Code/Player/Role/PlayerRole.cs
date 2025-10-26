@@ -24,7 +24,7 @@ public sealed class PlayerRole : Component
         }
     }
     
-    [ConCmd("hide", ConVarFlags.Server | ConVarFlags.Admin)]
+    [ConCmd("hide", ConVarFlags.Server)]
     static void Hide(Connection caller)
     {
         var player = PlayerFinder.OwnedBy(caller);
@@ -32,7 +32,7 @@ public sealed class PlayerRole : Component
         playerRole.Role = Role.Hider;
     }
     
-    [ConCmd("seek", ConVarFlags.Server | ConVarFlags.Admin)]
+    [ConCmd("seek", ConVarFlags.Server)]
     static void Seek(Connection caller)
     {
         var player = PlayerFinder.OwnedBy(caller);
