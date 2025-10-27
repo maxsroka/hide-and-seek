@@ -92,14 +92,18 @@ public sealed class Round : Component
 		var spawnPoint = GetRandomSpawnPoint();
 		TeleportPlayersTo(spawnPoint.WorldPosition);
 
-		var player = Player.GetRandom();
-		MakeSeeker(player);
+		var seeker = Player.GetRandom();
+		MakeSeeker(seeker);
+		seeker.Freeze(true);
 	}
 
 	void Play()
 	{
 		Stage = RoundStage.Playing;
 		timer = 0f;
+
+		var seeker = Player.GetAll().Find(p => p.Role == Role.Seeker);
+		seeker.Freeze(false);
 	}
 
 	void End()

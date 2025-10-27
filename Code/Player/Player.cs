@@ -45,4 +45,10 @@ public sealed class Player : Component
     {
         WorldPosition = worldPosition;
     }
+
+    [Rpc.Owner(NetFlags.HostOnly)]
+    public void Freeze(bool freeze)
+    {
+        Controller.UseInputControls = !freeze;
+    }
 }
