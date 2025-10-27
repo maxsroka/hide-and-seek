@@ -15,6 +15,17 @@
     "OwnerTransfer": 1,
     "Components": [
       {
+        "__type": "Player",
+        "__guid": "72c54ac6-6cd2-4d4a-884a-d13e191b998a",
+        "__enabled": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      },
+      {
         "__type": "Sandbox.PlayerController",
         "__guid": "76370027-67ab-4e84-b43c-c0cc5b2df425",
         "__enabled": true,
@@ -112,17 +123,6 @@
         "OverrideMassCenter": true,
         "RigidbodyFlags": "DisableCollisionSounds",
         "StartAsleep": false
-      },
-      {
-        "__type": "PlayerControllerUtils",
-        "__guid": "f3eae9e8-c466-42aa-9a42-50f6a95bfaa0",
-        "__enabled": true,
-        "OnComponentDestroy": null,
-        "OnComponentDisabled": null,
-        "OnComponentEnabled": null,
-        "OnComponentFixedUpdate": null,
-        "OnComponentStart": null,
-        "OnComponentUpdate": null
       },
       {
         "__type": "Sandbox.Movement.MoveModeWalk",
@@ -257,17 +257,6 @@
       {
         "__type": "PlayerTrigger",
         "__guid": "a6b67feb-a83c-4368-aede-e4ece7035607",
-        "__enabled": true,
-        "OnComponentDestroy": null,
-        "OnComponentDisabled": null,
-        "OnComponentEnabled": null,
-        "OnComponentFixedUpdate": null,
-        "OnComponentStart": null,
-        "OnComponentUpdate": null
-      },
-      {
-        "__type": "PlayerFinder",
-        "__guid": "6e59c652-1a52-40da-9220-a4247ae3ab27",
         "__enabled": true,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,

@@ -50,7 +50,7 @@ public sealed class Round : Component
 				Prepare();
 			}
 
-			if (PlayerFinder.All.Count() < MinPlayers)
+			if (Player.GetAll().Count < MinPlayers)
 			{
 				timer = 0f;
 			}
@@ -92,7 +92,7 @@ public sealed class Round : Component
 		var spawnPoint = GetRandomSpawnPoint();
 		TeleportPlayersTo(spawnPoint.WorldPosition);
 
-		var player = GetRandomPlayer();
+		var player = Player.GetRandom();
 		MakeSeeker(player);
 	}
 
@@ -108,11 +108,6 @@ public sealed class Round : Component
 		timer = 0f;
 	}
 
-	GameObject GetRandomPlayer()
-    {
-		return Game.Random.FromArray(PlayerFinder.All.ToArray());
-    }
-
 	GameObject GetRandomSpawnPoint()
 	{
 		var spawnPoints = Game.ActiveScene.GetAllComponents<SpawnPoint>().ToArray();
@@ -121,7 +116,7 @@ public sealed class Round : Component
 		return spawnPoint.GameObject;
 	}
 
-	void MakeSeeker(GameObject player)
+	void MakeSeeker(Player player)
 	{
 		var playerRole = player.GetComponent<PlayerRole>();
 		playerRole.Role = Role.Seeker;
@@ -129,10 +124,9 @@ public sealed class Round : Component
 	
 	void TeleportPlayersTo(Vector3 worldPosition)
     {
-        foreach (var player in PlayerFinder.All)
-        {
-            var utils = player.GetComponent<PlayerControllerUtils>();
-            utils.Teleport(worldPosition);
+        foreach (var player in Player.GetAll())
+		{
+			player.Teleport(worldPosition);
         }
     }
 }
