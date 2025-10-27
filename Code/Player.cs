@@ -153,6 +153,7 @@ public sealed class Player : Component, Component.ITriggerListener
     public void Freeze(bool freeze)
     {
         Controller.UseInputControls = !freeze;
+        Controller.WishVelocity = Vector3.Zero;
     }
 
     [Rpc.Owner(NetFlags.HostOnly)]
