@@ -3,6 +3,15 @@ using Sandbox.Diagnostics;
 
 public sealed class Player : Component
 {
+    [RequireComponent]
+    RoleModule RoleModule { get; set; }
+
+    public Role Role
+    {
+        get => RoleModule.Role;
+        set => RoleModule.Role = value;
+    } 
+
     public static List<Player> GetAll()
     {
         return Game.ActiveScene.GetAllComponents<Player>().ToList();

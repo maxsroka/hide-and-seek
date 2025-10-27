@@ -26,6 +26,43 @@
         "OnComponentUpdate": null
       },
       {
+        "__type": "RoleModule",
+        "__guid": "bcd4fb6d-f6a6-46c2-b1a4-1d9cb6d0cfda",
+        "__enabled": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "Role": "Uninitialized"
+      },
+      {
+        "__type": "DresserModule",
+        "__guid": "7997a699-cf00-420a-b18a-367bcf5ae475",
+        "__enabled": true,
+        "hiderSuit": "models/citizen_clothes/shirt/jumpsuit/blue_jumpsuit.clothing",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "seekerSuit": "models/citizen_clothes/shirt/jumpsuit/prison_jumpsuit.clothing",
+        "slotsFilter": "Chest, LeftArm, RightArm, Groin, LeftThigh, RightThigh, LeftKnee, RightKnee, LeftShin, RightShin, Waist"
+      },
+      {
+        "__type": "TouchModule",
+        "__guid": "65c06f85-3eab-42e7-8b07-04f9bfbc9916",
+        "__enabled": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      },
+      {
         "__type": "Sandbox.PlayerController",
         "__guid": "76370027-67ab-4e84-b43c-c0cc5b2df425",
         "__enabled": true,
@@ -191,20 +228,6 @@
         "WorkshopItems": []
       },
       {
-        "__type": "PlayerDresser",
-        "__guid": "0680f9c5-3b4f-4be7-936d-d8ae9177f6ed",
-        "__enabled": true,
-        "hiderSuit": "models/citizen_clothes/shirt/jumpsuit/blue_jumpsuit.clothing",
-        "OnComponentDestroy": null,
-        "OnComponentDisabled": null,
-        "OnComponentEnabled": null,
-        "OnComponentFixedUpdate": null,
-        "OnComponentStart": null,
-        "OnComponentUpdate": null,
-        "seekerSuit": "models/citizen_clothes/shirt/jumpsuit/prison_jumpsuit.clothing",
-        "slotsFilter": "Chest, LeftArm, RightArm, Groin, LeftThigh, RightThigh, LeftKnee, RightKnee, LeftShin, RightShin, Waist"
-      },
-      {
         "__type": "Sandbox.CapsuleCollider",
         "__guid": "7a708da4-e52c-4fb3-8267-eea182cb56c8",
         "__enabled": true,
@@ -253,29 +276,6 @@
         "Static": false,
         "Surface": null,
         "SurfaceVelocity": "0,0,0"
-      },
-      {
-        "__type": "PlayerTrigger",
-        "__guid": "a6b67feb-a83c-4368-aede-e4ece7035607",
-        "__enabled": true,
-        "OnComponentDestroy": null,
-        "OnComponentDisabled": null,
-        "OnComponentEnabled": null,
-        "OnComponentFixedUpdate": null,
-        "OnComponentStart": null,
-        "OnComponentUpdate": null
-      },
-      {
-        "__type": "PlayerRole",
-        "__guid": "26168451-8b45-4fc9-8199-94113124680a",
-        "__enabled": true,
-        "OnComponentDestroy": null,
-        "OnComponentDisabled": null,
-        "OnComponentEnabled": null,
-        "OnComponentFixedUpdate": null,
-        "OnComponentStart": null,
-        "OnComponentUpdate": null,
-        "Role": "Uninitialized"
       }
     ],
     "Children": [

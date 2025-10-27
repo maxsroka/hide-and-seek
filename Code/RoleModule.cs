@@ -1,16 +1,29 @@
 using Sandbox;
 
-public sealed class PlayerRole : Component
+public enum Role
+{
+    Uninitialized,
+    Hider,
+    Seeker
+}
+
+public interface IRoleEvent : ISceneEvent<IRoleEvent>
+{
+    void OnHider() { }
+    void OnSeeker() { }
+}
+
+public sealed class RoleModule : Component
 {
     [Property, ReadOnly]
     [Sync(SyncFlags.FromHost)]
     [Change(nameof(OnRoleChanged))]
     public Role Role { get; set; } = Role.Uninitialized;
 
-	protected override void OnStart()
-	{
+    protected override void OnStart()
+    {
         Role = Role.Hider;
-	}
+    }
 
     void OnRoleChanged(Role _, Role role)
     {
@@ -23,20 +36,18 @@ public sealed class PlayerRole : Component
             IRoleEvent.PostToGameObject(GameObject, e => e.OnSeeker());
         }
     }
-    
+
     [ConCmd("hide", ConVarFlags.Server)]
     static void Hide(Connection caller)
     {
         var player = Player.GetOwnedBy(caller);
-        var playerRole = player.GetComponent<PlayerRole>();
-        playerRole.Role = Role.Hider;
+        player.Role = Role.Hider;
     }
-    
+
     [ConCmd("seek", ConVarFlags.Server)]
     static void Seek(Connection caller)
     {
         var player = Player.GetOwnedBy(caller);
-        var playerRole = player.GetComponent<PlayerRole>();
-        playerRole.Role = Role.Seeker;
+        player.Role = Role.Seeker;
     }
 }

@@ -118,8 +118,7 @@ public sealed class Round : Component
 
 	void MakeSeeker(Player player)
 	{
-		var playerRole = player.GetComponent<PlayerRole>();
-		playerRole.Role = Role.Seeker;
+		player.Role = Role.Seeker;
 	}
 	
 	void TeleportPlayersTo(Vector3 worldPosition)

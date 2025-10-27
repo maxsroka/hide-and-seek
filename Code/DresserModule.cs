@@ -1,6 +1,6 @@
 using Sandbox;
 
-public sealed class PlayerDresser : Component, IRoleEvent
+public sealed class DresserModule : Component, IRoleEvent
 {
     [Property]
     Clothing.Slots slotsFilter;
