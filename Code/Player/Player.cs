@@ -6,6 +6,9 @@ public sealed class Player : Component
     [RequireComponent]
     RoleModule RoleModule { get; set; }
 
+    [RequireComponent]
+    public PlayerController Controller { get; private set; }
+
     public Role Role
     {
         get => RoleModule.Role;

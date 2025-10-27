@@ -2,6 +2,12 @@ using Sandbox;
 
 public sealed class TouchModule : Component, Component.ITriggerListener
 {
+    [Property]
+    CapsuleCollider standingCollider;
+    
+    [Property]
+    CapsuleCollider duckingCollider;
+
     public void OnTriggerEnter(Collider other)
     {
         if (!Connection.Local.IsHost) return;
@@ -14,4 +20,22 @@ public sealed class TouchModule : Component, Component.ITriggerListener
 
         otherPlayer.Role = Role.Seeker;
     }
+
+	protected override void OnFixedUpdate()
+    {
+        if (!Connection.Local.IsHost) return;
+
+        var player = Player.GetHost();
+
+        if (player.Controller.IsDucking && !player.Controller.IsAirborne)
+        {
+            standingCollider.Enabled = false;
+            duckingCollider.Enabled = true;
+        }
+        else
+        {
+            standingCollider.Enabled = true;
+            duckingCollider.Enabled = false;
+        }
+	}
 }
