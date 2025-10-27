@@ -10,37 +10,39 @@ public enum Role
 
 public sealed class Player : Component, Component.ITriggerListener
 {
-    // Public Properties
+    /* Public Properties */
 
     [Property, ReadOnly]
     [Sync(SyncFlags.FromHost)]
     [Change(nameof(OnRoleChanged))]
     public Role Role { get; set; } = Role.Uninitialized;
-    
-    // Private Properties
+
+    /* Components */
 
     [RequireComponent]
     PlayerController Controller { get; set; }
 
     [RequireComponent]
     Dresser Dresser { get; set; }
+    
+    /* Private Properties */
 
-    [Property]
+    [Property, Group("Trigger")]
     CapsuleCollider standingCollider;
 
-    [Property]
+    [Property, Group("Trigger")]
     CapsuleCollider duckingCollider;
     
-    [Property]
+    [Property, Group("Clothing")]
     Clothing.Slots slotsFilter;
 
-    [Property]
+    [Property, Group("Clothing")]
     Clothing hiderSuit;
     
-    [Property]
+    [Property, Group("Clothing")]
     Clothing seekerSuit;
 
-    // Events
+    /* Component Events */
 
     protected override void OnStart()
     {
@@ -64,6 +66,8 @@ public sealed class Player : Component, Component.ITriggerListener
             duckingCollider.Enabled = false;
         }
     }
+
+    /* Collider Events */
     
     public void OnTriggerEnter(Collider other)
     {
@@ -78,6 +82,8 @@ public sealed class Player : Component, Component.ITriggerListener
         otherPlayer.Role = Role.Seeker;
     }
 
+    /* Other Events */
+
     void OnRoleChanged(Role _, Role role)
     {
         if (role == Role.Hider)
@@ -90,7 +96,7 @@ public sealed class Player : Component, Component.ITriggerListener
         }
     }
 
-    // Commands
+    /* Commands */
 
     [ConCmd("hide", ConVarFlags.Server)]
     static void Hide(Connection caller)
@@ -106,7 +112,7 @@ public sealed class Player : Component, Component.ITriggerListener
         player.Role = Role.Seeker;
     }
 
-    // Querying
+    /* Query Methods */
 
     public static List<Player> GetAll()
     {
