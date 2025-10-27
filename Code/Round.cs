@@ -16,6 +16,33 @@ public sealed class Round : Component
 	[Sync(SyncFlags.FromHost)]
 	public RoundStage Stage { get; private set; } = RoundStage.Waiting;
 
+	public float GetTimeRemaining()
+    {
+		if (Stage == RoundStage.Waiting)
+		{
+			if (Player.GetAll().Count < MinPlayers)
+			{
+				return 0f;
+			}
+
+			return WaitTime - timer;
+		}
+		else if (Stage == RoundStage.Preparing)
+		{
+			return PrepTime - timer;
+		}
+		else if (Stage == RoundStage.Playing)
+		{
+			return PlayTime - timer;
+		}
+		else if (Stage == RoundStage.Ending)
+		{
+			return EndTime - timer;
+		}
+
+		return 0f;
+    }
+
 	[ConVar("min_players", ConVarFlags.GameSetting)]
 	static int MinPlayers { get; set; } = 2;
 
@@ -93,7 +120,7 @@ public sealed class Round : Component
 		TeleportPlayersTo(spawnPoint.WorldPosition);
 
 		var seeker = Player.GetRandom();
-		MakeSeeker(seeker);
+		seeker.Role = Role.Seeker;
 		seeker.Freeze(true);
 	}
 
@@ -114,17 +141,12 @@ public sealed class Round : Component
 
 	GameObject GetRandomSpawnPoint()
 	{
-		var spawnPoints = Game.ActiveScene.GetAllComponents<SpawnPoint>().ToArray();
-		var spawnPoint = Game.Random.FromArray(spawnPoints);
+		var spawnPoints = Game.ActiveScene.GetAllComponents<SpawnPoint>().ToList();
+		var spawnPoint = Game.Random.FromList(spawnPoints);
 
 		return spawnPoint.GameObject;
 	}
 
-	void MakeSeeker(Player player)
-	{
-		player.Role = Role.Seeker;
-	}
-	
 	void TeleportPlayersTo(Vector3 worldPosition)
     {
         foreach (var player in Player.GetAll())
