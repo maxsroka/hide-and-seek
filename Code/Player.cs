@@ -181,7 +181,7 @@ public sealed class Player : Component, Component.ITriggerListener
 
         foreach (var entry in original.Clothing)
         {
-            if ((entry.Clothing.SlotsUnder & filter) != 0) continue;
+            if ((entry?.Clothing?.SlotsUnder & filter) != 0) continue;
 
             filtered.Add(entry);
         }
