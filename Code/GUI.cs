@@ -4,10 +4,12 @@ using Sandbox.UI;
 public sealed class GUI : PanelComponent
 {
     HUD hud;
+    Blindness blindness;
 
     protected override void OnTreeFirstBuilt()
     {
         Panel.Id = "gui";
+        blindness = new() { Parent = Panel, Id = "blindness" };
         hud = new() { Parent = Panel, Id = "hud" };
     }
 
@@ -26,7 +28,7 @@ public sealed class GUI : PanelComponent
         else
         {
             hud.SetClass("waiting", false);
-            
+
             var localPlayer = Player.GetLocal();
             if (localPlayer.Role == Role.Hider)
             {
@@ -39,8 +41,10 @@ public sealed class GUI : PanelComponent
                 hud.SetClass("hider", false);
                 hud.SetClass("seeker", true);
                 hud.SetStatus("Seeker");
-            }            
+            }
         }
+
+        blindness.Toggle(Player.GetLocal().IsBlinded);
     }
 
     [StyleSheet("GUI.scss")]
@@ -67,6 +71,15 @@ public sealed class GUI : PanelComponent
         public void SetTime(float seconds)
         {
             time.Text = TimeSpan.FromSeconds(seconds).ToString("mm\\:ss");
+        }
+    }
+
+    [StyleSheet("GUI.scss")]
+    class Blindness : Panel
+    {
+        public void Toggle(bool toggle)
+        {
+            SetClass("visible", toggle);
         }
     }
 }

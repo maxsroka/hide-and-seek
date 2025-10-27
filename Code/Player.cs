@@ -17,6 +17,8 @@ public sealed class Player : Component, Component.ITriggerListener
     [Change(nameof(OnRoleChanged))]
     public Role Role { get; set; } = Role.Uninitialized;
 
+    public bool IsBlinded { get; private set; }
+
     /* Components */
 
     [RequireComponent]
@@ -151,6 +153,12 @@ public sealed class Player : Component, Component.ITriggerListener
     public void Freeze(bool freeze)
     {
         Controller.UseInputControls = !freeze;
+    }
+
+    [Rpc.Owner(NetFlags.HostOnly)]
+    public void Blind(bool blind)
+    {
+        IsBlinded = blind;
     }
 
     // Private Methods

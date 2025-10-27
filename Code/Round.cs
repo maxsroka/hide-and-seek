@@ -122,6 +122,7 @@ public sealed class Round : Component
 		var seeker = Player.GetRandom();
 		seeker.Role = Role.Seeker;
 		seeker.Freeze(true);
+		seeker.Blind(true);
 	}
 
 	void Play()
@@ -131,6 +132,7 @@ public sealed class Round : Component
 
 		var seeker = Player.GetAll().Find(p => p.Role == Role.Seeker);
 		seeker.Freeze(false);
+		seeker.Blind(false);
 	}
 
 	void End()

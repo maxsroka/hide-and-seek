@@ -49,3 +49,17 @@
 #hud.seeker #bar {
     background-color: #B35C48;
 }
+
+#blindness {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#blindness.visible {
+    display: flex;
+}
