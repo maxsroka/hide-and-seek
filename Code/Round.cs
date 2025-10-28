@@ -16,11 +16,15 @@ enum RoundWinner
 
 public sealed class Round : Component
 {
+	/* Public Properties */
+
 	public static Round Instance => Game.ActiveScene.Get<Round>();
 
 	[Property, ReadOnly]
 	[Sync(SyncFlags.FromHost)]
 	public RoundStage Stage { get; private set; } = RoundStage.Waiting;
+
+	/* Public Methods */
 
 	public float GetTimeRemaining()
 	{
@@ -49,6 +53,8 @@ public sealed class Round : Component
 		return 0f;
 	}
 
+	/* Console Variables */
+
 	[ConVar("min_players", ConVarFlags.GameSetting)]
 	static int MinPlayers { get; set; } = 2;
 
@@ -67,14 +73,20 @@ public sealed class Round : Component
 	[ConCmd("start", ConVarFlags.Server)]
 	static void Start() => Instance.Prepare();
 
+	/* Private Properties */
+
 	[Property, ReadOnly]
 	float timer = 0f;
+
+	/* Events */
 
 	protected override void OnUpdate()
 	{
 		TickTimer();
 		CheckSeekerVictory();
 	}
+	
+	/* Private Methods */
 
 	void TickTimer()
 	{

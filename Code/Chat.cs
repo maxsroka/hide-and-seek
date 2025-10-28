@@ -2,8 +2,12 @@ using Sandbox;
 
 public sealed class Chat : Component, Component.INetworkListener
 {
+    /* Public Properties */
+
     public static Chat Instance => Game.ActiveScene.Get<Chat>();
 
+    /* Public Methods */
+    
     [Rpc.Broadcast]
     public void Say(string message)
     {
@@ -16,6 +20,8 @@ public sealed class Chat : Component, Component.INetworkListener
         GUI.Instance.ChatBox.AddMessage(new ChatBox.HostMessage(message));
     }
 
+    /* Events */
+
     protected override void OnStart()
     {
         if (Connection.Local.IsHost)
@@ -23,6 +29,8 @@ public sealed class Chat : Component, Component.INetworkListener
             BroadcastJoined(Connection.Host.DisplayName);
         }
     }
+
+    /* Private Methods */
 
     void INetworkListener.OnConnected(Connection connection) => BroadcastJoined(connection.DisplayName);
     void INetworkListener.OnDisconnected(Connection connection) => BroadcastLeft(connection.DisplayName);
