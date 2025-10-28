@@ -83,7 +83,7 @@ public sealed class Round : Component
 	protected override void OnUpdate()
 	{
 		TickTimer();
-		CheckSeekerVictory();
+		CheckVictory();
 	}
 	
 	/* Private Methods */
@@ -129,15 +129,20 @@ public sealed class Round : Component
 		}
 	}
 
-	void CheckSeekerVictory()
+	void CheckVictory()
 	{
 		if (!Connection.Local.IsHost) return;
 		if (Stage != RoundStage.Playing) return;
 
-		var everyoneIsSeeking = Player.GetAll().All(p => p.Role == Role.Seeker);
-		if (everyoneIsSeeking)
-		{
+		var players = Player.GetAll();
+
+		if (players.All(p => p.Role == Role.Seeker))
+        {
 			End(RoundWinner.Seekers);
+        }
+		else if (players.All(p => p.Role == Role.Hider))
+		{
+			End(RoundWinner.Hiders);
 		}
 	}
 
@@ -164,7 +169,7 @@ public sealed class Round : Component
 		seeker.Freeze(true);
 		seeker.Blind(true);
 
-		Chat.Instance.Broadcast($"The game starts in {PrepTime} seconds");
+		Chat.Instance.Broadcast($"{seeker.Network.Owner.DisplayName} is the seeker!");
 	}
 
 	void Play()

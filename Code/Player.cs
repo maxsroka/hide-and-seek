@@ -101,14 +101,26 @@ public sealed class Player : Component, Component.ITriggerListener
     [ConCmd("hide", ConVarFlags.Server)]
     static void Hide(Connection caller)
     {
-        var player = Player.GetOwnedBy(caller);
+        if (Round.Instance.Stage != RoundStage.Playing)
+        {
+            caller.SendLog(LogLevel.Info, "You can't change role at this moment.");
+            return;
+        }
+
+        var player = GetOwnedBy(caller);
         player.Role = Role.Hider;
     }
 
     [ConCmd("seek", ConVarFlags.Server)]
     static void Seek(Connection caller)
     {
-        var player = Player.GetOwnedBy(caller);
+        if (Round.Instance.Stage != RoundStage.Playing)
+        {
+            caller.SendLog(LogLevel.Info, "You can't change role at this moment.");
+            return;
+        }
+        
+        var player = GetOwnedBy(caller);
         player.Role = Role.Seeker;
     }
 
