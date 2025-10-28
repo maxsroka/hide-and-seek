@@ -71,8 +71,17 @@ public sealed class Round : Component
 	static float EndTime { get; set; } = 5f;
 
 	[ConCmd("start", ConVarFlags.Server)]
-	static void Start() => Instance.Prepare();
+	static void Start()
+	{
+		if (Instance.Stage != RoundStage.Waiting)
+		{
+			Log.Info("You can't start the game at this moment.");
+			return;
+		}
 
+		Instance.Prepare();
+	}
+	
 	/* Private Properties */
 
 	[Property, ReadOnly]
