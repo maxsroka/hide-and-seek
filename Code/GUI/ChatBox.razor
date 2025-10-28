@@ -55,22 +55,19 @@
             this.content = content;
         }
     }
-    
-    public void AddMessage(Message message)
-    {
-        VirtualList.AddItem(message);
-    }
 
     public void OnUpdate()
     {
-        if (Container.HasClass("open"))
+        VirtualList.PreferScrollToBottom = true;
+
+        @* if (Container.HasClass("open"))
         {
             if (InputFocus.Current != TextEntry)
             {
                 Close();
             }
         }
-        else
+        else *@
         {
             if (Input.Pressed("Chat"))
             {
@@ -78,10 +75,27 @@
             }
         }
     }
+    
+    public void AddMessage(Message message)
+    {
+        VirtualList.AddItem(message);
+        Show();
+    }
+
+    void Show()
+    {
+        Container.FlashClass("visible", 5f);
+        
+        if (!Container.HasClass("open"))
+        {
+            VirtualList.TryScrollToBottom();
+        }
+    }
 
     void Open()
     {
         Container.SetClass("open", true);
+        Container.SetClass("visible", true);
         InputFocus.Set(TextEntry);
     }
 
@@ -89,6 +103,7 @@
     {
         TextEntry.Text = "";
         Container.SetClass("open", false);
+        Container.FlashClass("visible", 5f);
     }
 
     void Submit()

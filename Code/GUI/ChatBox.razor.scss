@@ -5,21 +5,22 @@
 	position: absolute;
 	padding: 20px;
 	align-items: flex-end;
-	display: none;
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 2s ease-out;
+	border: 1px solid transparent;
 
 	#chatbox {
 		width: 400px;
-		height: 300px;
-		background-color: rgba(0, 0, 0, 0.5);
-		border-radius: 2px;
-		border: 1px solid rgba(0, 0, 0, 0.5);
+		height: 200px;
 		flex-direction: column;
+		border-radius: 2px;
 		
 		#list {
+			pointer-events: none;
+			overflow-y: hidden;
 			width: 100%;
 			flex-grow: 1;
-			overflow-y: scroll;
-			pointer-events: all;
 			padding: 5px;
 
 			.message {
@@ -27,11 +28,11 @@
 				height: 20px;
 				font-size: 16px;
 				align-items: center;
-				// font-family: 'Rubik'; // not included
 			}
 			
 			.message.host {
-				color: violet;
+				color: white;
+				font-weight: bold;
 			}
 			
 			.message.user {
@@ -40,16 +41,34 @@
 		}
 
 		#input {
+			pointer-events: none;
 			width: 100%;
 			height: 40px;
-			background-color: rgba(0, 0, 0, 0.5);
 			color: white;
 			font-size: 16px;
-			pointer-events: all;
 		}
 	}
-}
-
-#chatbox-container.open {
-	display: flex;
+	
+	&.visible {
+		visibility: visible;
+		opacity: 1;
+		transition: opacity 0s;
+	}
+	
+	&.open {
+		#chatbox {
+			background-color: rgba(0, 0, 0, 0.5);
+			border-color: rgba(0, 0, 0, 0.5);
+	
+			#list {
+				pointer-events: all;
+				overflow-y: scroll;
+			}
+			
+			#input {
+				pointer-events: all;
+				background-color: rgba(0, 0, 0, 0.5);
+			}
+		}
+	}
 }
