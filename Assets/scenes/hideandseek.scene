@@ -65,17 +65,6 @@
           "timer": 0
         },
         {
-          "__type": "GUI",
-          "__guid": "c0db123a-1b29-4b11-8a9c-4513fb168cab",
-          "__enabled": true,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null
-        },
-        {
           "__type": "Sandbox.ScreenPanel",
           "__guid": "0859f604-16de-41d3-b192-d6489cfefd3f",
           "__enabled": true,
@@ -91,6 +80,28 @@
           "ScaleStrategy": "ConsistentHeight",
           "TargetCamera": null,
           "ZIndex": 100
+        },
+        {
+          "__type": "GUI",
+          "__guid": "4088a5ba-cb00-4e70-b24b-59d364512119",
+          "__enabled": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        },
+        {
+          "__type": "Chat",
+          "__guid": "ff3003c6-303b-4d59-bf26-32c174e723a6",
+          "__enabled": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         }
       ],
       "Children": []

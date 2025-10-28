@@ -1,0 +1,14 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+<root>
+	<ChatBox @ref="ChatBox"></ChatBox>
+</root>
+
+@code
+{
+	public ChatBox ChatBox { get; private set; }
+	
+	protected override int BuildHash() => System.HashCode.Combine(ChatBox.GetHashCode());
+}

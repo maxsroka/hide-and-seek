@@ -1,0 +1,33 @@
+@using Sandbox;
+@using Sandbox.UI;
+
+<div id="chatbox-container">
+    <VirtualList Items=@Items ItemHeight=@(20) id="chatbox" @ref="VirtualList" class="panel">
+        <Item Context="item">
+            @if (item is Message entry)
+            {
+                <Label Text="@entry.sender: @entry.content" class="message"></Label>
+            }
+        </Item>
+    </VirtualList>
+</div>
+
+@code
+{
+    VirtualList VirtualList { get; set; }
+    
+    List<Message> Items { get; set; } = new();
+
+    public class Message
+    {
+        public string sender;
+        public string content;
+    }
+    
+    public void AddMessage(Message message)
+    {
+        VirtualList.AddItem(message);
+    }
+
+    protected override int BuildHash() => System.HashCode.Combine(Items.GetHashCode());
+}
