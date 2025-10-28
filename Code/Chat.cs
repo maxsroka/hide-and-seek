@@ -8,8 +8,14 @@ public sealed class Chat : Component
     GUI GUI { get; set; }
 
     [Rpc.Broadcast]
-    public void Send(string message)
+    public void UserMessage(string message)
     {
-        GUI.ChatBox.AddMessage(new ChatBox.Message() { content = message, sender = Rpc.Caller.DisplayName });
+        GUI.ChatBox.AddMessage(new ChatBox.UserMessage(message, Rpc.Caller.DisplayName));
+    }
+
+    [Rpc.Broadcast(NetFlags.HostOnly)]
+    public void HostMessage(string message)
+    {
+        GUI.ChatBox.AddMessage(new ChatBox.HostMessage(message));
     }
 }

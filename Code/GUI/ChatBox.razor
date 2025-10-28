@@ -4,9 +4,16 @@
 <div id="chatbox-container">
     <VirtualList Items=@Items ItemHeight=@(20) id="chatbox" @ref="VirtualList" class="panel">
         <Item Context="item">
-            @if (item is Message entry)
+            @if (item is Message)
             {
-                <Label Text="@entry.sender: @entry.content" class="message"></Label>
+                @if (item is UserMessage userEntry)
+                {
+                    <Label class="message user" Text="@userEntry.sender: @userEntry.content"></Label>
+                }
+                else if (item is HostMessage hostEntry)
+                {
+                    <Label class="message host" Text="@hostEntry.content"></Label>
+                }
             }
         </Item>
     </VirtualList>
@@ -18,10 +25,28 @@
     
     List<Message> Items { get; set; } = new();
 
-    public class Message
+    public abstract class Message
+    {
+        public string content;
+    }
+
+    public class UserMessage : Message 
     {
         public string sender;
-        public string content;
+
+        public UserMessage(string content, string sender)
+        {
+            this.content = content;
+            this.sender = sender;
+        }
+    }
+
+    public class HostMessage : Message 
+    {
+        public HostMessage(string content)
+        {
+            this.content = content;
+        }
     }
     
     public void AddMessage(Message message)
