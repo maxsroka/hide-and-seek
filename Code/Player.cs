@@ -103,7 +103,7 @@ public sealed class Player : Component, Component.ITriggerListener
     {
         if (Round.Instance.Stage != RoundStage.Playing)
         {
-            caller.SendLog(LogLevel.Info, "You can't change role at this moment.");
+            caller.SendLog(LogLevel.Info, "You can't change your role at this moment.");
             return;
         }
 
@@ -116,7 +116,7 @@ public sealed class Player : Component, Component.ITriggerListener
     {
         if (Round.Instance.Stage != RoundStage.Playing)
         {
-            caller.SendLog(LogLevel.Info, "You can't change role at this moment.");
+            caller.SendLog(LogLevel.Info, "You can't change your role at this moment.");
             return;
         }
         
