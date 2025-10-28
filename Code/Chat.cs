@@ -19,13 +19,13 @@ public sealed class Chat : Component, Component.INetworkListener
         GUI.ChatBox.AddMessage(new ChatBox.HostMessage(message));
     }
 
-	protected override void OnStart()
-	{
-		if (Connection.Local.IsHost)
+    protected override void OnStart()
+    {
+        if (Connection.Local.IsHost)
         {
             BroadcastJoined(Connection.Host.DisplayName);
         }
-	}
+    }
 
     void INetworkListener.OnConnected(Connection connection) => BroadcastJoined(connection.DisplayName);
     void INetworkListener.OnDisconnected(Connection connection) => BroadcastLeft(connection.DisplayName);

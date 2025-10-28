@@ -3,17 +3,20 @@
 @inherits PanelComponent
 
 <root>
+	<BlindScreen @ref="BlindScreen"></BlindScreen>
 	<ChatBox @ref="ChatBox"></ChatBox>
 </root>
 
 @code
 {
 	public ChatBox ChatBox { get; private set; }
+	public BlindScreen BlindScreen { get; private set; }
 
 	protected override void OnUpdate()
 	{
 		ChatBox.OnUpdate();
+		BlindScreen.OnUpdate();
 	}
-	
+
 	protected override int BuildHash() => System.HashCode.Combine(ChatBox.GetHashCode());
 }

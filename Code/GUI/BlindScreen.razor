@@ -1,0 +1,17 @@
+@using Sandbox
+@using Sandbox.UI
+
+<div id="blind-screen" @ref="Panel"></div>
+
+@code
+{
+    Panel Panel { get; set; }
+
+    public void OnUpdate()
+    {
+        var localPlayer = Player.GetLocal();
+        Toggle(localPlayer.IsBlinded);
+    }
+
+    public void Toggle(bool toggle) => Panel.SetClass("visible", toggle);
+}
