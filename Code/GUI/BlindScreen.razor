@@ -7,9 +7,10 @@
 {
     Panel Panel { get; set; }
 
-    public void OnUpdate()
+    public override void Tick()
     {
         var localPlayer = Player.GetLocal();
+        Log.HideAndSeek.Info(localPlayer);
         Toggle(localPlayer.IsBlinded);
     }
 

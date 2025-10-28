@@ -9,14 +9,8 @@
 
 @code
 {
-	public ChatBox ChatBox { get; private set; }
 	public BlindScreen BlindScreen { get; private set; }
-
-	protected override void OnUpdate()
-	{
-		ChatBox.OnUpdate();
-		BlindScreen.OnUpdate();
-	}
+	public ChatBox ChatBox { get; private set; }
 
 	protected override int BuildHash() => System.HashCode.Combine(ChatBox.GetHashCode());
 }

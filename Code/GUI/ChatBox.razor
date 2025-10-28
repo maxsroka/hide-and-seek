@@ -18,19 +18,23 @@
                 }
             </Item>
         </VirtualList>
-        <TextEntry id="input" @ref="TextEntry" onsubmit=@Submit></TextEntry>
+        <TextEntry id="input" @ref="TextEntry" onsubmit=@OnSubmit></TextEntry>
     </div>
 </div>
 
 @code
 {
-    VirtualList VirtualList { get; set; }
-    
-    List<Message> Items { get; set; } = new();
+    /* References */
 
     Panel Container { get; set; }
-
+    VirtualList VirtualList { get; set; }
     TextEntry TextEntry { get; set; }
+
+    /* Properties */
+
+    List<Message> Items { get; set; } = new();
+    
+    /* Message Types */
 
     public abstract class Message
     {
@@ -55,58 +59,32 @@
             this.content = content;
         }
     }
-
-    public void OnUpdate()
-    {
-        VirtualList.PreferScrollToBottom = true;
-
-        @* if (Container.HasClass("open"))
-        {
-            if (InputFocus.Current != TextEntry)
-            {
-                Close();
-            }
-        }
-        else *@
-        {
-            if (Input.Pressed("Chat"))
-            {
-                Open();
-            }
-        }
-    }
     
+    /* Public Methods */
+
     public void AddMessage(Message message)
     {
         VirtualList.AddItem(message);
-        Show();
-    }
-
-    void Show()
-    {
-        Container.FlashClass("visible", 5f);
         
         if (!Container.HasClass("open"))
         {
-            VirtualList.TryScrollToBottom();
+            Peek();
         }
     }
 
-    void Open()
+    /* Events */
+
+    public override void Tick()
     {
-        Container.SetClass("open", true);
-        Container.SetClass("visible", true);
-        InputFocus.Set(TextEntry);
+        VirtualList.PreferScrollToBottom = true;
+
+        if (Input.Pressed("Chat"))
+        {
+            Open();
+        }
     }
 
-    void Close()
-    {
-        TextEntry.Text = "";
-        Container.SetClass("open", false);
-        Container.FlashClass("visible", 5f);
-    }
-
-    void Submit()
+    void OnSubmit()
     {
         var input = TextEntry.Text;
         if (!string.IsNullOrWhiteSpace(input))
@@ -116,6 +94,42 @@
         }
 
         Close();
+    }
+
+    protected override void OnEscape(PanelEvent e)
+    {
+        Close();
+    }
+
+    /* Private Methods */
+
+    /// <summary>
+    /// Reveals the messages for a few seconds.
+    /// </summary>
+    void Peek()
+    {
+        Container.FlashClass("visible", 5f);
+        VirtualList.TryScrollToBottom();
+    }
+
+    /// <summary>
+    /// Reveals the chatbox and allows the user to type.
+    /// </summary>
+    void Open()
+    {
+        Container.SetClass("open", true);
+        Container.FlashClass("visible", 999999f);
+        InputFocus.Set(TextEntry);
+    }
+
+    /// <summary>
+    /// Resets input and hides the chatbox after a few seconds.
+    /// </summary>
+    void Close()
+    {
+        Container.SetClass("open", false);
+        Peek();
+        TextEntry.Text = "";
     }
 
     protected override int BuildHash() => System.HashCode.Combine(Items.GetHashCode());
