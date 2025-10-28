@@ -9,6 +9,8 @@
 
 @code
 {
+	public static GUI Instance => Game.ActiveScene.Get<GUI>();
+
 	public BlindScreen BlindScreen { get; private set; }
 	public ChatBox ChatBox { get; private set; }
 

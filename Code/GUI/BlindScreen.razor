@@ -7,12 +7,5 @@
 {
     Panel Panel { get; set; }
 
-    public override void Tick()
-    {
-        var localPlayer = Player.GetLocal();
-        Log.HideAndSeek.Info(localPlayer);
-        Toggle(localPlayer.IsBlinded);
-    }
-
     public void Toggle(bool toggle) => Panel.SetClass("visible", toggle);
 }

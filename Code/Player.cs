@@ -17,8 +17,6 @@ public sealed class Player : Component, Component.ITriggerListener
     [Change(nameof(OnRoleChanged))]
     public Role Role { get; set; } = Role.Uninitialized;
 
-    public bool IsBlinded { get; private set; }
-
     /* Components */
 
     [RequireComponent]
@@ -30,19 +28,19 @@ public sealed class Player : Component, Component.ITriggerListener
     /* Private Properties */
 
     [Property, Group("Trigger")]
-    CapsuleCollider standingCollider;
+    CapsuleCollider StandingCollider { get; set; }
 
     [Property, Group("Trigger")]
-    CapsuleCollider duckingCollider;
+    CapsuleCollider DuckingCollider { get; set; }
     
     [Property, Group("Clothing")]
-    Clothing.Slots slotsFilter;
+    Clothing.Slots SlotsFilter { get; set; }
 
     [Property, Group("Clothing")]
-    Clothing hiderSuit;
+    Clothing HiderSuit { get; set; }
     
     [Property, Group("Clothing")]
-    Clothing seekerSuit;
+    Clothing SeekerSuit { get; set; }
 
     /* Component Events */
 
@@ -59,13 +57,13 @@ public sealed class Player : Component, Component.ITriggerListener
 
         if (player.Controller.IsDucking && !player.Controller.IsAirborne)
         {
-            standingCollider.Enabled = false;
-            duckingCollider.Enabled = true;
+            StandingCollider.Enabled = false;
+            DuckingCollider.Enabled = true;
         }
         else
         {
-            standingCollider.Enabled = true;
-            duckingCollider.Enabled = false;
+            StandingCollider.Enabled = true;
+            DuckingCollider.Enabled = false;
         }
     }
 
@@ -90,11 +88,11 @@ public sealed class Player : Component, Component.ITriggerListener
     {
         if (role == Role.Hider)
         {
-            WearSuit(hiderSuit);
+            WearSuit(HiderSuit);
         }
         else if (role == Role.Seeker)
         {
-            WearSuit(seekerSuit);
+            WearSuit(SeekerSuit);
         }
     }
 
@@ -159,7 +157,7 @@ public sealed class Player : Component, Component.ITriggerListener
     [Rpc.Owner(NetFlags.HostOnly)]
     public void Blind(bool blind)
     {
-        IsBlinded = blind;
+        GUI.Instance.BlindScreen.Toggle(blind);
     }
 
     // Private Methods
@@ -167,7 +165,7 @@ public sealed class Player : Component, Component.ITriggerListener
     void WearSuit(Clothing suit)
     {
         var userClothingContainer = GetUserClothingContainer();
-        var newClothingContainer = FilterClothingContainer(userClothingContainer, slotsFilter);
+        var newClothingContainer = FilterClothingContainer(userClothingContainer, SlotsFilter);
 
         newClothingContainer.Add(suit);
         
