@@ -2,10 +2,16 @@ using System;
 
 public enum RoundStage
 {
-    Waiting,
-    Preparing,
-    Playing,
-    Ending
+	Waiting,
+	Preparing,
+	Playing,
+	Ending
+}
+
+enum RoundWinner
+{
+	Seekers,
+	Hiders
 }
 
 public sealed class Round : Component
@@ -17,7 +23,7 @@ public sealed class Round : Component
 	public RoundStage Stage { get; private set; } = RoundStage.Waiting;
 
 	public float GetTimeRemaining()
-    {
+	{
 		if (Stage == RoundStage.Waiting)
 		{
 			if (Player.GetAll().Count < MinPlayers)
@@ -41,7 +47,7 @@ public sealed class Round : Component
 		}
 
 		return 0f;
-    }
+	}
 
 	[ConVar("min_players", ConVarFlags.GameSetting)]
 	static int MinPlayers { get; set; } = 2;
@@ -65,6 +71,12 @@ public sealed class Round : Component
 	float timer = 0f;
 
 	protected override void OnUpdate()
+	{
+		TickTimer();
+		CheckSeekerVictory();
+	}
+
+	void TickTimer()
 	{
 		if (!Connection.Local.IsHost) return;
 
@@ -93,7 +105,7 @@ public sealed class Round : Component
 		{
 			if (timer >= PlayTime)
 			{
-				End();
+				End(RoundWinner.Hiders);
 			}
 		}
 		else if (Stage == RoundStage.Ending)
@@ -102,6 +114,18 @@ public sealed class Round : Component
 			{
 				Prepare();
 			}
+		}
+	}
+
+	void CheckSeekerVictory()
+	{
+		if (!Connection.Local.IsHost) return;
+		if (Stage != RoundStage.Playing) return;
+
+		var everyoneIsSeeking = Player.GetAll().All(p => p.Role == Role.Seeker);
+		if (everyoneIsSeeking)
+		{
+			End(RoundWinner.Seekers);
 		}
 	}
 
@@ -115,33 +139,49 @@ public sealed class Round : Component
 	{
 		Stage = RoundStage.Preparing;
 		timer = 0f;
-		Chat.Instance.Broadcast("Preparing");
 
 		var spawnPoint = GetRandomSpawnPoint();
-		TeleportPlayersTo(spawnPoint.WorldPosition);
+		Player.GetAll().ForEach(player =>
+		{
+			player.Teleport(spawnPoint.WorldPosition);
+			player.Role = Role.Hider;
+		});
 
 		var seeker = Player.GetRandom();
 		seeker.Role = Role.Seeker;
 		seeker.Freeze(true);
 		seeker.Blind(true);
+
+		Chat.Instance.Broadcast($"The game starts in {PrepTime} seconds");
 	}
 
 	void Play()
 	{
 		Stage = RoundStage.Playing;
 		timer = 0f;
-		Chat.Instance.Broadcast("Playing");
 
 		var seeker = Player.GetAll().Find(p => p.Role == Role.Seeker);
 		seeker.Freeze(false);
 		seeker.Blind(false);
+
+		Chat.Instance.Broadcast("Ready or not, the hunt's begun!");
 	}
 
-	void End()
+	void End(RoundWinner winner)
 	{
 		Stage = RoundStage.Ending;
 		timer = 0f;
-		Chat.Instance.Broadcast("Ending");
+
+		string message;
+		if (winner == RoundWinner.Seekers)
+		{
+			message = "The seeking have won!";
+		}
+        else
+        {
+			message = "The hiding have won!";
+        }
+		Chat.Instance.Broadcast(message);
 	}
 
 	GameObject GetRandomSpawnPoint()
@@ -151,12 +191,4 @@ public sealed class Round : Component
 
 		return spawnPoint.GameObject;
 	}
-
-	void TeleportPlayersTo(Vector3 worldPosition)
-    {
-        foreach (var player in Player.GetAll())
-		{
-			player.Teleport(worldPosition);
-        }
-    }
 }

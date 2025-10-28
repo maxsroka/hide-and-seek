@@ -1,6 +1,6 @@
 using Sandbox;
 
-public sealed class Chat : Component
+public sealed class Chat : Component, Component.INetworkListener
 {
     public static Chat Instance => Game.ActiveScene.Get<Chat>();
 
@@ -18,4 +18,18 @@ public sealed class Chat : Component
     {
         GUI.ChatBox.AddMessage(new ChatBox.HostMessage(message));
     }
+
+	protected override void OnStart()
+	{
+		if (Connection.Local.IsHost)
+        {
+            BroadcastJoined(Connection.Host.DisplayName);
+        }
+	}
+
+    void INetworkListener.OnConnected(Connection connection) => BroadcastJoined(connection.DisplayName);
+    void INetworkListener.OnDisconnected(Connection connection) => BroadcastLeft(connection.DisplayName);
+    
+    void BroadcastJoined(string displayName) => Broadcast($"{displayName} has joined the game");
+    void BroadcastLeft(string displayName) => Broadcast($"{displayName} has left the game");
 }
