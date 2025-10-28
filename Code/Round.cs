@@ -115,7 +115,7 @@ public sealed class Round : Component
 	{
 		Stage = RoundStage.Preparing;
 		timer = 0f;
-		Chat.Instance.HostMessage("Preparing");
+		Chat.Instance.Broadcast("Preparing");
 
 		var spawnPoint = GetRandomSpawnPoint();
 		TeleportPlayersTo(spawnPoint.WorldPosition);
@@ -130,7 +130,7 @@ public sealed class Round : Component
 	{
 		Stage = RoundStage.Playing;
 		timer = 0f;
-		Chat.Instance.HostMessage("Playing");
+		Chat.Instance.Broadcast("Playing");
 
 		var seeker = Player.GetAll().Find(p => p.Role == Role.Seeker);
 		seeker.Freeze(false);
@@ -141,7 +141,7 @@ public sealed class Round : Component
 	{
 		Stage = RoundStage.Ending;
 		timer = 0f;
-		Chat.Instance.HostMessage("Ending");
+		Chat.Instance.Broadcast("Ending");
 	}
 
 	GameObject GetRandomSpawnPoint()
