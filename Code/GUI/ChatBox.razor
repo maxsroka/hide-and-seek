@@ -1,22 +1,25 @@
 @using Sandbox;
 @using Sandbox.UI;
 
-<div id="chatbox-container">
-    <VirtualList Items=@Items ItemHeight=@(20) id="chatbox" @ref="VirtualList" class="panel">
-        <Item Context="item">
-            @if (item is Message)
-            {
-                @if (item is UserMessage userEntry)
+<div id="chatbox-container" @ref="Container">
+    <div id="chatbox">
+        <VirtualList Items=@Items ItemHeight=@(20) @ref="VirtualList" id="list">
+            <Item Context="item">
+                @if (item is Message)
                 {
-                    <Label class="message user" Text="@userEntry.sender: @userEntry.content"></Label>
+                    @if (item is UserMessage userEntry)
+                    {
+                        <Label class="message user" Text="@userEntry.sender: @userEntry.content"></Label>
+                    }
+                    else if (item is HostMessage hostEntry)
+                    {
+                        <Label class="message host" Text="@hostEntry.content"></Label>
+                    }
                 }
-                else if (item is HostMessage hostEntry)
-                {
-                    <Label class="message host" Text="@hostEntry.content"></Label>
-                }
-            }
-        </Item>
-    </VirtualList>
+            </Item>
+        </VirtualList>
+        <TextEntry id="input" @ref="TextEntry" onsubmit=@Submit></TextEntry>
+    </div>
 </div>
 
 @code
@@ -24,6 +27,10 @@
     VirtualList VirtualList { get; set; }
     
     List<Message> Items { get; set; } = new();
+
+    Panel Container { get; set; }
+
+    TextEntry TextEntry { get; set; }
 
     public abstract class Message
     {
@@ -52,6 +59,48 @@
     public void AddMessage(Message message)
     {
         VirtualList.AddItem(message);
+    }
+
+    public void OnUpdate()
+    {
+        if (Container.HasClass("open"))
+        {
+            if (InputFocus.Current != TextEntry)
+            {
+                Close();
+            }
+        }
+        else
+        {
+            if (Input.Pressed("Chat"))
+            {
+                Open();
+            }
+        }
+    }
+
+    void Open()
+    {
+        Container.SetClass("open", true);
+        InputFocus.Set(TextEntry);
+    }
+
+    void Close()
+    {
+        TextEntry.Text = "";
+        Container.SetClass("open", false);
+    }
+
+    void Submit()
+    {
+        var input = TextEntry.Text;
+        if (!string.IsNullOrWhiteSpace(input))
+        {
+            Chat.Instance.Say(input);
+            TextEntry.AddToHistory(input);
+        }
+
+        Close();
     }
 
     protected override int BuildHash() => System.HashCode.Combine(Items.GetHashCode());
