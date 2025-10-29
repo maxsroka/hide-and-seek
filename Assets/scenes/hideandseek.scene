@@ -173,7 +173,7 @@
           "__enabled": true,
           "__version": 1,
           "EnableCollision": true,
-          "MapName": "facepunch.flatgrass",
+          "MapName": "facepunch.construct23",
           "NoOrigin": false,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,

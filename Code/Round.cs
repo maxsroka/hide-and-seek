@@ -81,7 +81,7 @@ public sealed class Round : Component
 
 		Instance.Prepare();
 	}
-	
+
 	/* Private Properties */
 
 	[Property, ReadOnly]
@@ -94,7 +94,7 @@ public sealed class Round : Component
 		TickTimer();
 		CheckVictory();
 	}
-	
+
 	/* Private Methods */
 
 	void TickTimer()
@@ -146,9 +146,9 @@ public sealed class Round : Component
 		var players = Player.GetAll();
 
 		if (players.All(p => p.Role == Role.Seeker))
-        {
+		{
 			End(RoundWinner.Seekers);
-        }
+		}
 		else if (players.All(p => p.Role == Role.Hider))
 		{
 			End(RoundWinner.Hiders);
@@ -203,10 +203,10 @@ public sealed class Round : Component
 		{
 			message = "The seeking have won!";
 		}
-        else
-        {
+		else
+		{
 			message = "The hiding have won!";
-        }
+		}
 		Chat.Instance.Broadcast(message);
 	}
 
