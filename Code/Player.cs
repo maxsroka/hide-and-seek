@@ -27,10 +27,10 @@ public sealed class Player : Component, Component.ITriggerListener
     
     /* Private Properties */
 
-    [Property, Group("Trigger")]
+    [Property, Group("Tagging")]
     CapsuleCollider StandingCollider { get; set; }
 
-    [Property, Group("Trigger")]
+    [Property, Group("Tagging")]
     CapsuleCollider DuckingCollider { get; set; }
     
     [Property, Group("Clothing")]
@@ -51,35 +51,14 @@ public sealed class Player : Component, Component.ITriggerListener
 
     protected override void OnFixedUpdate()
     {
-        if (!Connection.Local.IsHost) return;
-
-        var player = GetHost();
-
-        if (player.Controller.IsDucking && !player.Controller.IsAirborne)
-        {
-            StandingCollider.Enabled = false;
-            DuckingCollider.Enabled = true;
-        }
-        else
-        {
-            StandingCollider.Enabled = true;
-            DuckingCollider.Enabled = false;
-        }
+        AdjustTagCollider();
     }
 
     /* Collider Events */
     
     public void OnTriggerEnter(Collider other)
     {
-        if (!Connection.Local.IsHost) return;
-        if (GetHost().Role != Role.Seeker) return;
-        if (Round.Instance.Stage != RoundStage.Playing) return;
-
-        var otherPlayer = other.GetComponent<Player>();
-        if (otherPlayer == null) return;
-        if (otherPlayer.Role != Role.Hider) return;
-
-        otherPlayer.Role = Role.Seeker;
+        CheckTag(other);
     }
 
     /* Other Events */
@@ -173,6 +152,37 @@ public sealed class Player : Component, Component.ITriggerListener
     }
 
     // Private Methods
+
+    void AdjustTagCollider()
+    {
+        if (!Connection.Local.IsHost) return;
+
+        var player = GetHost();
+
+        if (player.Controller.IsDucking && !player.Controller.IsAirborne)
+        {
+            StandingCollider.Enabled = false;
+            DuckingCollider.Enabled = true;
+        }
+        else
+        {
+            StandingCollider.Enabled = true;
+            DuckingCollider.Enabled = false;
+        }
+    }
+
+    void CheckTag(Collider other)
+    {
+        if (!Connection.Local.IsHost) return;
+        if (GetHost().Role != Role.Seeker) return;
+        if (Round.Instance.Stage != RoundStage.Playing) return;
+
+        var otherPlayer = other.GetComponent<Player>();
+        if (otherPlayer == null) return;
+        if (otherPlayer.Role != Role.Hider) return;
+
+        otherPlayer.Role = Role.Seeker;
+    }
 
     void WearSuit(Clothing suit)
     {
