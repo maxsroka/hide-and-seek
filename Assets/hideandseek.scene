@@ -150,7 +150,46 @@
           "ZNear": 10
         }
       ],
-      "Children": []
+      "Children": [
+        {
+          "__guid": "c2c6e9f0-59d3-4c14-bab1-39d4004b316e",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "Flashlight",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "light_spot,light",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Sandbox.SpotLight",
+              "__guid": "d4a46a7e-3c1d-49e4-b9c6-5d0b1ab2b90e",
+              "__enabled": false,
+              "Attenuation": 1,
+              "ConeInner": 20,
+              "ConeOuter": 30,
+              "Cookie": null,
+              "FogMode": "Enabled",
+              "FogStrength": 1,
+              "LightColor": "0.91373,0.98039,1,1",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Radius": 1000,
+              "Shadows": true
+            }
+          ],
+          "Children": []
+        }
+      ]
     },
     {
       "__guid": "b2eb034d-ea0d-4432-81de-41c5c430feb7",

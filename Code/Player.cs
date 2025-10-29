@@ -49,6 +49,11 @@ public sealed class Player : Component, Component.ITriggerListener
         Role = Role.Hider;
     }
 
+	protected override void OnUpdate()
+    {
+        CheckFlashlight();
+	}
+
     protected override void OnFixedUpdate()
     {
         AdjustTagCollider();
@@ -151,7 +156,24 @@ public sealed class Player : Component, Component.ITriggerListener
         GUI.Instance.BlindScreen.Toggle(blind);
     }
 
+    public void ToggleFlashlight()
+    {
+        var light = Scene.Camera.GetComponentInChildren<SpotLight>(true);
+        light.Enabled = !light.Enabled;
+    }
+
     // Private Methods
+
+    void CheckFlashlight()
+    {
+        if (GetLocal().Network.Owner.Id == Network.Owner.Id)
+        {
+            if (Input.Pressed("Flashlight"))
+            {
+                ToggleFlashlight();
+            }
+        }
+    }
 
     void AdjustTagCollider()
     {
