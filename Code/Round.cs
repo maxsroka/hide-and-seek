@@ -145,11 +145,11 @@ public sealed class Round : Component
 
 		var players = Player.GetAll();
 
-		if (players.All(p => p.Role == Role.Seeker))
+		if (players.All(p => p.IsSeeker))
 		{
 			End(RoundWinner.Seekers);
 		}
-		else if (players.All(p => p.Role == Role.Hider))
+		else if (players.All(p => p.IsHider))
 		{
 			End(RoundWinner.Hiders);
 		}
@@ -170,11 +170,11 @@ public sealed class Round : Component
 		Player.GetAll().ForEach(player =>
 		{
 			player.Teleport(spawnPoint.WorldPosition);
-			player.Role = Role.Hider;
+			player.Hide();
 		});
 
 		var seeker = Player.GetRandom();
-		seeker.Role = Role.Seeker;
+		seeker.Seek();
 		seeker.Freeze(true);
 
 		Chat.Instance.Broadcast($"{seeker.Network.Owner.DisplayName} is the seeker!");
@@ -185,7 +185,7 @@ public sealed class Round : Component
 		Stage = RoundStage.Playing;
 		timer = 0f;
 
-		var seeker = Player.GetAll().Find(p => p.Role == Role.Seeker);
+		var seeker = Player.GetAll().Find(p => p.IsSeeker);
 		seeker.Freeze(false);
 
 		Chat.Instance.Broadcast("Ready or not, the hunt's begun!");

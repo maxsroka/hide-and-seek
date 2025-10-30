@@ -8,7 +8,7 @@ public class Clothes : Component
     [RequireComponent]
     Dresser Dresser { get; set; }
 
-    public void WearSuit(Clothing suit)
+    public void Equip(Clothing suit)
     {
         var userClothingContainer = GetUserClothingContainer();
         var newClothingContainer = FilterClothingContainer(userClothingContainer, Filter);

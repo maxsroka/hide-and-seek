@@ -18,15 +18,12 @@
         "__type": "Player",
         "__guid": "72c54ac6-6cd2-4d4a-884a-d13e191b998a",
         "__enabled": true,
-        "HiderSuit": "models/citizen_clothes/shirt/jumpsuit/blue_jumpsuit.clothing",
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
-        "OnComponentUpdate": null,
-        "Role": "Uninitialized",
-        "SeekerSuit": "models/citizen_clothes/shirt/jumpsuit/prison_jumpsuit.clothing"
+        "OnComponentUpdate": null
       },
       {
         "__type": "Clothes",
@@ -39,6 +36,44 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null
+      },
+      {
+        "__type": "Role",
+        "__guid": "c58ad240-c407-4b40-a466-23c5c77d5672",
+        "__enabled": true,
+        "Current": null,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      },
+      {
+        "__type": "SeekerRole",
+        "__guid": "1076b9bc-5efe-4b20-8502-06f85c222007",
+        "__enabled": false,
+        "Name": "Seeker",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "Suit": "models/citizen_clothes/shirt/jumpsuit/prison_jumpsuit.clothing"
+      },
+      {
+        "__type": "HiderRole",
+        "__guid": "422b8dce-ef09-404d-9d9f-b56a4c8affbd",
+        "__enabled": false,
+        "Name": "Hider",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "Suit": "models/citizen_clothes/shirt/jumpsuit/blue_jumpsuit.clothing"
       },
       {
         "__type": "Movement",
