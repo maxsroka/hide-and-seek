@@ -2,7 +2,6 @@ using Sandbox;
 
 public class Role : Component
 {
-    [Property, ReadOnly]
     [Sync(SyncFlags.FromHost)]
     [Change(nameof(OnRoleChanged))]
     BaseRole Current { get; set; }
