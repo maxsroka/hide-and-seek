@@ -176,7 +176,6 @@ public sealed class Round : Component
 		var seeker = Player.GetRandom();
 		seeker.Role = Role.Seeker;
 		seeker.Freeze(true);
-		seeker.Blind(true);
 
 		Chat.Instance.Broadcast($"{seeker.Network.Owner.DisplayName} is the seeker!");
 	}
@@ -188,7 +187,6 @@ public sealed class Round : Component
 
 		var seeker = Player.GetAll().Find(p => p.Role == Role.Seeker);
 		seeker.Freeze(false);
-		seeker.Blind(false);
 
 		Chat.Instance.Broadcast("Ready or not, the hunt's begun!");
 	}

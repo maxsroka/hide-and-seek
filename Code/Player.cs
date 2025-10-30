@@ -17,29 +17,17 @@ public sealed class Player : Component, Component.ITriggerListener
     [Change(nameof(OnRoleChanged))]
     public Role Role { get; set; } = Role.Uninitialized;
 
-    /* Components */
-
     [RequireComponent]
-    PlayerController Controller { get; set; }
+    Movement Movement { get; set; }
 
     [RequireComponent]
     Clothes Clothes { get; set; }
     
-    /* Private Properties */
-
-    [Property, Group("Tagging")]
-    CapsuleCollider StandingCollider { get; set; }
-
-    [Property, Group("Tagging")]
-    CapsuleCollider DuckingCollider { get; set; }
-    
-    [Property, Group("Clothing")]
+    [Property]
     Clothing HiderSuit { get; set; }
     
-    [Property, Group("Clothing")]
+    [Property]
     Clothing SeekerSuit { get; set; }
-
-    /* Component Events */
 
     protected override void OnStart()
     {
@@ -57,8 +45,6 @@ public sealed class Player : Component, Component.ITriggerListener
             Clothes.WearSuit(SeekerSuit);
         }
     }
-
-    /* Commands */
 
     [ConCmd("hide", ConVarFlags.Server)]
     static void Hide(Connection caller)
@@ -86,8 +72,6 @@ public sealed class Player : Component, Component.ITriggerListener
         player.Role = Role.Seeker;
     }
 
-    /* Query Methods */
-
     public static List<Player> GetAll()
     {
         return Game.ActiveScene.GetAllComponents<Player>().ToList();
@@ -113,24 +97,6 @@ public sealed class Player : Component, Component.ITriggerListener
         return Game.Random.FromList(GetAll());
     }
 
-    // Public Methods
-
-    [Rpc.Owner(NetFlags.HostOnly)]
-    public void Teleport(Vector3 worldPosition)
-    {
-        WorldPosition = worldPosition;
-    }
-
-    [Rpc.Owner(NetFlags.HostOnly)]
-    public void Freeze(bool freeze)
-    {
-        Controller.UseInputControls = !freeze;
-        Controller.WishVelocity = Vector3.Zero;
-    }
-
-    [Rpc.Owner(NetFlags.HostOnly)]
-    public void Blind(bool blind)
-    {
-        GUI.Instance.BlindScreen.Toggle(blind);
-    }
+    public void Teleport(Vector3 worldPosition) => Movement.Teleport(worldPosition);
+    public void Freeze(bool freeze) => Movement.Freeze(freeze);
 }
