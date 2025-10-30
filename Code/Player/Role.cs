@@ -56,12 +56,26 @@ public abstract class BaseRole : Component
     }
 }
 
-public class SeekerRole : BaseRole
+public class SeekerRole : BaseRole, Component.ITriggerListener
 {
+    void ITriggerListener.OnTriggerEnter(Collider other)
+    {
+        if (Connection.Local.IsHost)
+        {
+            TryTag(other);
+        }
+    }
 
+    void TryTag(Collider other)
+    {
+        var player = other.GetComponent<Player>();
+        if (player == null || !player.IsHider) return;
+
+        player.Seek();
+    }
 }
 
 public class HiderRole : BaseRole
 {
-
+    
 }
