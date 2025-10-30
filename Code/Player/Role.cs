@@ -30,7 +30,7 @@ public class Role : Component
 
     protected override void OnStart()
     {
-        if (Network.Owner.IsHost)
+        if (Connection.Local.IsHost)
         {
             Hide();
         }
