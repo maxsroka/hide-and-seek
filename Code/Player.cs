@@ -23,7 +23,7 @@ public sealed class Player : Component, Component.ITriggerListener
     PlayerController Controller { get; set; }
 
     [RequireComponent]
-    Dresser Dresser { get; set; }
+    Clothes Clothes { get; set; }
     
     /* Private Properties */
 
@@ -33,9 +33,6 @@ public sealed class Player : Component, Component.ITriggerListener
     [Property, Group("Tagging")]
     CapsuleCollider DuckingCollider { get; set; }
     
-    [Property, Group("Clothing")]
-    Clothing.Slots SlotsFilter { get; set; }
-
     [Property, Group("Clothing")]
     Clothing HiderSuit { get; set; }
     
@@ -67,11 +64,11 @@ public sealed class Player : Component, Component.ITriggerListener
     {
         if (role == Role.Hider)
         {
-            WearSuit(HiderSuit);
+            Clothes.WearSuit(HiderSuit);
         }
         else if (role == Role.Seeker)
         {
-            WearSuit(SeekerSuit);
+            Clothes.WearSuit(SeekerSuit);
         }
     }
 
@@ -182,37 +179,5 @@ public sealed class Player : Component, Component.ITriggerListener
         if (otherPlayer.Role != Role.Hider) return;
 
         otherPlayer.Role = Role.Seeker;
-    }
-
-    void WearSuit(Clothing suit)
-    {
-        var userClothingContainer = GetUserClothingContainer();
-        var newClothingContainer = FilterClothingContainer(userClothingContainer, SlotsFilter);
-
-        newClothingContainer.Add(suit);
-        
-        Dresser.Clothing = newClothingContainer.Clothing;
-        Dresser.Apply();
-    }
-
-    ClothingContainer FilterClothingContainer(ClothingContainer original, Clothing.Slots filter)
-    {
-        var filtered = new ClothingContainer();
-
-        foreach (var entry in original.Clothing)
-        {
-            if ((entry?.Clothing?.SlotsUnder & filter) != 0) continue;
-
-            filtered.Add(entry);
-        }
-
-        return filtered;
-    }
-    
-    ClothingContainer GetUserClothingContainer()
-    {
-        var container = new ClothingContainer();
-        container.Deserialize(Network.Owner.GetUserData("avatar"));
-        return container;
     }
 }
