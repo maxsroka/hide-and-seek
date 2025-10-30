@@ -167,6 +167,17 @@
           "OwnerTransfer": 1,
           "Components": [
             {
+              "__type": "Flashlight",
+              "__guid": "a65ae573-9d11-4d86-b235-bd4dd02b0e41",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
               "__type": "Sandbox.SpotLight",
               "__guid": "d4a46a7e-3c1d-49e4-b9c6-5d0b1ab2b90e",
               "__enabled": false,
