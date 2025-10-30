@@ -26,8 +26,8 @@
         "OnComponentUpdate": null
       },
       {
-        "__type": "Role",
-        "__guid": "c58ad240-c407-4b40-a466-23c5c77d5672",
+        "__type": "Movement",
+        "__guid": "86dffdfd-a3ff-4f31-8030-26621251be0f",
         "__enabled": true,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -37,10 +37,9 @@
         "OnComponentUpdate": null
       },
       {
-        "__type": "Clothes",
-        "__guid": "9780d070-af88-4f70-b9e1-31ba75e66c5a",
+        "__type": "Role",
+        "__guid": "c58ad240-c407-4b40-a466-23c5c77d5672",
         "__enabled": true,
-        "Filter": "Chest, LeftArm, RightArm, Groin, LeftThigh, RightThigh, LeftKnee, RightKnee, LeftShin, RightShin, Waist",
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -75,9 +74,10 @@
         "Suit": "models/citizen_clothes/shirt/jumpsuit/blue_jumpsuit.clothing"
       },
       {
-        "__type": "Movement",
-        "__guid": "86dffdfd-a3ff-4f31-8030-26621251be0f",
+        "__type": "Clothes",
+        "__guid": "9780d070-af88-4f70-b9e1-31ba75e66c5a",
         "__enabled": true,
+        "Filter": "Chest, LeftArm, RightArm, Groin, LeftThigh, RightThigh, LeftKnee, RightKnee, LeftShin, RightShin, Waist",
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
