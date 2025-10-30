@@ -1,12 +1,17 @@
 using Sandbox;
 
+public interface IMovementEvents : ISceneEvent<IMovementEvents>
+{
+    void OnFreeze(bool isFrozen);
+}
+
 public class Movement : Component
 {
     [Property]
-    CapsuleCollider standingTrigger;
+    CapsuleCollider StandingTrigger { get; set; }
 
     [Property]
-    CapsuleCollider duckingTrigger;
+    CapsuleCollider DuckingTrigger { get; set; }
 
     [RequireComponent]
     PlayerController Controller { get; set; }
@@ -22,7 +27,7 @@ public class Movement : Component
     {
         Controller.UseInputControls = !freeze;
         Controller.WishVelocity = Vector3.Zero;
-        GUI.Instance.BlindScreen.Toggle(freeze);
+        IMovementEvents.Post(e => e.OnFreeze(freeze));
     }
 
     protected override void OnFixedUpdate()
@@ -37,13 +42,13 @@ public class Movement : Component
     {
         if (Controller.IsDucking && !Controller.IsAirborne)
         {
-            standingTrigger.Enabled = false;
-            duckingTrigger.Enabled = true;
+            StandingTrigger.Enabled = false;
+            DuckingTrigger.Enabled = true;
         }
         else
         {
-            standingTrigger.Enabled = true;
-            duckingTrigger.Enabled = false;
+            StandingTrigger.Enabled = true;
+            DuckingTrigger.Enabled = false;
         }
     }
 }

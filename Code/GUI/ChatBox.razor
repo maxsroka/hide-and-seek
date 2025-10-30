@@ -5,13 +5,13 @@
     <div id="chatbox">
         <VirtualList Items=@Items ItemHeight=@(20) @ref="VirtualList" id="list">
             <Item Context="item">
-                @if (item is Message)
+                @if (item is IMessage)
                 {
                     @if (item is UserMessage userEntry)
                     {
                         <Label class="message user" Text="@userEntry.sender: @userEntry.content"></Label>
                     }
-                    else if (item is HostMessage hostEntry)
+                    else if (item is SystemMessage hostEntry)
                     {
                         <Label class="message host" Text="@hostEntry.content"></Label>
                     }
@@ -24,45 +24,26 @@
 
 @code
 {
-    /* References */
-
     Panel Container { get; set; }
     VirtualList VirtualList { get; set; }
     TextEntry TextEntry { get; set; }
 
-    /* Properties */
-
-    List<Message> Items { get; set; } = new();
+    List<IMessage> Items { get; set; } = new();
     
-    /* Message Types */
+    public interface IMessage { }
 
-    public abstract class Message
+    public struct UserMessage : IMessage 
     {
-        public string content;
+        public required string content;
+        public required string sender;
     }
 
-    public class UserMessage : Message 
+    public struct SystemMessage : IMessage 
     {
-        public string sender;
-
-        public UserMessage(string content, string sender)
-        {
-            this.content = content;
-            this.sender = sender;
-        }
-    }
-
-    public class HostMessage : Message 
-    {
-        public HostMessage(string content)
-        {
-            this.content = content;
-        }
+        public required string content;
     }
     
-    /* Public Methods */
-
-    public void AddMessage(Message message)
+    public void AddMessage(IMessage message)
     {
         VirtualList.AddItem(message);
         
@@ -71,8 +52,6 @@
             Peek();
         }
     }
-
-    /* Events */
 
     public override void Tick()
     {
@@ -89,7 +68,7 @@
         var input = TextEntry.Text;
         if (!string.IsNullOrWhiteSpace(input))
         {
-            Chat.Instance.Say(input);
+            Chat.Instance.UserMessage(input);
             TextEntry.AddToHistory(input);
         }
 
@@ -100,8 +79,6 @@
     {
         Close();
     }
-
-    /* Private Methods */
 
     /// <summary>
     /// Reveals the messages for a few seconds.

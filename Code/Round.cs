@@ -177,7 +177,7 @@ public sealed class Round : Component
 		seeker.Seek();
 		seeker.Freeze(true);
 
-		Chat.Instance.Broadcast($"{seeker.Network.Owner.DisplayName} is the seeker!");
+		Chat.Instance.SystemMessage($"{seeker.Network.Owner.DisplayName} is the seeker!");
 	}
 
 	void Play()
@@ -188,7 +188,7 @@ public sealed class Round : Component
 		var seeker = Player.GetAll().Find(p => p.IsSeeker);
 		seeker.Freeze(false);
 
-		Chat.Instance.Broadcast("Ready or not, the hunt's begun!");
+		Chat.Instance.SystemMessage("Ready or not, the hunt's begun!");
 	}
 
 	void End(RoundWinner winner)
@@ -205,7 +205,7 @@ public sealed class Round : Component
 		{
 			message = "The hiding have won!";
 		}
-		Chat.Instance.Broadcast(message);
+		Chat.Instance.SystemMessage(message);
 	}
 
 	GameObject GetRandomSpawnPoint()

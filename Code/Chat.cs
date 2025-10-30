@@ -1,40 +1,38 @@
 using Sandbox;
 
+public interface IChatEvents : ISceneEvent<IChatEvents>
+{
+    void OnUserMessage(string message, string sender) { }
+    void OnSystemMessage(string message) { }
+}
+
 public sealed class Chat : Component, Component.INetworkListener
 {
-    /* Public Properties */
-
     public static Chat Instance => Game.ActiveScene.Get<Chat>();
 
-    /* Public Methods */
-    
     [Rpc.Broadcast]
-    public void Say(string message)
+    public void UserMessage(string message)
     {
-        GUI.Instance.ChatBox.AddMessage(new ChatBox.UserMessage(message, Rpc.Caller.DisplayName));
+        IChatEvents.Post(e => e.OnUserMessage(message, Rpc.Caller.DisplayName));
     }
 
     [Rpc.Broadcast(NetFlags.HostOnly)]
-    public void Broadcast(string message)
+    public void SystemMessage(string message)
     {
-        GUI.Instance.ChatBox.AddMessage(new ChatBox.HostMessage(message));
+        IChatEvents.Post(e => e.OnSystemMessage(message));
     }
-
-    /* Events */
 
     protected override void OnStart()
     {
         if (Connection.Local.IsHost)
         {
-            BroadcastJoined(Connection.Host.DisplayName);
+            JoinedSystemMessage(Connection.Host.DisplayName);
         }
     }
 
-    /* Private Methods */
+    void INetworkListener.OnConnected(Connection connection) => JoinedSystemMessage(connection.DisplayName);
+    void INetworkListener.OnDisconnected(Connection connection) => LeftSystemMessage(connection.DisplayName);
 
-    void INetworkListener.OnConnected(Connection connection) => BroadcastJoined(connection.DisplayName);
-    void INetworkListener.OnDisconnected(Connection connection) => BroadcastLeft(connection.DisplayName);
-    
-    void BroadcastJoined(string displayName) => Broadcast($"{displayName} has joined the game");
-    void BroadcastLeft(string displayName) => Broadcast($"{displayName} has left the game");
+    void JoinedSystemMessage(string displayName) => SystemMessage($"{displayName} has joined the game");
+    void LeftSystemMessage(string displayName) => SystemMessage($"{displayName} has left the game");
 }

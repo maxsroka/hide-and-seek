@@ -1,6 +1,8 @@
 @using Sandbox;
 @using Sandbox.UI;
 @inherits PanelComponent
+@implements IMovementEvents
+@implements IChatEvents
 
 <root>
 	<BlindScreen @ref="BlindScreen"></BlindScreen>
@@ -9,10 +11,12 @@
 
 @code
 {
-	public static GUI Instance => Game.ActiveScene.Get<GUI>();
-
 	public BlindScreen BlindScreen { get; private set; }
 	public ChatBox ChatBox { get; private set; }
+	
+    void IMovementEvents.OnFreeze(bool isFrozen) => BlindScreen.Toggle(isFrozen);
+    void IChatEvents.OnUserMessage(string message, string sender) => ChatBox.AddMessage(new ChatBox.UserMessage() { content = message, sender = sender });
+    void IChatEvents.OnSystemMessage(string message) => ChatBox.AddMessage(new ChatBox.SystemMessage() { content = message });
 
 	protected override int BuildHash() => System.HashCode.Combine(ChatBox.GetHashCode());
 }
