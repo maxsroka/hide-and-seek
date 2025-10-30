@@ -46,20 +46,6 @@ public sealed class Player : Component, Component.ITriggerListener
         Role = Role.Hider;
     }
 
-    protected override void OnFixedUpdate()
-    {
-        AdjustTagCollider();
-    }
-
-    /* Collider Events */
-    
-    public void OnTriggerEnter(Collider other)
-    {
-        CheckTag(other);
-    }
-
-    /* Other Events */
-
     void OnRoleChanged(Role _, Role role)
     {
         if (role == Role.Hider)
@@ -146,38 +132,5 @@ public sealed class Player : Component, Component.ITriggerListener
     public void Blind(bool blind)
     {
         GUI.Instance.BlindScreen.Toggle(blind);
-    }
-
-    // Private Methods
-
-    void AdjustTagCollider()
-    {
-        if (!Connection.Local.IsHost) return;
-
-        var player = GetHost();
-
-        if (player.Controller.IsDucking && !player.Controller.IsAirborne)
-        {
-            StandingCollider.Enabled = false;
-            DuckingCollider.Enabled = true;
-        }
-        else
-        {
-            StandingCollider.Enabled = true;
-            DuckingCollider.Enabled = false;
-        }
-    }
-
-    void CheckTag(Collider other)
-    {
-        if (!Connection.Local.IsHost) return;
-        if (GetHost().Role != Role.Seeker) return;
-        if (Round.Instance.Stage != RoundStage.Playing) return;
-
-        var otherPlayer = other.GetComponent<Player>();
-        if (otherPlayer == null) return;
-        if (otherPlayer.Role != Role.Hider) return;
-
-        otherPlayer.Role = Role.Seeker;
     }
 }
