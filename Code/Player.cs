@@ -3,8 +3,8 @@ using Sandbox;
 public class Player : Component
 {
     [RequireComponent] Movement Movement { get; set; }
-    [RequireComponent] Clothes Clothes { get; set; }
     [RequireComponent] Role Role { get; set; }
+    [RequireComponent] Clothes Clothes { get; set; }
 
     public static List<Player> GetAll() => Game.ActiveScene.GetAllComponents<Player>().ToList();
     public static Player GetOwnedBy(Connection connection) => GetAll().Find(p => p.Network.OwnerId == connection.Id);
