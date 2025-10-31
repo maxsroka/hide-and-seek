@@ -3,17 +3,22 @@
 
 <div id="chatbox-container" @ref="Container">
     <div id="chatbox">
-        <VirtualList Items=@Items ItemHeight=@(20) @ref="VirtualList" id="list">
+        <VirtualList Items=@Items ItemHeight=@(24) @ref="VirtualList" id="list">
             <Item Context="item">
                 @if (item is IMessage)
                 {
                     @if (item is UserMessage userEntry)
                     {
-                        <Label class="message user" Text="@userEntry.sender: @userEntry.content"></Label>
+                        <div class="message user">
+                            <Image class="avatar" Texture="@userEntry.avatar"></Image>
+                            <Label class="text" Text="@userEntry.sender: @userEntry.content"></Label>
+                        </div>
                     }
-                    else if (item is SystemMessage hostEntry)
+                    else if (item is SystemMessage systemEntry)
                     {
-                        <Label class="message host" Text="@hostEntry.content"></Label>
+                        <div class="message system">
+                            <Label class="text" Text="@systemEntry.content"></Label>
+                        </div>
                     }
                 }
             </Item>
@@ -30,20 +35,39 @@
 
     List<IMessage> Items { get; set; } = new();
     
-    public interface IMessage { }
+    interface IMessage { }
 
-    public struct UserMessage : IMessage 
+    struct UserMessage : IMessage 
     {
         public required string content;
         public required string sender;
+        public required Texture avatar;
     }
 
-    public struct SystemMessage : IMessage 
+    struct SystemMessage : IMessage 
     {
         public required string content;
     }
+
+    public void AddUserMessage(string content, Connection caller)
+    {
+        AddMessage(new UserMessage() 
+        { 
+            content = content,
+            sender = caller.DisplayName,
+            avatar = Texture.LoadAvatar(caller.SteamId)
+        });
+    }
     
-    public void AddMessage(IMessage message)
+    public void AddSystemMessage(string content)
+    {
+        AddMessage(new SystemMessage() 
+        { 
+            content = content
+        });
+    }
+
+    void AddMessage(IMessage message)
     {
         VirtualList.AddItem(message);
         
@@ -55,6 +79,7 @@
 
     public override void Tick()
     {
+        TextEntry.MaxLength = 32;
         VirtualList.PreferScrollToBottom = true;
 
         if (Input.Pressed("Chat"))

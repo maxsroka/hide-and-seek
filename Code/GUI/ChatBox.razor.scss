@@ -10,7 +10,7 @@
 	border: 1px solid transparent;
 
 	#chatbox {
-		width: 400px;
+		width: 450px;
 		height: 200px;
 		flex-direction: column;
 		border-radius: 2px;
@@ -21,21 +21,33 @@
 			pointer-events: none;
 			overflow-y: hidden;
 			padding: 5px;
-
+			row-gap: 2.5px;
+			
 			.message {
 				width: 100%;
-				height: 20px;
-				font-size: 16px;
+				height: 24px;
 				align-items: center;
-			}
-			
-			.message.host {
-				color: white;
-				font-weight: bold;
-			}
-			
-			.message.user {
-				color: white;
+				column-gap: 5px;
+
+				.avatar {
+					height: 100%;
+				}
+				
+				.text {
+					font-size: 18px;
+					align-items: center;
+					white-space: nowrap;
+					overflow: hidden;
+				}
+
+				&.user {
+					color: white;
+				}
+
+				&.system {
+					color: white;
+					font-weight: bold;
+				}
 			}
 		}
 

@@ -2,18 +2,18 @@ using Sandbox;
 
 public interface IChatEvents : ISceneEvent<IChatEvents>
 {
-    void OnUserMessage(string message, string sender) { }
+    void OnUserMessage(string message, Connection sender) { }
     void OnSystemMessage(string message) { }
 }
 
-public sealed class Chat : Component, Component.INetworkListener
+public class Chat : Component, Component.INetworkListener
 {
     public static Chat Instance => Game.ActiveScene.Get<Chat>();
 
     [Rpc.Broadcast]
     public void UserMessage(string message)
     {
-        IChatEvents.Post(e => e.OnUserMessage(message, Rpc.Caller.DisplayName));
+        IChatEvents.Post(e => e.OnUserMessage(message, Rpc.Caller));
     }
 
     [Rpc.Broadcast(NetFlags.HostOnly)]
