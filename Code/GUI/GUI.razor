@@ -15,8 +15,8 @@
 	public ChatBox ChatBox { get; private set; }
 	
     void IMovementEvents.OnFreeze(bool isFrozen) => BlindScreen.Toggle(isFrozen);
-    void IChatEvents.OnUserMessage(string message, Connection sender) => ChatBox.AddUserMessage(message, sender);
-    void IChatEvents.OnSystemMessage(string message) => ChatBox.AddSystemMessage(message);
+    void IChatEvents.OnUserMessage(string message, Connection sender) => ChatBox.AddMessage(new ChatBox.UserMessage(message, sender));
+    void IChatEvents.OnSystemMessage(string message) => ChatBox.AddMessage(new ChatBox.SystemMessage(message));
 
 	protected override int BuildHash() => System.HashCode.Combine(ChatBox.GetHashCode());
 }

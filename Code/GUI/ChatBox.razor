@@ -35,39 +35,42 @@
 
     List<IMessage> Items { get; set; } = new();
     
-    interface IMessage { }
+    public interface IMessage { }
 
-    struct UserMessage : IMessage 
+    /// <summary>
+    /// Represents a message sent by a player.
+    /// </summary>
+    public struct UserMessage : IMessage 
     {
-        public required string content;
-        public required string sender;
-        public required Texture avatar;
+        public string content;
+        public string sender;
+        public Texture avatar;
+
+        public UserMessage(string content, Connection caller)
+        {
+            this.content = content;
+            this.sender = caller.DisplayName;
+            this.avatar = Texture.LoadAvatar(caller.SteamId);
+        }
     }
 
-    struct SystemMessage : IMessage 
+    /// <summary>
+    /// Represents a message sent by the game.
+    /// </summary>
+    public struct SystemMessage : IMessage 
     {
-        public required string content;
+        public string content;
+
+        public SystemMessage(string content) 
+        {
+            this.content = content;
+        }
     }
 
-    public void AddUserMessage(string content, Connection caller)
-    {
-        AddMessage(new UserMessage() 
-        { 
-            content = content,
-            sender = caller.DisplayName,
-            avatar = Texture.LoadAvatar(caller.SteamId)
-        });
-    }
-    
-    public void AddSystemMessage(string content)
-    {
-        AddMessage(new SystemMessage() 
-        { 
-            content = content
-        });
-    }
-
-    void AddMessage(IMessage message)
+    /// <summary>
+    ///  Adds a new message to the chatbox.
+    /// </summary>
+    public void AddMessage(IMessage message)
     {
         VirtualList.AddItem(message);
         
