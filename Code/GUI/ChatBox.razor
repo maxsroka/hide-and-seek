@@ -3,7 +3,7 @@
 
 <div id="chatbox-container" @ref="Container">
     <div id="chatbox">
-        <VirtualList Items=@Items ItemHeight=@(24) @ref="VirtualList" id="list">
+        <VirtualList ItemHeight=@(24) @ref="VirtualList" id="list">
             <Item Context="item">
                 @if (item is IMessage)
                 {
@@ -33,8 +33,6 @@
     VirtualList VirtualList { get; set; }
     TextEntry TextEntry { get; set; }
 
-    List<IMessage> Items { get; set; } = new();
-    
     public interface IMessage { }
 
     /// <summary>
@@ -80,11 +78,16 @@
         }
     }
 
-    public override void Tick()
+    protected override void OnAfterTreeRender(bool firstTime)
     {
+        if (!firstTime) return;
+
         TextEntry.MaxLength = 32;
         VirtualList.PreferScrollToBottom = true;
+    }
 
+    public override void Tick()
+    {
         if (Input.Pressed("Chat"))
         {
             Open();
@@ -137,5 +140,5 @@
         TextEntry.Text = "";
     }
 
-    protected override int BuildHash() => System.HashCode.Combine(Items.GetHashCode());
+    protected override int BuildHash() => System.HashCode.Combine(0);
 }
