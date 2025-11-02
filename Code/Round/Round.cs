@@ -1,0 +1,49 @@
+using Sandbox;
+using Sandbox.Diagnostics;
+namespace Round;
+
+public class Round : Component, Component.INetworkListener
+{
+    [Sync(SyncFlags.FromHost)]
+    [Change(nameof(OnStageChanged))]
+    Stage Stage { get; set; } = null;
+
+    protected override void OnStart()
+    {
+        if (!Networking.IsHost) return;
+        
+        Continue<Waiting>();
+    }
+
+    void OnStageChanged(Stage oldStage, Stage newStage)
+    {
+        if (!Networking.IsHost) return;
+
+        oldStage?.OnExit();
+        newStage.OnEnter();
+    }
+
+    protected override void OnUpdate()
+    {
+        if (!Networking.IsHost) return;
+        if (Stage == null) return;
+
+        Stage.OnRun();
+    }
+    
+    void INetworkListener.OnConnected(Connection connection)
+    {
+        Stage?.OnPlayerJoined(connection);
+    }
+
+    void INetworkListener.OnDisconnected(Connection connection)
+    {
+        Stage?.OnPlayerLeft(connection);
+    }
+
+    public void Continue<T>() where T : Stage
+    {
+        Assert.True(Networking.IsHost);
+        Stage = GetComponent<T>(true);
+    }
+}

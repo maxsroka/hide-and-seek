@@ -5,7 +5,7 @@
       "__guid": "91f3ce0a-2ac4-473d-aa9d-46791172cc90",
       "__version": 1,
       "Flags": 0,
-      "Name": "Game Manager",
+      "Name": "Managers",
       "Position": "0,0,0",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
@@ -52,19 +52,6 @@
           "StartServer": true
         },
         {
-          "__type": "Round",
-          "__guid": "f7ced295-00ef-439e-b558-eb29575a27df",
-          "__enabled": true,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "Stage": "Waiting",
-          "timer": 0
-        },
-        {
           "__type": "Sandbox.ScreenPanel",
           "__guid": "0859f604-16de-41d3-b192-d6489cfefd3f",
           "__enabled": true,
@@ -104,7 +91,59 @@
           "OnComponentUpdate": null
         }
       ],
-      "Children": []
+      "Children": [
+        {
+          "__guid": "401b4e76-eadd-48f6-a7f0-e2a722eb233f",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "Round",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Round.Round",
+              "__guid": "c05ca671-ecb7-4ccb-8fd4-b5f477a4a206",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "Round.Waiting",
+              "__guid": "bd99045b-0fc2-4137-93f8-5234f33bb926",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "Round.Preparing",
+              "__guid": "cfe4dad1-8bae-4576-98f9-fc8234dcb7d7",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        }
+      ]
     },
     {
       "__guid": "c25da570-e530-40ac-bdf0-8a9d741ed263",
