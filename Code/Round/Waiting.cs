@@ -24,7 +24,6 @@ public class Waiting : Stage
     bool IsStarting => MissingPlayersCount == 0;
     
     float timer = 0f;
-    int counting = 0;
 
     static void OnMinPlayersChanged(int oldValue, int newValue)
     {
@@ -62,20 +61,10 @@ public class Waiting : Stage
             {
                 Round.Continue<Preparing>();
             }
-            else
-            {
-                var remaining = TimeSpan.FromSeconds(WaitTime - timer + 1);
-                if (remaining.Seconds != counting)
-                {
-                    counting = remaining.Seconds;
-                    Chat.Instance.SystemMessage($"Starting in {counting} seconds");
-                }
-            }
         }
         else
         {
             timer = 0f;
-            counting = 0;
         }
     }
 
