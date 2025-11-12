@@ -9,9 +9,9 @@
                 {
                     @if (item is UserMessage userEntry)
                     {
-                        <div class="message user">
-                            <Image class="avatar" Texture="@userEntry.avatar"></Image>
-                            <Label class="text sender" Text="@userEntry.sender"></Label>
+                        <div class="message user" data-steamid="@userEntry.steamId">
+                            <Image onclick="@ShowProfile" class="avatar" Texture="@userEntry.avatar"></Image>
+                            <Label onclick="@ShowProfile" class="text sender" Text="@userEntry.sender"></Label>
                             <Label class="text semicolon" Text=":"></Label>
                             <Label class="text content" Text="@userEntry.content"></Label>
                         </div>
@@ -45,12 +45,14 @@
         public string content;
         public string sender;
         public Texture avatar;
+        public SteamId steamId;
 
         public UserMessage(string content, Connection caller)
         {
             this.content = content;
             this.sender = caller.DisplayName;
             this.avatar = Texture.LoadAvatar(caller.SteamId);
+            this.steamId = caller.SteamId;
         }
     }
 
@@ -140,6 +142,14 @@
         Container.SetClass("open", false);
         Peek();
         TextEntry.Text = "";
+    }
+
+    [System.Obsolete]
+    void ShowProfile(object ev)
+    {
+        var mouseEv = ev as MousePanelEvent;
+        var steamId = ulong.Parse(mouseEv.Target.Parent.GetAttribute("data-steamid"));
+        Game.Overlay.ShowPlayer(new SteamId(steamId));
     }
 
     protected override int BuildHash() => System.HashCode.Combine(0);
