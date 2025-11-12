@@ -11,7 +11,9 @@
                     {
                         <div class="message user">
                             <Image class="avatar" Texture="@userEntry.avatar"></Image>
-                            <Label class="text" Text="@userEntry.sender: @userEntry.content"></Label>
+                            <Label class="text sender" Text="@userEntry.sender"></Label>
+                            <Label class="text semicolon" Text=":"></Label>
+                            <Label class="text content" Text="@userEntry.content"></Label>
                         </div>
                     }
                     else if (item is SystemMessage systemEntry)
