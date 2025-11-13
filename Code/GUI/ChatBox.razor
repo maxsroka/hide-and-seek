@@ -11,7 +11,7 @@
                     {
                         <div class="message user" data-steamid="@userEntry.steamId">
                             <Image onclick="@ShowProfile" class="avatar" Texture="@userEntry.avatar"></Image>
-                            <Label onclick="@ShowProfile" class="text sender" Text="@userEntry.sender"></Label>
+                            <Label onclick="@ShowProfile" class="text sender @userEntry.role" Text="@userEntry.sender"></Label>
                             <Label class="text semicolon" Text=":"></Label>
                             <Label class="text content" Text="@userEntry.content"></Label>
                         </div>
@@ -46,6 +46,7 @@
         public string sender;
         public Texture avatar;
         public SteamId steamId;
+        public string role;
 
         public UserMessage(string content, Connection caller)
         {
@@ -53,6 +54,19 @@
             this.sender = caller.DisplayName;
             this.avatar = Texture.LoadAvatar(caller.SteamId);
             this.steamId = caller.SteamId;
+            this.role = GetRole(caller);
+        }
+
+        string GetRole(Connection caller)
+        {
+            var owner = Player.GetOwnedBy(caller);
+            
+            if (owner != null)
+            {
+                return owner.IsHider ? "hider" : "seeker";
+            }
+
+            return "";
         }
     }
 

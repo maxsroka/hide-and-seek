@@ -57,6 +57,16 @@
 				&.user {
 					color: white;
 					font-style: italic;
+
+					.sender {
+						&.hider {
+							color: rgb(130, 179, 221);
+						}
+
+						&.seeker {
+							color: rgb(209, 132, 121);
+						}
+					}
 				}
 
 				&.system {
