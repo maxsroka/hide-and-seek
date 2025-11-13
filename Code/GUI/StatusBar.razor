@@ -5,12 +5,19 @@
 <div id="status-bar-container">
     <Label Text="@Name (@Role)" id="status-bar-label"></Label>
     <div id="status-bar">
-        <div id="status-bar-fill"></div>
+        <div id="status-bar-fill" class="@Role.ToLower()"></div>
     </div>
 </div>
 
 @code
 {
     string Name => Profile.Local.Name; 
-    string Role { get; set; } = "Hider";
+    string Role { get; set; } = "";
+
+    public void SetRole(string name)
+    {
+        Role = name;
+    }
+
+    protected override int BuildHash() => System.HashCode.Combine(Role);
 }

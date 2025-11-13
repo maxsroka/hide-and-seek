@@ -1,5 +1,10 @@
 using Sandbox;
 
+public interface IRoleEvents : ISceneEvent<IRoleEvents>
+{
+    void OnRole(string name);
+}
+
 public class Role : Component
 {
     [Sync(SyncFlags.FromHost)]
@@ -25,6 +30,7 @@ public class Role : Component
         }
 
         newRole.Enabled = true;
+        IRoleEvents.Post(e => e.OnRole(newRole.Name));
     }
 
     protected override void OnStart()
