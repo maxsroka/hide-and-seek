@@ -2,13 +2,6 @@ using System;
 using Sandbox;
 namespace Round;
 
-// so, this is pretty cool but 
-// x 1. it needs to run only on host, 
-// x 2. it needs to run only when it is the current stage, 
-// 3. convars shouldn't be changed by clients,
-// x 4. what should happen when a client leaves?
-// 5. is there a possibility to start before a player object is spawned?
-
 public class Waiting : Stage
 {
     [ConVar("min_players", ConVarFlags.GameSetting)]
