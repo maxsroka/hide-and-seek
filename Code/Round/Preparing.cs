@@ -15,10 +15,7 @@ public class Preparing : Stage
 		var players = Player.GetAll();
 		
 		var spawnPoint = GetRandomSpawnPoint();
-		foreach (var player in players)
-		{
-			player.Teleport(spawnPoint.WorldPosition);
-		}
+		players.ForEach(p => p.Teleport(spawnPoint.WorldPosition));
 
 		seeker = Game.Random.FromList(players);
 		seeker.Seek();

@@ -30,13 +30,6 @@ public class Waiting : Stage
         instance.WaitingForPlayersMessage();
     }
 
-    public override void OnEnter()
-    {
-        if (IsStarting) return;
-
-        WaitingForPlayersMessage();
-    }
-
 	public override void OnPlayerJoined(Connection connection)
 	{
         if (IsStarting) return;

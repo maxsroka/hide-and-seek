@@ -31,10 +31,10 @@ public class Round : Component, Component.INetworkListener
         Stage.OnRun();
     }
     
-    void INetworkListener.OnConnected(Connection connection)
+    void INetworkListener.OnActive(Connection connection)
     {
         Stage?.OnPlayerJoined(connection);
-    }
+	}
 
     void INetworkListener.OnDisconnected(Connection connection)
     {
