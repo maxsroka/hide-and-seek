@@ -1,15 +1,43 @@
 using Sandbox;
 namespace Round;
 
-// public class Ending : Stage
-// {
-//     public override void Enter()
-//     {
-        
-//     }
+public class Ending : Stage
+{
+	[ConVar("end_time", ConVarFlags.GameSetting)]
+	[Range(0, 30)]
+	public static int EndTime { get; set; } = 5;
 
-// 	public override void Exit()
-//     {
-        
-//     }
-// }
+	float timer = 0f;
+
+	public override void OnEnter()
+	{
+		var players = Player.GetAll();
+
+		if (players.Count == 0)
+		{
+			Round.Stop();
+			return;
+		}
+
+		var hasHiders = players.Any(p => p.IsHider);
+
+		if (hasHiders)
+		{
+			Chat.Instance.SystemMessage("Time's up. The Hiders win!");
+		}
+		else
+		{
+			Chat.Instance.SystemMessage("Everyone's been caught. The Seekers win!");
+		}
+	}
+
+	public override void OnRun()
+	{
+		timer += Time.Delta;
+
+		if (timer >= EndTime)
+		{
+			Round.Stop();
+		}
+	}
+}

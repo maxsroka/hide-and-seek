@@ -46,4 +46,13 @@ public class Round : Component, Component.INetworkListener
         Assert.True(Networking.IsHost);
         Stage = GetComponent<T>(true);
     }
+
+	public void Stop()
+	{
+		Assert.True(Networking.IsHost);
+
+		var options = new SceneLoadOptions();
+		options.SetScene("hideandseek.scene");
+		Game.ChangeScene(options);
+	}
 }
