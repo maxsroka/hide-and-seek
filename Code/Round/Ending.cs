@@ -1,5 +1,5 @@
 using Sandbox;
-namespace Round;
+namespace HNS;
 
 public class Ending : Stage
 {
@@ -23,11 +23,11 @@ public class Ending : Stage
 
 		if (hasHiders)
 		{
-			Chat.Instance.SystemMessage("Time's up. The Hiders win!");
+			Chat.SystemMessage("Time's up. The Hiders win!");
 		}
 		else
 		{
-			Chat.Instance.SystemMessage("Everyone's been caught. The Seekers win!");
+			Chat.SystemMessage("Everyone's been caught. The Seekers win!");
 		}
 	}
 

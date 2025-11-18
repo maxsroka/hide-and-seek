@@ -1,6 +1,6 @@
 using System;
 using Sandbox;
-namespace Round;
+namespace HNS;
 
 public class Waiting : Stage
 {
@@ -57,6 +57,6 @@ public class Waiting : Stage
     void WaitingForPlayersMessage()
     {
         var players = MissingPlayersCount == 1 ? "player" : "players";
-        Chat.Instance.SystemMessage($"Waiting for {MissingPlayersCount} more {players}...");
+        Chat.SystemMessage($"Waiting for {MissingPlayersCount} more {players}...");
     }
 }

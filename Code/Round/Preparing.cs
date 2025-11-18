@@ -1,5 +1,5 @@
 using Sandbox;
-namespace Round;
+namespace HNS;
 
 public class Preparing : Stage
 {
@@ -17,7 +17,7 @@ public class Preparing : Stage
 		seeker = Game.Random.FromList(players);
 		seeker.Seek();
 		seeker.Freeze(true);
-		Chat.Instance.SystemMessage($"{seeker.Network.Owner.DisplayName} is the Seeker!");
+		Chat.SystemMessage($"{seeker.Network.Owner.DisplayName} is the Seeker!");
 
 		var spawnPoint = GetRandomSpawnPoint();
 		players.ForEach(p => p.Teleport(spawnPoint.WorldPosition));

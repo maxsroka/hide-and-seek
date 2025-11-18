@@ -1,5 +1,6 @@
 @using Sandbox;
 @using Sandbox.UI;
+@namespace HNS
 
 <div id="chatbox-container" @ref="Container">
     <div id="chatbox">
@@ -117,7 +118,7 @@
         var input = TextEntry.Text;
         if (!string.IsNullOrWhiteSpace(input))
         {
-            Chat.Instance.UserMessage(input);
+            Chat.UserMessage(input);
             TextEntry.AddToHistory(input);
         }
 

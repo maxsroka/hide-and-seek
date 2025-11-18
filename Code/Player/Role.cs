@@ -1,4 +1,5 @@
 using Sandbox;
+namespace HNS;
 
 public interface IRoleEvents : ISceneEvent<IRoleEvents>
 {

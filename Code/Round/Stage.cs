@@ -1,6 +1,6 @@
 using System;
 using Sandbox;
-namespace Round;
+namespace HNS;
 
 public abstract class Stage : Component
 {

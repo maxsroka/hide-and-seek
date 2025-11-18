@@ -1,6 +1,6 @@
 using Sandbox;
 using Sandbox.Diagnostics;
-namespace Round;
+namespace HNS;
 
 public class Round : Component, Component.INetworkListener
 {

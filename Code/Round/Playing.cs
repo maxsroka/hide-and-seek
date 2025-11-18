@@ -1,5 +1,5 @@
 using Sandbox;
-namespace Round;
+namespace HNS;
 
 public class Playing : Stage
 {
@@ -10,7 +10,7 @@ public class Playing : Stage
 
 	public override void OnEnter()
 	{
-		Chat.Instance.SystemMessage("The Seeker has been released!");
+		Chat.SystemMessage("The Seeker has been released!");
 	}
 
 	public override void OnRun()
