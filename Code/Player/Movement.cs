@@ -7,7 +7,9 @@ public interface IMovementEvents : ISceneEvent<IMovementEvents>
 
 public class Movement : Component
 {
-    [Property]
+	public bool IsFrozen { get; set; } = false;
+
+	[Property]
     CapsuleCollider StandingTrigger { get; set; }
 
     [Property]
@@ -22,13 +24,19 @@ public class Movement : Component
         WorldPosition = worldPosition;
     }
 
-    [Rpc.Owner(NetFlags.HostOnly)]
     public void Freeze(bool freeze)
     {
+		IsFrozen = freeze;
+		FreezeOnOwner(freeze);
+    }
+
+    [Rpc.Owner(NetFlags.HostOnly)]
+	void FreezeOnOwner(bool freeze)
+	{
         Controller.UseInputControls = !freeze;
         Controller.WishVelocity = Vector3.Zero;
-        IMovementEvents.Post(e => e.OnFreeze(freeze));
-    }
+		IMovementEvents.Post(e => e.OnFreeze(freeze));
+	}
 
     protected override void OnFixedUpdate()
     {

@@ -19,4 +19,5 @@ public class Player : Component
     public bool IsSeeker => Role.IsSeeker;
     public bool IsHider => Role.IsHider;
     public void Equip(Clothing clothing) => Clothes.Equip(clothing);
+	public bool IsFrozen => Movement.IsFrozen;
 }

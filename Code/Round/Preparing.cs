@@ -14,13 +14,13 @@ public class Preparing : Stage
 	{
 		var players = Player.GetAll();
 		
-		var spawnPoint = GetRandomSpawnPoint();
-		players.ForEach(p => p.Teleport(spawnPoint.WorldPosition));
-
 		seeker = Game.Random.FromList(players);
 		seeker.Seek();
 		seeker.Freeze(true);
 		Chat.Instance.SystemMessage($"{seeker.Network.Owner.DisplayName} is the Seeker!");
+
+		var spawnPoint = GetRandomSpawnPoint();
+		players.ForEach(p => p.Teleport(spawnPoint.WorldPosition));
 	}
 
 	public override void OnRun()

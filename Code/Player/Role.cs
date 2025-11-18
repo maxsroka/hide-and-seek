@@ -64,12 +64,15 @@ public abstract class BaseRole : Component
 
 public class SeekerRole : BaseRole, Component.ITriggerListener
 {
+	[RequireComponent]
+	Player Player { get; set; }
+
     void ITriggerListener.OnTriggerEnter(Collider other)
     {
-        if (Connection.Local.IsHost)
-        {
-            TryTag(other);
-        }
+		if (!Networking.IsHost) return;
+		if (Player.IsFrozen) return;
+		
+		TryTag(other);
     }
 
     void TryTag(Collider other)
