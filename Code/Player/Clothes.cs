@@ -3,6 +3,9 @@ namespace HNS;
 
 public class Clothes : Component
 {
+	[ConVar("wear_suits", ConVarFlags.GameSetting)]
+	public static bool WearSuits { get; set; } = true;
+
     [Property]
     Clothing.Slots Filter { get; set; }
 
@@ -11,13 +14,21 @@ public class Clothes : Component
 
     public void Equip(Clothing suit)
     {
-        var userClothingContainer = GetUserClothingContainer();
-        var newClothingContainer = FilterClothingContainer(userClothingContainer, Filter);
+		if (!WearSuits)
+		{
+			Dresser.Source = Dresser.ClothingSource.OwnerConnection;
+			Dresser.Apply();
+		}
+		else
+		{
+			var userClothingContainer = GetUserClothingContainer();
 
-        newClothingContainer.Add(suit);
+			var newClothingContainer = FilterClothingContainer(userClothingContainer, Filter);
+			newClothingContainer.Add(suit);
 
-        Dresser.Clothing = newClothingContainer.Clothing;
-        Dresser.Apply();
+			Dresser.Clothing = newClothingContainer.Clothing;
+			Dresser.Apply();
+		}
     }
     
     ClothingContainer GetUserClothingContainer()
