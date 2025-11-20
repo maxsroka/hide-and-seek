@@ -6,19 +6,27 @@
 <div id="status-bar-container">
     <Label Text="@Name (@Role)" id="status-bar-label"></Label>
     <div id="status-bar">
-        <div id="status-bar-fill" class="@Role.ToLower()"></div>
+        <div id="status-bar-fill" class="@Role.ToLower()" style="width: @Stamina"></div>
     </div>
 </div>
 
 @code
 {
-    string Name => Profile.Local.Name; 
-    string Role { get; set; } = "";
+	string Name => Profile.Local.Name; 
+	string Role { get; set; } = "";
+	string Stamina
+	{
+		get
+		{
+			var player = Player.GetLocal();
+			return $"{(player.Stamina / player.MaxStamina) * 100}%";
+		}
+	}
 
     public void SetRole(string name)
     {
         Role = name;
     }
 
-    protected override int BuildHash() => System.HashCode.Combine(Role);
+	protected override int BuildHash() => System.HashCode.Combine(Role, Stamina);
 }

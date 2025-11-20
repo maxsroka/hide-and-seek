@@ -1,4 +1,6 @@
 using Sandbox;
+using Sandbox.Movement;
+using System;
 namespace HNS;
 
 public interface IMovementEvents : ISceneEvent<IMovementEvents>
@@ -8,7 +10,9 @@ public interface IMovementEvents : ISceneEvent<IMovementEvents>
 
 public class Movement : Component
 {
-	public bool IsFrozen { get; set; } = false;
+	public bool IsFrozen { get; private set; } = false;
+	public float Stamina => stamina;
+	public const float MAX_STAMINA = 5f;
 
 	[Property]
     CapsuleCollider StandingTrigger { get; set; }
@@ -19,7 +23,9 @@ public class Movement : Component
     [RequireComponent]
     PlayerController Controller { get; set; }
 
-    [Rpc.Owner(NetFlags.HostOnly)]
+	float stamina = MAX_STAMINA;
+
+	[Rpc.Owner(NetFlags.HostOnly)]
     public void Teleport(Vector3 worldPosition)
     {
         WorldPosition = worldPosition;
@@ -45,6 +51,27 @@ public class Movement : Component
         {
             AdjustTriggers();
         }
+
+		if (Network.IsOwner)
+		{
+			if (Input.Down("run"))
+			{
+				stamina = MathF.Max(0, stamina - Time.Delta);
+			}
+			else
+			{
+				stamina = Math.Min(MAX_STAMINA, stamina + Time.Delta);
+			}
+
+			if (stamina > 0f)
+			{
+				Controller.AltMoveButton = "run";
+			}
+			else
+			{
+				Controller.AltMoveButton = null;
+			}
+		}
     }
     
     void AdjustTriggers()

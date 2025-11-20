@@ -21,4 +21,6 @@ public class Player : Component
     public bool IsHider => Role.IsHider;
     public void Equip(Clothing clothing) => Clothes.Equip(clothing);
 	public bool IsFrozen => Movement.IsFrozen;
+	public float Stamina => Movement.Stamina;
+	public float MaxStamina => Movement.MAX_STAMINA;
 }
