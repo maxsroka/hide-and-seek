@@ -3,7 +3,7 @@
 @inherits PanelComponent
 @implements IMovementEvents
 @implements Chat.IMessageListener
-@implements IRoleEvents
+@implements Role.IChangeListener
 @namespace HNS
 
 <root>
@@ -21,7 +21,7 @@
     void IMovementEvents.OnFreeze(bool isFrozen) => BlindScreen.Toggle(isFrozen);
     void Chat.IMessageListener.OnUserMessage(string message, Connection sender) => ChatBox.AddMessage(new ChatBox.UserMessage(message, sender));
     void Chat.IMessageListener.OnSystemMessage(string message) => ChatBox.AddMessage(new ChatBox.SystemMessage(message));
-	void IRoleEvents.OnRole(string role) => StatusBar.SetRole(role);
+	void Role.IChangeListener.OnRole(string role) => StatusBar.SetRole(role);
 
 	protected override int BuildHash() => System.HashCode.Combine(ChatBox.GetHashCode());
 }

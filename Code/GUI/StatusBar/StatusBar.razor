@@ -19,6 +19,8 @@
 		get
 		{
 			var player = Player.GetLocal();
+			if (player == null) return "100%";
+
 			return $"{(player.Stamina / player.MaxStamina) * 100}%";
 		}
 	}

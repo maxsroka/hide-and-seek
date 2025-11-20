@@ -1,11 +1,6 @@
 using Sandbox;
 namespace HNS;
 
-public interface IRoleEvents : ISceneEvent<IRoleEvents>
-{
-    void OnRole(string name);
-}
-
 public class Role : Component
 {
     [Sync(SyncFlags.FromHost)]
@@ -23,7 +18,12 @@ public class Role : Component
     public bool IsSeeker => Current == Seeker;
     public bool IsHider => Current == Hider;
 
-    void OnRoleChanged(BaseRole oldRole, BaseRole newRole)
+	public interface IChangeListener : ISceneEvent<IChangeListener>
+	{
+		void OnRole(string name);
+	}
+
+	void OnRoleChanged(BaseRole oldRole, BaseRole newRole)
     {
         if (oldRole != null)
         {
@@ -31,7 +31,11 @@ public class Role : Component
         }
 
         newRole.Enabled = true;
-        IRoleEvents.Post(e => e.OnRole(newRole.Name));
+
+		if (Network.IsOwner)
+		{
+			IChangeListener.Post(e => e.OnRole(newRole.Name));
+		}
     }
 
     protected override void OnStart()
