@@ -12,6 +12,7 @@
     "NetworkMode": 2,
     "NetworkInterpolation": true,
     "NetworkOrphaned": 0,
+    "NetworkTransmit": true,
     "OwnerTransfer": 1,
     "Components": [
       {
@@ -240,6 +241,17 @@
         "Speed": 1
       },
       {
+        "__type": "NoClip",
+        "__guid": "20a1fbae-9df3-492f-b07a-49272f9a196a",
+        "__enabled": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      },
+      {
         "__type": "Sandbox.Dresser",
         "__guid": "40bd0bf6-572d-4b4a-8e14-4513a8c96820",
         "__enabled": true,
@@ -330,6 +342,7 @@
         "NetworkMode": 2,
         "NetworkInterpolation": true,
         "NetworkOrphaned": 0,
+        "NetworkTransmit": true,
         "OwnerTransfer": 1,
         "Components": [
           {
@@ -392,6 +405,7 @@
         "NetworkMode": 2,
         "NetworkInterpolation": true,
         "NetworkOrphaned": 0,
+        "NetworkTransmit": true,
         "OwnerTransfer": 1,
         "Components": [
           {
@@ -400,7 +414,7 @@
             "__enabled": true,
             "ColliderFlags": 0,
             "Elasticity": null,
-            "End": "0,0,45.05097",
+            "End": "0,0,36",
             "Friction": 0,
             "IsTrigger": false,
             "OnComponentDestroy": null,

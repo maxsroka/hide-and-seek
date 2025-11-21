@@ -25,6 +25,11 @@
     "CsProjName": "",
     "MapStartupScene": "hideandseek.scene",
     "LaunchMode": "Launcher",
-    "StartupScene": "hideandseek.scene"
+    "StartupScene": "hideandseek.scene",
+    "ControlModes": {
+      "Keyboard": false,
+      "VR": false,
+      "Gamepad": false
+    }
   }
 }
