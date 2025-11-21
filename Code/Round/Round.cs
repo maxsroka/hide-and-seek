@@ -2,7 +2,7 @@ using Sandbox;
 using Sandbox.Diagnostics;
 namespace HNS;
 
-public class Round : Component, Component.INetworkListener
+public class Round : Component, Component.INetworkListener, Player.ISpawnListener
 {
     [Sync(SyncFlags.FromHost)]
     [Change(nameof(OnStageChanged))]
@@ -31,7 +31,7 @@ public class Round : Component, Component.INetworkListener
         Stage.OnRun();
     }
     
-    void INetworkListener.OnActive(Connection connection)
+    void Player.ISpawnListener.OnSpawned(Connection connection)
     {
         Stage?.OnPlayerJoined(connection);
 	}

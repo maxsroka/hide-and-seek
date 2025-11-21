@@ -38,14 +38,6 @@ public class Role : Component
 		}
     }
 
-    protected override void OnStart()
-    {
-        if (Connection.Local.IsHost)
-        {
-            Hide();
-        }
-    }
-    
     [ConCmd("hide", ConVarFlags.Server)]
     static void Hide(Connection caller) => Player.GetOwnedBy(caller).Hide();
 

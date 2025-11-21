@@ -23,4 +23,24 @@ public class Player : Component
 	public bool IsFrozen => Movement.IsFrozen;
 	public float Stamina => Movement.Stamina;
 	public float MaxStamina => Movement.MAX_STAMINA;
+
+	public interface ISpawnListener : ISceneEvent<ISpawnListener>
+	{
+		void OnSpawned(Connection connection) { }
+		void OnDespawned(Connection connection) { }
+	}
+
+	protected override void OnStart()
+	{
+		if (!Networking.IsHost) return;
+
+		ISpawnListener.Post(e => e.OnSpawned(Network.Owner));
+	}
+
+	protected override void OnDestroy()
+	{
+		if (!Networking.IsHost) return;
+
+		ISpawnListener.Post(e => e.OnDespawned(Network.Owner));
+	}
 }

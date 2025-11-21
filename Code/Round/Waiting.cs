@@ -32,6 +32,8 @@ public class Waiting : Stage
 
 	public override void OnPlayerJoined(Connection connection)
 	{
+		Player.GetOwnedBy(connection).Hide();
+
         if (IsStarting) return;
 
         WaitingForPlayersMessage();

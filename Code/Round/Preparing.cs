@@ -45,4 +45,9 @@ public class Preparing : Stage
 
 		return spawnPoint.GameObject;
 	}
+
+	public override void OnPlayerJoined(Connection connection)
+	{
+		Player.GetOwnedBy(connection).Hide();
+	}
 }

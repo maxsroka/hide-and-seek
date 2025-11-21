@@ -40,4 +40,9 @@ public class Ending : Stage
 			Round.Stop();
 		}
 	}
+
+	public override void OnPlayerJoined(Connection connection)
+	{
+		Player.GetOwnedBy(connection).Seek();
+	}
 }
