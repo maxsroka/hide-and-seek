@@ -29,6 +29,8 @@ public class Ending : Stage
 		{
 			Chat.SystemMessage("Everyone's been caught. The Seekers win!");
 		}
+
+		PlaySound();
 	}
 
 	public override void OnRun()
@@ -44,5 +46,11 @@ public class Ending : Stage
 	public override void OnPlayerJoined(Connection connection)
 	{
 		Player.GetOwnedBy(connection).Seek();
+	}
+
+	[Rpc.Broadcast(NetFlags.HostOnly)]
+	void PlaySound()
+	{
+		Sound.Play("ending");
 	}
 }
