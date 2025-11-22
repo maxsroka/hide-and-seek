@@ -74,10 +74,11 @@ public class SeekerRole : BaseRole, Component.ITriggerListener
 
     void TryTag(Collider other)
     {
-        var player = other.GetComponent<Player>();
-        if (player == null || !player.IsHider) return;
+        var otherPlayer = other.GetComponent<Player>();
+        if (otherPlayer == null || !otherPlayer.IsHider) return;
 
-        player.Seek();
+		otherPlayer.Seek();
+		Chat.SystemMessage($"{Player.Network.Owner.DisplayName} has caught {otherPlayer.Network.Owner.DisplayName}");
     }
 }
 
