@@ -1,4 +1,5 @@
 using Sandbox;
+using Sandbox.Services;
 namespace HNS;
 
 public class Ending : Stage
@@ -31,6 +32,7 @@ public class Ending : Stage
 		}
 
 		PlaySound();
+		RecordStats(hasHiders);
 	}
 
 	public override void OnRun()
@@ -52,5 +54,20 @@ public class Ending : Stage
 	void PlaySound()
 	{
 		Sound.Play("ending");
+	}
+
+	[Rpc.Broadcast(NetFlags.HostOnly)]
+	void RecordStats(bool hidersWon)
+	{
+		Stats.Increment("round-ends", 1);
+		
+		if (hidersWon)
+		{
+			Stats.Increment("hider-wins", 1);
+		}
+		else
+		{
+			Stats.Increment("seeker-wins", 1);
+		}
 	}
 }
