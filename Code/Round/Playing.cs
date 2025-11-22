@@ -4,7 +4,7 @@ namespace HNS;
 public class Playing : Stage
 {
 	[ConVar("play_time", ConVarFlags.GameSetting)]
-	public static int PlayTime { get; set; } = 10;
+	public static int PlayTime { get; set; } = 180;
 
 	float timer = 0f;
 
