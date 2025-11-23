@@ -1,0 +1,30 @@
+﻿@using Sandbox
+@using Sandbox.UI
+@using Sandbox.Services.Players;
+@inherits Panel
+@namespace HNS
+
+<div id="nametag-container">
+	<Label id="nametag-label" @ref="Label"></Label>
+</div>
+
+@code 
+{
+	Label Label { get; set; }
+
+	public void Show(Player player)
+	{
+		Label.SetClass("hider", player.IsHider);
+		Label.SetClass("seeker", player.IsSeeker);
+		var name = player.Network.Owner.DisplayName;
+		var role = player.IsHider ? "Hider" : "Seeker";
+		Label.Text = $"{name} ({role})";
+	}
+
+	public void Hide()
+	{
+		Label.Text = "";
+	}
+
+	protected override int BuildHash() => System.HashCode.Combine(Label.Text);
+}

@@ -257,6 +257,17 @@
           "Viewport": "0,0,1,1",
           "ZFar": 10000,
           "ZNear": 10
+        },
+        {
+          "__type": "HNS.NameTracer",
+          "__guid": "e9ba33fc-d5e4-43bd-8ac2-c49f3bfe5f01",
+          "__enabled": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         }
       ],
       "Children": [
