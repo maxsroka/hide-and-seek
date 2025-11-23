@@ -6,6 +6,8 @@ public class Playing : Stage
 	[ConVar("play_time", ConVarFlags.GameSetting)]
 	public static int PlayTime { get; set; } = 180;
 
+	public override float TimeLeft => PlayTime - timer;
+
 	float timer = 0f;
 
 	public override void OnEnter()

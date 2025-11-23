@@ -4,6 +4,8 @@ namespace HNS;
 
 public class Round : Component, Component.INetworkListener, Player.ISpawnListener
 {
+	public float TimeLeft => Stage != null ? Stage.TimeLeft : 0f;
+
     [Sync(SyncFlags.FromHost)]
     [Change(nameof(OnStageChanged))]
     Stage Stage { get; set; } = null;

@@ -1,0 +1,26 @@
+@using Sandbox
+@using Sandbox.UI
+@using System
+@inherits Panel
+@namespace HNS
+
+<div id="roundtimer-container">
+	<div id="roundtimer-background">
+		<Label id="roundtimer-label" Text="@Time"></Label>
+	</div>
+</div>
+
+@code 
+{
+	string Time { get; set; } = "";
+
+	public override void Tick()
+	{
+		var round = Scene.Get<Round>();
+		var time = MathF.Ceiling(round.TimeLeft);
+		var timeSpan = TimeSpan.FromSeconds(time);
+		Time = timeSpan.ToString("mm\\:ss");
+	}
+
+	protected override int BuildHash() => Time.GetHashCode();
+}

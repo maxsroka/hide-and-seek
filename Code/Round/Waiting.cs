@@ -13,7 +13,9 @@ public class Waiting : Stage
     [Range(0, 30)]
     public static int WaitTime { get; set; } = 10;
 
-    int MissingPlayersCount => Math.Max(0, MinPlayers - Connection.All.Count);
+	public override float TimeLeft => WaitTime - timer;
+
+	int MissingPlayersCount => Math.Max(0, MinPlayers - Connection.All.Count);
     bool IsStarting => MissingPlayersCount == 0;
     
     float timer = 0f;

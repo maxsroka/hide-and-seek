@@ -7,6 +7,8 @@ public class Preparing : Stage
 	[Range(0, 30)]
 	public static int PrepTime { get; set; } = 10;
 
+	public override float TimeLeft => PrepTime - timer;
+
 	float timer = 0f;
 	Player seeker = null;
 

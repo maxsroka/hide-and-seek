@@ -4,7 +4,9 @@ namespace HNS;
 
 public abstract class Stage : Component
 {
-    [RequireComponent]
+	public abstract float TimeLeft { get; }
+    
+	[RequireComponent]
     protected Round Round { get; set; }
     
     public virtual void OnEnter() { }

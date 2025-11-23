@@ -8,6 +8,8 @@ public class Ending : Stage
 	[Range(0, 30)]
 	public static int EndTime { get; set; } = 5;
 
+	public override float TimeLeft => EndTime - timer;
+
 	float timer = 0f;
 
 	public override void OnEnter()
