@@ -35,6 +35,7 @@ public class Player : Component
 		if (!Networking.IsHost) return;
 
 		ISpawnListener.Post(e => e.OnSpawned(Network.Owner));
+		Chat.SystemMessage($"{Network.Owner.DisplayName} joined the game");
 	}
 
 	protected override void OnDestroy()
@@ -42,5 +43,6 @@ public class Player : Component
 		if (!Networking.IsHost) return;
 
 		ISpawnListener.Post(e => e.OnDespawned(Network.Owner));
+		Chat.SystemMessage($"{Network.Owner.DisplayName} left the game");
 	}
 }
