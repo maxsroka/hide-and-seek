@@ -359,6 +359,42 @@
         }
       ],
       "Children": []
+    },
+    {
+      "__guid": "a7a01183-29d1-4b88-b7ef-0f6560cf7c7f",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "Point Light",
+      "Position": "508.1725,-731.2568,33.31387",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "light_point,light",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Sandbox.PointLight",
+          "__guid": "8c03eb6d-470f-46e2-8121-6fbea147881a",
+          "__enabled": true,
+          "Attenuation": 1,
+          "FogMode": "Enabled",
+          "FogStrength": 1,
+          "LightColor": "0.91373,0.98039,1,1",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Radius": 400,
+          "Shadows": true
+        }
+      ],
+      "Children": []
     }
   ],
   "SceneProperties": {
