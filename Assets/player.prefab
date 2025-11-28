@@ -64,8 +64,20 @@
         "Suit": "models/citizen_clothes/shirt/jumpsuit/blue_jumpsuit.clothing"
       },
       {
-        "__type": "HNS.Movement",
-        "__guid": "f69a069c-0047-47de-8504-12530bed2bc2",
+        "__type": "HNS.Clothes",
+        "__guid": "f37a8c71-09c8-41fa-9b83-343def7b8870",
+        "__enabled": true,
+        "Filter": "Chest, LeftArm, RightArm, Groin, LeftThigh, RightThigh, LeftKnee, RightKnee, LeftShin, RightShin, Waist",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      },
+      {
+        "__type": "HNS.Ducking",
+        "__guid": "c37831d6-0a47-47e6-b8cf-c49717654e9a",
         "__enabled": true,
         "DuckingTrigger": {
           "_type": "component",
@@ -87,10 +99,20 @@
         }
       },
       {
-        "__type": "HNS.Clothes",
-        "__guid": "f37a8c71-09c8-41fa-9b83-343def7b8870",
+        "__type": "HNS.Teleport",
+        "__guid": "2b3a63ed-97b4-44cd-b034-7d08c6bf3692",
         "__enabled": true,
-        "Filter": "Chest, LeftArm, RightArm, Groin, LeftThigh, RightThigh, LeftKnee, RightKnee, LeftShin, RightShin, Waist",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      },
+      {
+        "__type": "HNS.Freeze",
+        "__guid": "28dd50f9-e355-49b1-bc53-5b4e4d8fb6e3",
+        "__enabled": true,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,

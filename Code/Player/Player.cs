@@ -3,11 +3,12 @@ namespace HNS;
 
 public class Player : Component
 {
-    [RequireComponent] Movement Movement { get; set; }
     [RequireComponent] Role Role { get; set; }
     [RequireComponent] Clothes Clothes { get; set; }
     [RequireComponent] Stamina Stamina { get; set; }
     [RequireComponent] Freeze Freeze { get; set; }
+    [RequireComponent] Ducking Ducking { get; set; }
+    [RequireComponent] Teleport Teleport { get; set; }
 
 	public static List<Player> GetAll() => Game.ActiveScene.GetAllComponents<Player>().ToList();
     public static Player GetOwnedBy(Connection connection) => GetAll().Find(p => p.Network.OwnerId == connection.Id);
@@ -23,7 +24,7 @@ public class Player : Component
 
 	public bool IsFrozen { get => Freeze.IsFrozen; set => Freeze.IsFrozen = value; }
 	
-	public void Teleport(Vector3 worldPosition) => Movement.Teleport(worldPosition);
+	public void TeleportTo(Vector3 worldPosition) => Teleport.TeleportTo(worldPosition);
 	
 	[System.Obsolete]
     public void Seek() => Role.Set<SeekerRole>();
