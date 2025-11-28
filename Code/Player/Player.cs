@@ -14,16 +14,26 @@ public class Player : Component
     public static Player GetHost() => GetOwnedBy(Connection.Host);
     public static Player GetRandom() => Game.Random.FromList(GetAll());
 
-    public void Teleport(Vector3 worldPosition) => Movement.Teleport(worldPosition);
-    public void Freeze(bool freeze) => Movement.Freeze(freeze);
-    public void Seek() => Role.Seek();
-    public void Hide() => Role.Hide();
-    public bool IsSeeker => Role.IsSeeker;
-    public bool IsHider => Role.IsHider;
-    public void Equip(Clothing clothing) => Clothes.Equip(clothing);
-	public bool IsFrozen => Movement.IsFrozen;
+	public BaseRole CurrentRole => Role.Current;
+
 	public float CurrentStamina => Stamina.Current;
 	public float MaxStamina => Stamina.Max;
+    
+	public void Teleport(Vector3 worldPosition) => Movement.Teleport(worldPosition);
+    public void Freeze(bool freeze) => Movement.Freeze(freeze);
+	
+	[System.Obsolete]
+    public void Seek() => Role.Seek();
+	[System.Obsolete]
+    public void Hide() => Role.Hide();
+	[System.Obsolete]
+    public bool IsSeeker => Role.IsSeeker;
+	[System.Obsolete]
+    public bool IsHider => Role.IsHider;
+    
+	public void Equip(Clothing clothing) => Clothes.Equip(clothing);
+	public bool IsFrozen => Movement.IsFrozen;
+
 
 	public interface ISpawnListener : ISceneEvent<ISpawnListener>
 	{

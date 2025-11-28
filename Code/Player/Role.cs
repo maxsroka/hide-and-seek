@@ -5,7 +5,7 @@ public class Role : Component
 {
     [Sync(SyncFlags.FromHost)]
     [Change(nameof(OnRoleChanged))]
-    BaseRole Current { get; set; }
+    public BaseRole Current { get; private set; }
 
     [RequireComponent]
     SeekerRole Seeker { get; set; }

@@ -24,7 +24,7 @@
 			var player = Player.GetLocal();
 			if (player == null) return "";
 
-			return player.IsHider ? "hider" : "seeker";
+			return player.CurrentRole.Name;
 		}
 	}
 
