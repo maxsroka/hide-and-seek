@@ -7,7 +7,6 @@ public class Player : Component
     [RequireComponent] Clothes Clothes { get; set; }
     [RequireComponent] Stamina Stamina { get; set; }
     [RequireComponent] Freeze Freeze { get; set; }
-    [RequireComponent] Ducking Ducking { get; set; }
     [RequireComponent] Teleport Teleport { get; set; }
 
 	public static List<Player> GetAll() => Game.ActiveScene.GetAllComponents<Player>().ToList();
