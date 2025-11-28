@@ -211,6 +211,36 @@
             }
           ],
           "Children": []
+        },
+        {
+          "__guid": "eb689d7d-9d93-42f9-87e2-6c6ba207b309",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "Console",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "HNS.Console",
+              "__guid": "d83e858f-cb48-4a7b-a609-ca1a7e07fc86",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
         }
       ]
     },
