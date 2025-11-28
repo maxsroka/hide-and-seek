@@ -24,7 +24,10 @@
 			var player = Player.GetLocal();
 			if (player == null) return "";
 
-			return player.CurrentRole.Name;
+			var role = player.CurrentRole;
+			if (role == null) return "";
+
+			return role.Name;
 		}
 	}
 
