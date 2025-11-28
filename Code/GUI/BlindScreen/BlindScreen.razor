@@ -3,11 +3,17 @@
 @inherits Panel
 @namespace HNS
 
-<div id="blind-screen" @ref="Panel"></div>
+<div id="blindscreen" @ref="Panel"></div>
 
 @code
 {
-    Panel Panel { get; set; }
-    
-    public void Toggle(bool toggle) => Panel.SetClass("visible", toggle);
+	Panel Panel { get; set; }
+
+	public override void Tick()
+	{
+		var player = Player.GetLocal();
+		if (player == null) return;
+
+		Panel.SetClass("visible", player.IsFrozen);
+	}
 }

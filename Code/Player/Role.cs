@@ -7,16 +7,10 @@ public class Role : Component
     [Change(nameof(OnRoleChanged))]
     public BaseRole Current { get; private set; }
 
-    [RequireComponent]
-    SeekerRole Seeker { get; set; }
-
-    [RequireComponent]
-    HiderRole Hider { get; set; }
-
-    public void Seek() => Current = Seeker;
-    public void Hide() => Current = Hider;
-    public bool IsSeeker => Current == Seeker;
-    public bool IsHider => Current == Hider;
+	public void Set<T>() where T : BaseRole
+	{
+		Current = GetComponent<T>(includeDisabled: true);
+	}
 
 	void OnRoleChanged(BaseRole oldRole, BaseRole newRole)
     {
@@ -29,10 +23,10 @@ public class Role : Component
     }
 
     [ConCmd("hide", ConVarFlags.Server)]
-    static void Hide(Connection caller) => Player.GetOwnedBy(caller).Hide();
+    static void Hide(Connection caller) => Player.GetOwnedBy(caller).SetRole<HiderRole>();
 
     [ConCmd("seek", ConVarFlags.Server)]
-    static void Seek(Connection caller) => Player.GetOwnedBy(caller).Seek();
+    static void Seek(Connection caller) => Player.GetOwnedBy(caller).SetRole<SeekerRole>();
 }
 
 public abstract class BaseRole : Component
@@ -65,9 +59,10 @@ public class SeekerRole : BaseRole, Component.ITriggerListener
     void TryTag(Collider other)
     {
         var otherPlayer = other.GetComponent<Player>();
-        if (otherPlayer == null || !otherPlayer.IsHider) return;
+        if (otherPlayer == null) return;
+		if (otherPlayer.CurrentRole is not HiderRole) return;
 
-		otherPlayer.Seek();
+		otherPlayer.SetRole<SeekerRole>();
 		Chat.SystemMessage($"{Player.Network.Owner.DisplayName} has caught {otherPlayer.Network.Owner.DisplayName}");
     }
 }

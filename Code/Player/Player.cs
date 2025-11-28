@@ -15,6 +15,7 @@ public class Player : Component
     public static Player GetRandom() => Game.Random.FromList(GetAll());
 
 	public BaseRole CurrentRole => Role.Current;
+	public void SetRole<T>() where T : BaseRole => Role.Set<T>();
 
 	public float CurrentStamina => Stamina.Current;
 	public float MaxStamina => Stamina.Max;
@@ -23,13 +24,13 @@ public class Player : Component
     public void Freeze(bool freeze) => Movement.Freeze(freeze);
 	
 	[System.Obsolete]
-    public void Seek() => Role.Seek();
+    public void Seek() => Role.Set<SeekerRole>();
 	[System.Obsolete]
-    public void Hide() => Role.Hide();
+    public void Hide() => Role.Set<HiderRole>();
 	[System.Obsolete]
-    public bool IsSeeker => Role.IsSeeker;
+    public bool IsSeeker => Role.Current is SeekerRole;
 	[System.Obsolete]
-    public bool IsHider => Role.IsHider;
+    public bool IsHider => Role.Current is HiderRole;
     
 	public void Equip(Clothing clothing) => Clothes.Equip(clothing);
 	public bool IsFrozen => Movement.IsFrozen;

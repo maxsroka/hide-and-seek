@@ -3,11 +3,6 @@ using Sandbox.Movement;
 using System;
 namespace HNS;
 
-public interface IMovementEvents : ISceneEvent<IMovementEvents>
-{
-    void OnFreeze(bool isFrozen);
-}
-
 public class Movement : Component
 {
 	public bool IsFrozen { get; private set; } = false;
@@ -38,7 +33,6 @@ public class Movement : Component
 	{
         Controller.UseInputControls = !freeze;
         Controller.WishVelocity = Vector3.Zero;
-		IMovementEvents.Post(e => e.OnFreeze(freeze));
 	}
 
     protected override void OnFixedUpdate()
