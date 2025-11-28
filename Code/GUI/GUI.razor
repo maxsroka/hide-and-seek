@@ -3,7 +3,6 @@
 @inherits PanelComponent
 @implements IMovementEvents
 @implements Chat.IMessageListener
-@implements Role.IChangeListener
 @implements NameTracer.ITraceListener
 @namespace HNS
 
@@ -25,7 +24,6 @@
 	void IMovementEvents.OnFreeze(bool isFrozen) => BlindScreen.Toggle(isFrozen);
 	void Chat.IMessageListener.OnUserMessage(string message, Connection sender) => ChatBox.AddMessage(new ChatBox.UserMessage(message, sender));
 	void Chat.IMessageListener.OnSystemMessage(string message) => ChatBox.AddMessage(new ChatBox.SystemMessage(message));
-	void Role.IChangeListener.OnRole(string role) => StatusBar.SetRole(role);
 	void NameTracer.ITraceListener.OnStart(Player player) => NameTag.Show(player);
 	void NameTracer.ITraceListener.OnEnd() => NameTag.Hide();
 

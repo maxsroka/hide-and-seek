@@ -6,8 +6,9 @@ public class Player : Component
     [RequireComponent] Movement Movement { get; set; }
     [RequireComponent] Role Role { get; set; }
     [RequireComponent] Clothes Clothes { get; set; }
+    [RequireComponent] Stamina Stamina { get; set; }
 
-    public static List<Player> GetAll() => Game.ActiveScene.GetAllComponents<Player>().ToList();
+	public static List<Player> GetAll() => Game.ActiveScene.GetAllComponents<Player>().ToList();
     public static Player GetOwnedBy(Connection connection) => GetAll().Find(p => p.Network.OwnerId == connection.Id);
     public static Player GetLocal() => GetOwnedBy(Connection.Local);
     public static Player GetHost() => GetOwnedBy(Connection.Host);
@@ -21,8 +22,8 @@ public class Player : Component
     public bool IsHider => Role.IsHider;
     public void Equip(Clothing clothing) => Clothes.Equip(clothing);
 	public bool IsFrozen => Movement.IsFrozen;
-	public float Stamina => Movement.Stamina;
-	public float MaxStamina => Movement.MAX_STAMINA;
+	public float CurrentStamina => Stamina.Current;
+	public float MaxStamina => Stamina.Max;
 
 	public interface ISpawnListener : ISceneEvent<ISpawnListener>
 	{

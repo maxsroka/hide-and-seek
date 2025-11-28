@@ -263,6 +263,17 @@
         "OnComponentUpdate": null
       },
       {
+        "__type": "HNS.Stamina",
+        "__guid": "28b2cc26-de62-4a63-8351-082cfea3e38b",
+        "__enabled": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      },
+      {
         "__type": "Sandbox.Dresser",
         "__guid": "40bd0bf6-572d-4b4a-8e14-4513a8c96820",
         "__enabled": true,

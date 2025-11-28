@@ -1,4 +1,4 @@
-#status-bar-container {
+#statusbar-container {
     position: absolute;
 	width: 100%;
 	height: 100%;
@@ -6,7 +6,7 @@
 	justify-content: flex-end;
     flex-direction: column;
 
-    #status-bar {
+    #statusbar-background {
         width: 550px;
         height: 35px;
         background-color: rgba(44, 44, 44, 0.8);
@@ -14,7 +14,7 @@
         border-radius: 2px;
         box-shadow: -1px 1px 2px #00000070;
         
-        #status-bar-fill {
+        #statusbar-fill {
             width: 100%;
             height: 100%;
             
@@ -28,7 +28,7 @@
         }
     }
 
-    #status-bar-label {
+    #statusbar-label {
         font-family: 'CascadiaCode';
         color: white;
         font-size: 20px;

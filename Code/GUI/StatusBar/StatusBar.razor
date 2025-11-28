@@ -1,20 +1,33 @@
 @using Sandbox;
 @using Sandbox.UI;
 @using Sandbox.Services.Players;
+@using System;
 @inherits Panel
 @namespace HNS
 
-<div id="status-bar-container">
-    <Label Text="@Name (@Role)" id="status-bar-label"></Label>
-    <div id="status-bar">
-        <div id="status-bar-fill" class="@Role.ToLower()" style="width: @Stamina"></div>
+<div id="statusbar-container">
+	<Label id="statusbar-label" Text="@Label"></Label>
+    <div id="statusbar-background">
+        <div id="statusbar-fill" class="@Role" style="width: @Stamina;"></div>
     </div>
 </div>
 
 @code
 {
-	string Name => Profile.Local.Name; 
-	string Role { get; set; } = "";
+	string Label => $"{Name} ({Role})";
+	string Name => Profile.Local.Name;
+
+	string Role
+	{
+		get
+		{
+			var player = Player.GetLocal();
+			if (player == null) return "";
+
+			return player.IsHider ? "hider" : "seeker";
+		}
+	}
+
 	string Stamina
 	{
 		get
@@ -22,14 +35,9 @@
 			var player = Player.GetLocal();
 			if (player == null) return "100%";
 
-			return $"{(player.Stamina / player.MaxStamina) * 100}%";
+			return $"{(player.CurrentStamina / player.MaxStamina) * 100}%";
 		}
 	}
 
-    public void SetRole(string name)
-    {
-        Role = name;
-    }
-
-	protected override int BuildHash() => System.HashCode.Combine(Role, Stamina);
+	protected override int BuildHash() => HashCode.Combine(Role, Stamina);
 }

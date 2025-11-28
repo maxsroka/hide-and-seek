@@ -18,11 +18,6 @@ public class Role : Component
     public bool IsSeeker => Current == Seeker;
     public bool IsHider => Current == Hider;
 
-	public interface IChangeListener : ISceneEvent<IChangeListener>
-	{
-		void OnRole(string name);
-	}
-
 	void OnRoleChanged(BaseRole oldRole, BaseRole newRole)
     {
         if (oldRole != null)
@@ -31,11 +26,6 @@ public class Role : Component
         }
 
         newRole.Enabled = true;
-
-		if (Network.IsOwner)
-		{
-			IChangeListener.Post(e => e.OnRole(newRole.Name));
-		}
     }
 
     [ConCmd("hide", ConVarFlags.Server)]
