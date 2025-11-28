@@ -4,7 +4,9 @@ namespace HNS;
 
 public class Stamina : Component
 {
-	public float Max { get; set; } = 5f;
+	[ConVar("max_stamina", ConVarFlags.Replicated)]
+	public static float Max { get; set; } = 5f;
+	
 	public float Current { get; private set; } = 0f;
 
 	[RequireComponent]
@@ -12,6 +14,8 @@ public class Stamina : Component
 
 	protected override void OnStart()
 	{
+		if (!Network.IsOwner) return;
+
 		Current = Max;
 	}
 
