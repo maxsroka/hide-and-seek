@@ -5,7 +5,7 @@ namespace HNS;
 public class Stamina : Component
 {
 	public float Max { get; set; } = 5f;
-	public float Current { get; private set; }
+	public float Current { get; private set; } = 0f;
 
 	[RequireComponent]
 	PlayerController Controller { get; set; }
