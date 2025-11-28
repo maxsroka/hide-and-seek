@@ -8,7 +8,7 @@ public class Flashlight : Component
 
 	protected override void OnUpdate()
 	{
-		if (Input.Pressed("Flashlight"))
+		if (Input.Pressed("flashlight"))
         {
             SpotLight.Enabled = !SpotLight.Enabled;
         }
