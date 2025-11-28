@@ -5,8 +5,6 @@ namespace HNS;
 
 public class Movement : Component
 {
-	public bool IsFrozen { get; private set; } = false;
-
 	[Property]
     CapsuleCollider StandingTrigger { get; set; }
 
@@ -21,19 +19,6 @@ public class Movement : Component
     {
         WorldPosition = worldPosition;
     }
-
-    public void Freeze(bool freeze)
-    {
-		IsFrozen = freeze;
-		FreezeOnOwner(freeze);
-    }
-
-    [Rpc.Owner(NetFlags.HostOnly)]
-	void FreezeOnOwner(bool freeze)
-	{
-        Controller.UseInputControls = !freeze;
-        Controller.WishVelocity = Vector3.Zero;
-	}
 
     protected override void OnFixedUpdate()
     {

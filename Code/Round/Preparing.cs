@@ -18,7 +18,7 @@ public class Preparing : Stage
 		
 		seeker = Game.Random.FromList(players);
 		seeker.Seek();
-		seeker.Freeze(true);
+		seeker.IsFrozen = true;
 		Chat.SystemMessage($"{seeker.Network.Owner.DisplayName} is the Seeker!");
 
 		var spawnPoint = GetRandomSpawnPoint();
@@ -37,7 +37,7 @@ public class Preparing : Stage
 
 	public override void OnExit()
 	{
-		seeker?.Freeze(false);
+		seeker?.IsFrozen = false;
 	}
 
 	GameObject GetRandomSpawnPoint()

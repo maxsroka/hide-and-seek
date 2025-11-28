@@ -7,6 +7,7 @@ public class Player : Component
     [RequireComponent] Role Role { get; set; }
     [RequireComponent] Clothes Clothes { get; set; }
     [RequireComponent] Stamina Stamina { get; set; }
+    [RequireComponent] Freeze Freeze { get; set; }
 
 	public static List<Player> GetAll() => Game.ActiveScene.GetAllComponents<Player>().ToList();
     public static Player GetOwnedBy(Connection connection) => GetAll().Find(p => p.Network.OwnerId == connection.Id);
@@ -19,9 +20,10 @@ public class Player : Component
 
 	public float CurrentStamina => Stamina.Current;
 	public float MaxStamina => Stamina.Max;
-    
+
+	public bool IsFrozen { get => Freeze.IsFrozen; set => Freeze.IsFrozen = value; }
+	
 	public void Teleport(Vector3 worldPosition) => Movement.Teleport(worldPosition);
-    public void Freeze(bool freeze) => Movement.Freeze(freeze);
 	
 	[System.Obsolete]
     public void Seek() => Role.Set<SeekerRole>();
@@ -33,8 +35,6 @@ public class Player : Component
     public bool IsHider => Role.Current is HiderRole;
     
 	public void Equip(Clothing clothing) => Clothes.Equip(clothing);
-	public bool IsFrozen => Movement.IsFrozen;
-
 
 	public interface ISpawnListener : ISceneEvent<ISpawnListener>
 	{
