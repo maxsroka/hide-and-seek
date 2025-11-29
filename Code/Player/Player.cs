@@ -25,6 +25,8 @@ public class Player : Component
 	
 	public void Teleport(Vector3 worldPosition) => Teleporting.Teleport(worldPosition);
 	
+	public void Equip(Clothing suit) => Clothes.Equip(suit);
+	
 	[System.Obsolete]
     public void Seek() => Role.Set<SeekerRole>();
 	[System.Obsolete]
@@ -34,7 +36,6 @@ public class Player : Component
 	[System.Obsolete]
     public bool IsHider => Role.Current is HiderRole;
     
-	public void Equip(Clothing clothing) => Clothes.Equip(clothing);
 
 	public interface ISpawnListener : ISceneEvent<ISpawnListener>
 	{
