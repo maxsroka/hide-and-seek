@@ -42,16 +42,16 @@ public class Waiting : Stage
     {
         if (IsStarting)
         {
-			Timer += Time.Delta;
+			Round.Timer += Time.Delta;
 
-            if (Timer >= WaitTime)
+            if (Round.Timer >= WaitTime)
             {
                 Round.Continue<Preparing>();
             }
         }
         else
         {
-			Timer = 0f;
+			Round.Timer = 0f;
         }
     }
 

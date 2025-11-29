@@ -14,9 +14,9 @@ public class Playing : Stage
 
 	public override void OnRun()
 	{
-		Timer += Time.Delta;
+		Round.Timer += Time.Delta;
 
-		if (Timer < PlayTime)
+		if (Round.Timer < PlayTime)
 		{
 			var players = Player.GetAll();
 
