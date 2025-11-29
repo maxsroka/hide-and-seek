@@ -4,21 +4,22 @@ namespace HNS;
 
 public class NoClip : MoveMode
 {
-	const float SPEED = 1000f;
+	[ConVar("noclip_speed", ConVarFlags.Replicated)]
+	public static float Speed { get; set; } = 1000f;
 
-	bool toggled = false;
+	bool isOn = false;
 
 	[ConCmd("noclip", ConVarFlags.Cheat)]
 	static void Toggle(Connection caller)
 	{
 		var player = Player.GetOwnedBy(caller);
 		var noClip = player.GetComponent<NoClip>();
-		noClip.toggled = !noClip.toggled;
+		noClip.isOn = !noClip.isOn;
 	}
 
 	public override int Score(PlayerController controller)
 	{
-		return toggled ? 1000 : -1000;
+		return isOn ? 1000 : -1000;
 	}
 
 	public override void OnModeBegin()
@@ -55,6 +56,6 @@ public class NoClip : MoveMode
 
 	public override void AddVelocity()
 	{
-		Controller.Body.Velocity = Controller.WishVelocity.Normal * SPEED;
+		Controller.Body.Velocity = Controller.WishVelocity.Normal * Speed;
 	}
 }
