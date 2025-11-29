@@ -19,7 +19,7 @@ public class Ending : Stage
 			return;
 		}
 
-		var hasHiders = players.Any(p => p.IsHider);
+		var hasHiders = players.Any(p => p.CurrentRole is HiderRole);
 
 		if (hasHiders)
 		{

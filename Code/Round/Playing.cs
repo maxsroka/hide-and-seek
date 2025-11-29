@@ -26,8 +26,8 @@ public class Playing : Stage
 				return;
 			}
 
-			var hasSeekers = players.Any(p => p.IsSeeker);
-			var hasHiders = players.Any(p => p.IsHider);
+			var hasSeekers = players.Any(p => p.CurrentRole is SeekerRole);
+			var hasHiders = players.Any(p => p.CurrentRole is HiderRole);
 
 			if (!hasSeekers || !hasHiders)
 			{
