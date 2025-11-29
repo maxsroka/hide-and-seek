@@ -35,13 +35,15 @@ public class Round : Component, Component.INetworkListener, Player.ISpawnListene
     
     void Player.ISpawnListener.OnSpawned(Connection connection)
     {
+		Chat.SystemMessage($"{connection.DisplayName} joined the game");
         Stage?.OnPlayerJoined(connection);
 	}
 
     void INetworkListener.OnDisconnected(Connection connection)
     {
+		Chat.SystemMessage($"{connection.DisplayName} left the game");
         Stage?.OnPlayerLeft(connection);
-    }
+	}
 
     public void Continue<T>() where T : Stage
     {
@@ -49,7 +51,7 @@ public class Round : Component, Component.INetworkListener, Player.ISpawnListene
         Stage = GetComponent<T>(true);
     }
 
-	public void Stop()
+	public void Restart()
 	{
 		Assert.True(Networking.IsHost);
 

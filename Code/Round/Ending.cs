@@ -18,7 +18,7 @@ public class Ending : Stage
 
 		if (players.Count == 0)
 		{
-			Round.Stop();
+			Round.Restart();
 			return;
 		}
 
@@ -43,7 +43,7 @@ public class Ending : Stage
 
 		if (timer >= EndTime)
 		{
-			Round.Stop();
+			Round.Restart();
 		}
 	}
 

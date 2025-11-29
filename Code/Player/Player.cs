@@ -35,12 +35,10 @@ public class Player : Component
     public bool IsSeeker => Role.Current is SeekerRole;
 	[System.Obsolete]
     public bool IsHider => Role.Current is HiderRole;
-    
 
 	public interface ISpawnListener : ISceneEvent<ISpawnListener>
 	{
-		void OnSpawned(Connection connection) { }
-		void OnDespawned(Connection connection) { }
+		void OnSpawned(Connection connection);
 	}
 
 	protected override void OnStart()
@@ -48,14 +46,5 @@ public class Player : Component
 		if (!Networking.IsHost) return;
 
 		ISpawnListener.Post(e => e.OnSpawned(Network.Owner));
-		Chat.SystemMessage($"{Network.Owner.DisplayName} joined the game");
-	}
-
-	protected override void OnDestroy()
-	{
-		if (!Networking.IsHost) return;
-
-		ISpawnListener.Post(e => e.OnDespawned(Network.Owner));
-		Chat.SystemMessage($"{Network.Owner.DisplayName} left the game");
 	}
 }

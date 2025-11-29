@@ -17,7 +17,7 @@ public class Preparing : Stage
 		var players = Player.GetAll();
 		
 		seeker = Game.Random.FromList(players);
-		seeker.Seek();
+		seeker.SetRole<SeekerRole>();
 		seeker.IsFrozen = true;
 		Chat.SystemMessage($"{seeker.Network.Owner.DisplayName} is the Seeker!");
 
@@ -37,7 +37,9 @@ public class Preparing : Stage
 
 	public override void OnExit()
 	{
-		seeker?.IsFrozen = false;
+		if (!seeker.IsValid) return;
+
+		seeker.IsFrozen = false;
 	}
 
 	GameObject GetRandomSpawnPoint()
@@ -50,6 +52,6 @@ public class Preparing : Stage
 
 	public override void OnPlayerJoined(Connection connection)
 	{
-		Player.GetOwnedBy(connection).Hide();
+		Player.GetOwnedBy(connection).SetRole<HiderRole>();
 	}
 }

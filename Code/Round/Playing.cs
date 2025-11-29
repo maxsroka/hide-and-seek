@@ -25,7 +25,7 @@ public class Playing : Stage
 
 			if (players.Count == 0)
 			{
-				Round.Stop();
+				Round.Restart();
 				return;
 			}
 
