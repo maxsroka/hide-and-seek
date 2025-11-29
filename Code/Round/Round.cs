@@ -37,16 +37,15 @@ public class Round : Component, Component.INetworkListener, Player.ISpawnListene
         Stage.OnRun();
     }
     
-    void Player.ISpawnListener.OnSpawned(Connection connection)
+    void Player.ISpawnListener.OnSpawned(Player player)
     {
-		Chat.SystemMessage($"{connection.DisplayName} joined the game");
-        Stage?.OnPlayerJoined(connection);
+		Chat.SystemMessage($"{player.Network.Owner.DisplayName} joined the game");
+        Stage?.OnJoin(player);
 	}
 
     void INetworkListener.OnDisconnected(Connection connection)
     {
 		Chat.SystemMessage($"{connection.DisplayName} left the game");
-        Stage?.OnPlayerLeft(connection);
 	}
 
     public void Continue<T>() where T : Stage

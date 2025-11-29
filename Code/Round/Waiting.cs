@@ -29,9 +29,9 @@ public class Waiting : Stage
         instance.WaitingForPlayersMessage();
     }
 
-	public override void OnPlayerJoined(Connection connection)
+	public override void OnJoin(Player player)
 	{
-		Player.GetOwnedBy(connection).SetRole<HiderRole>();
+		player.SetRole<HiderRole>();
 
         if (IsStarting) return;
 

@@ -18,6 +18,5 @@ public abstract class Stage : Component
     public virtual void OnEnter() { }
     public virtual void OnRun() { }
     public virtual void OnExit() { }
-	public abstract void OnPlayerJoined(Connection connection);
-	public virtual void OnPlayerLeft(Connection connection) { }
+	public virtual void OnJoin(Player player) { }
 }

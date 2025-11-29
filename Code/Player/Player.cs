@@ -34,13 +34,11 @@ public class Player : Component
 
 	public interface ISpawnListener : ISceneEvent<ISpawnListener>
 	{
-		void OnSpawned(Connection connection);
+		void OnSpawned(Player player);
 	}
 
 	protected override void OnStart()
 	{
-		if (!Networking.IsHost) return;
-
-		ISpawnListener.Post(e => e.OnSpawned(Network.Owner));
+		ISpawnListener.Post(e => e.OnSpawned(this));
 	}
 }

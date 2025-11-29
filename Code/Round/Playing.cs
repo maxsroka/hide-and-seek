@@ -40,8 +40,8 @@ public class Playing : Stage
 		}
 	}
 
-	public override void OnPlayerJoined(Connection connection)
+	public override void OnJoin(Player player)
 	{
-		Player.GetOwnedBy(connection).SetRole<SeekerRole>();
+		player.SetRole<SeekerRole>();
 	}
 }
