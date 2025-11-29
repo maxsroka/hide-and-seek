@@ -28,10 +28,6 @@ public class Player : Component
 	public void Equip(Clothing suit) => Clothes.Equip(suit);
 	
 	[System.Obsolete]
-    public void Seek() => Role.Set<SeekerRole>();
-	[System.Obsolete]
-    public void Hide() => Role.Set<HiderRole>();
-	[System.Obsolete]
     public bool IsSeeker => Role.Current is SeekerRole;
 	[System.Obsolete]
     public bool IsHider => Role.Current is HiderRole;

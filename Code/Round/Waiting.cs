@@ -34,7 +34,7 @@ public class Waiting : Stage
 
 	public override void OnPlayerJoined(Connection connection)
 	{
-		Player.GetOwnedBy(connection).Hide();
+		Player.GetOwnedBy(connection).SetRole<HiderRole>();
 
         if (IsStarting) return;
 
