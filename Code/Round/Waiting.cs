@@ -38,11 +38,6 @@ public class Waiting : Stage
         WaitingForPlayersMessage();
 	}
 
-	protected override void OnUpdate()
-	{
-		Log.Info(Timer);
-	}
-
     public override void OnRun()
     {
         if (IsStarting)
