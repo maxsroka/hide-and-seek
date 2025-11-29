@@ -1,10 +1,10 @@
 using Sandbox;
 namespace HNS;
 
-public class Teleport : Component
+public class Teleporting : Component
 {
 	[Rpc.Owner(NetFlags.HostOnly)]
-	public void TeleportTo(Vector3 worldPosition)
+	public void Teleport(Vector3 worldPosition)
 	{
 		WorldPosition = worldPosition;
 	}

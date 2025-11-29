@@ -64,74 +64,6 @@
         "Suit": "models/citizen_clothes/shirt/jumpsuit/blue_jumpsuit.clothing"
       },
       {
-        "__type": "HNS.Clothes",
-        "__guid": "f37a8c71-09c8-41fa-9b83-343def7b8870",
-        "__enabled": true,
-        "Filter": "Chest, LeftArm, RightArm, Groin, LeftThigh, RightThigh, LeftKnee, RightKnee, LeftShin, RightShin, Waist",
-        "OnComponentDestroy": null,
-        "OnComponentDisabled": null,
-        "OnComponentEnabled": null,
-        "OnComponentFixedUpdate": null,
-        "OnComponentStart": null,
-        "OnComponentUpdate": null
-      },
-      {
-        "__type": "HNS.Ducking",
-        "__guid": "c37831d6-0a47-47e6-b8cf-c49717654e9a",
-        "__enabled": true,
-        "DuckingTrigger": {
-          "_type": "component",
-          "component_id": "75eff376-9938-4b27-bcaf-6fc78c540901",
-          "go": "070afa61-c4a8-43e0-8466-7061a3ec7106",
-          "component_type": "CapsuleCollider"
-        },
-        "OnComponentDestroy": null,
-        "OnComponentDisabled": null,
-        "OnComponentEnabled": null,
-        "OnComponentFixedUpdate": null,
-        "OnComponentStart": null,
-        "OnComponentUpdate": null,
-        "StandingTrigger": {
-          "_type": "component",
-          "component_id": "7a708da4-e52c-4fb3-8267-eea182cb56c8",
-          "go": "070afa61-c4a8-43e0-8466-7061a3ec7106",
-          "component_type": "CapsuleCollider"
-        }
-      },
-      {
-        "__type": "HNS.Teleport",
-        "__guid": "2b3a63ed-97b4-44cd-b034-7d08c6bf3692",
-        "__enabled": true,
-        "OnComponentDestroy": null,
-        "OnComponentDisabled": null,
-        "OnComponentEnabled": null,
-        "OnComponentFixedUpdate": null,
-        "OnComponentStart": null,
-        "OnComponentUpdate": null
-      },
-      {
-        "__type": "HNS.Freeze",
-        "__guid": "28dd50f9-e355-49b1-bc53-5b4e4d8fb6e3",
-        "__enabled": true,
-        "OnComponentDestroy": null,
-        "OnComponentDisabled": null,
-        "OnComponentEnabled": null,
-        "OnComponentFixedUpdate": null,
-        "OnComponentStart": null,
-        "OnComponentUpdate": null
-      },
-      {
-        "__type": "HNS.Pushing",
-        "__guid": "cc469f9a-dd5b-4ae2-86ce-38297e458969",
-        "__enabled": true,
-        "OnComponentDestroy": null,
-        "OnComponentDisabled": null,
-        "OnComponentEnabled": null,
-        "OnComponentFixedUpdate": null,
-        "OnComponentStart": null,
-        "OnComponentUpdate": null
-      },
-      {
         "__type": "Sandbox.PlayerController",
         "__guid": "76370027-67ab-4e84-b43c-c0cc5b2df425",
         "__enabled": true,
@@ -201,6 +133,50 @@
         "UseInputControls": true,
         "UseLookControls": true,
         "WalkSpeed": 200
+      },
+      {
+        "__type": "HNS.Pushing",
+        "__guid": "cc469f9a-dd5b-4ae2-86ce-38297e458969",
+        "__enabled": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      },
+      {
+        "__type": "HNS.Freezing",
+        "__guid": "86ef3b1f-08f8-44d4-be32-8312ee19cb41",
+        "__enabled": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      },
+      {
+        "__type": "HNS.Teleporting",
+        "__guid": "b52b4ff1-61c1-47a5-8471-db6941f966ee",
+        "__enabled": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      },
+      {
+        "__type": "HNS.Stamina",
+        "__guid": "28b2cc26-de62-4a63-8351-082cfea3e38b",
+        "__enabled": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
       },
       {
         "__type": "Sandbox.Rigidbody",
@@ -285,9 +261,10 @@
         "OnComponentUpdate": null
       },
       {
-        "__type": "HNS.Stamina",
-        "__guid": "28b2cc26-de62-4a63-8351-082cfea3e38b",
+        "__type": "HNS.Clothes",
+        "__guid": "f37a8c71-09c8-41fa-9b83-343def7b8870",
         "__enabled": true,
+        "Filter": "Chest, LeftArm, RightArm, Groin, LeftThigh, RightThigh, LeftKnee, RightKnee, LeftShin, RightShin, Waist",
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -370,6 +347,29 @@
         "Static": false,
         "Surface": null,
         "SurfaceVelocity": "0,0,0"
+      },
+      {
+        "__type": "HNS.Ducking",
+        "__guid": "c37831d6-0a47-47e6-b8cf-c49717654e9a",
+        "__enabled": true,
+        "DuckingTrigger": {
+          "_type": "component",
+          "component_id": "75eff376-9938-4b27-bcaf-6fc78c540901",
+          "go": "070afa61-c4a8-43e0-8466-7061a3ec7106",
+          "component_type": "CapsuleCollider"
+        },
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "StandingTrigger": {
+          "_type": "component",
+          "component_id": "7a708da4-e52c-4fb3-8267-eea182cb56c8",
+          "go": "070afa61-c4a8-43e0-8466-7061a3ec7106",
+          "component_type": "CapsuleCollider"
+        }
       }
     ],
     "Children": [

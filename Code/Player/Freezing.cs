@@ -1,7 +1,7 @@
 using Sandbox;
 namespace HNS;
 
-public sealed class Freeze : Component
+public class Freezing : Component
 {
 	[Sync(SyncFlags.FromHost)]
 	[Change(nameof(OnFrozen))]

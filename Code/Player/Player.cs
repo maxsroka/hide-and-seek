@@ -6,8 +6,8 @@ public class Player : Component
     [RequireComponent] Role Role { get; set; }
     [RequireComponent] Clothes Clothes { get; set; }
     [RequireComponent] Stamina Stamina { get; set; }
-    [RequireComponent] Freeze Freeze { get; set; }
-    [RequireComponent] Teleport Teleport { get; set; }
+    [RequireComponent] Freezing Freezing { get; set; }
+    [RequireComponent] Teleporting Teleporting { get; set; }
 
 	public static List<Player> GetAll() => Game.ActiveScene.GetAllComponents<Player>().ToList();
     public static Player GetOwnedBy(Connection connection) => GetAll().Find(p => p.Network.OwnerId == connection.Id);
@@ -21,9 +21,9 @@ public class Player : Component
 	public float CurrentStamina => Stamina.Current;
 	public float MaxStamina => Stamina.Max;
 
-	public bool IsFrozen { get => Freeze.IsFrozen; set => Freeze.IsFrozen = value; }
+	public bool IsFrozen { get => Freezing.IsFrozen; set => Freezing.IsFrozen = value; }
 	
-	public void TeleportTo(Vector3 worldPosition) => Teleport.TeleportTo(worldPosition);
+	public void Teleport(Vector3 worldPosition) => Teleporting.Teleport(worldPosition);
 	
 	[System.Obsolete]
     public void Seek() => Role.Set<SeekerRole>();

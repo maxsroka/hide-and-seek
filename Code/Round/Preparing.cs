@@ -22,7 +22,7 @@ public class Preparing : Stage
 		Chat.SystemMessage($"{seeker.Network.Owner.DisplayName} is the Seeker!");
 
 		var spawnPoint = GetRandomSpawnPoint();
-		players.ForEach(p => p.TeleportTo(spawnPoint.WorldPosition));
+		players.ForEach(p => p.Teleport(spawnPoint.WorldPosition));
 	}
 
 	public override void OnRun()
