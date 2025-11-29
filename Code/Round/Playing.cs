@@ -5,10 +5,7 @@ public class Playing : Stage
 {
 	[ConVar("play_time", ConVarFlags.GameSetting)]
 	public static int PlayTime { get; set; } = 180;
-
-	public override float TimeLeft => PlayTime - timer;
-
-	float timer = 0f;
+	public override float Duration => PlayTime;
 
 	public override void OnEnter()
 	{
@@ -17,9 +14,9 @@ public class Playing : Stage
 
 	public override void OnRun()
 	{
-		timer += Time.Delta;
+		Timer += Time.Delta;
 
-		if (timer < PlayTime)
+		if (Timer < PlayTime)
 		{
 			var players = Player.GetAll();
 

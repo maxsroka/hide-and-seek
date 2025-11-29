@@ -6,10 +6,8 @@ public class Preparing : Stage
 	[ConVar("prep_time", ConVarFlags.GameSetting)]
 	[Range(0, 30)]
 	public static int PrepTime { get; set; } = 10;
+	public override float Duration => PrepTime;
 
-	public override float TimeLeft => PrepTime - timer;
-
-	float timer = 0f;
 	Player seeker = null;
 
 	public override void OnEnter()
@@ -27,9 +25,9 @@ public class Preparing : Stage
 
 	public override void OnRun()
 	{
-		timer += Time.Delta;
+		Timer += Time.Delta;
 
-		if (timer >= PrepTime)
+		if (Timer >= PrepTime)
 		{
 			Round.Continue<Playing>();
 		}

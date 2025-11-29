@@ -4,7 +4,13 @@ namespace HNS;
 
 public abstract class Stage : Component
 {
-	public abstract float TimeLeft { get; }
+	protected float Timer 
+	{ 
+		get => Round.Timer; 
+		set => Round.Timer = value; 
+	}
+
+	public abstract float Duration { get; }
     
 	[RequireComponent]
     protected Round Round { get; set; }

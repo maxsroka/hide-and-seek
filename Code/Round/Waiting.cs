@@ -12,14 +12,11 @@ public class Waiting : Stage
     [ConVar("wait_time", ConVarFlags.GameSetting)]
     [Range(0, 30)]
     public static int WaitTime { get; set; } = 10;
-
-	public override float TimeLeft => WaitTime - timer;
+	public override float Duration => WaitTime;
 
 	int MissingPlayersCount => Math.Max(0, MinPlayers - Connection.All.Count);
     bool IsStarting => MissingPlayersCount == 0;
     
-    float timer = 0f;
-
     static void OnMinPlayersChanged(int oldValue, int newValue)
     {
         if (!Game.IsPlaying) return;
@@ -41,20 +38,25 @@ public class Waiting : Stage
         WaitingForPlayersMessage();
 	}
 
+	protected override void OnUpdate()
+	{
+		Log.Info(Timer);
+	}
+
     public override void OnRun()
     {
         if (IsStarting)
         {
-            timer += Time.Delta;
+			Timer += Time.Delta;
 
-            if (timer >= WaitTime)
+            if (Timer >= WaitTime)
             {
                 Round.Continue<Preparing>();
             }
         }
         else
         {
-            timer = 0f;
+			Timer = 0f;
         }
     }
 

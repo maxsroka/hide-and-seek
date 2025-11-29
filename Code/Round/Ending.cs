@@ -7,10 +7,7 @@ public class Ending : Stage
 	[ConVar("end_time", ConVarFlags.GameSetting)]
 	[Range(0, 30)]
 	public static int EndTime { get; set; } = 5;
-
-	public override float TimeLeft => EndTime - timer;
-
-	float timer = 0f;
+	public override float Duration => EndTime;
 
 	public override void OnEnter()
 	{
@@ -39,9 +36,9 @@ public class Ending : Stage
 
 	public override void OnRun()
 	{
-		timer += Time.Delta;
+		Timer += Time.Delta;
 
-		if (timer >= EndTime)
+		if (Timer >= EndTime)
 		{
 			Round.Restart();
 		}

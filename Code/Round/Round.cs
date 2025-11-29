@@ -4,11 +4,14 @@ namespace HNS;
 
 public class Round : Component, Component.INetworkListener, Player.ISpawnListener
 {
-	public float TimeLeft => Stage != null ? Stage.TimeLeft : 0f;
-
     [Sync(SyncFlags.FromHost)]
     [Change(nameof(OnStageChanged))]
     Stage Stage { get; set; } = null;
+	
+	[Sync(SyncFlags.FromHost)]
+	public float Timer { get; set; } = 0f;
+
+	public float TimeLeft => Stage != null ? Stage.Duration - Timer : 0f;
 
     protected override void OnStart()
     {
@@ -22,6 +25,7 @@ public class Round : Component, Component.INetworkListener, Player.ISpawnListene
         if (!Networking.IsHost) return;
 
         oldStage?.OnExit();
+		Timer = 0f;
         newStage.OnEnter();
     }
 
