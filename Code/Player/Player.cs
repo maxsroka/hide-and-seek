@@ -14,6 +14,7 @@ public class Player : Component
     public static Player GetLocal() => GetOwnedBy(Connection.Local);
     public static Player GetHost() => GetOwnedBy(Connection.Host);
     public static Player GetRandom() => Game.Random.FromList(GetAll());
+	public static int Count => GetAll().Count;
 
 	public BaseRole CurrentRole => Role.Current;
 	public void SetRole<T>() where T : BaseRole => Role.Set<T>();

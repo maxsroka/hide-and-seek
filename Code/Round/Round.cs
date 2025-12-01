@@ -57,7 +57,6 @@ public class Round : Component, Component.INetworkListener, Player.ISpawnListene
 	public void Restart()
 	{
 		Assert.True(Networking.IsHost);
-
 		var options = new SceneLoadOptions();
 		options.SetScene("hideandseek.scene");
 		Game.ChangeScene(options);

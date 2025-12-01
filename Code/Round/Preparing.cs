@@ -40,16 +40,16 @@ public class Preparing : Stage
 		seeker.IsFrozen = false;
 	}
 
+	public override void OnJoin(Player player)
+	{
+		player.SetRole<HiderRole>();
+	}
+
 	GameObject GetRandomSpawnPoint()
 	{
 		var spawnPoints = Game.ActiveScene.GetAllComponents<SpawnPoint>().ToList();
 		var spawnPoint = Game.Random.FromList(spawnPoints);
 
 		return spawnPoint.GameObject;
-	}
-
-	public override void OnJoin(Player player)
-	{
-		player.SetRole<HiderRole>();
 	}
 }

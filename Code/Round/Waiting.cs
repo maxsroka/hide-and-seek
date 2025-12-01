@@ -14,7 +14,7 @@ public class Waiting : Stage
     public static int WaitTime { get; set; } = 10;
 	public override float Duration => WaitTime;
 
-	int MissingPlayersCount => Math.Max(0, MinPlayers - Connection.All.Count);
+	int MissingPlayersCount => Math.Max(0, MinPlayers - Player.Count);
     bool IsStarting => MissingPlayersCount == 0;
     
     static void OnMinPlayersChanged(int oldValue, int newValue)
@@ -29,31 +29,33 @@ public class Waiting : Stage
         instance.WaitingForPlayersMessage();
     }
 
+
+    public override void OnRun()
+    {
+		if (IsStarting)
+		{
+			Round.Timer += Time.Delta;
+
+			if (Round.Timer >= WaitTime)
+			{
+				Round.Continue<Preparing>();
+			}
+		}
+		else
+		{
+			Round.Timer = 0f;
+		}
+	}
+
 	public override void OnJoin(Player player)
 	{
 		player.SetRole<HiderRole>();
 
-        if (IsStarting) return;
-
-        WaitingForPlayersMessage();
+        if (!IsStarting)
+		{
+			WaitingForPlayersMessage();
+		}
 	}
-
-    public override void OnRun()
-    {
-        if (IsStarting)
-        {
-			Round.Timer += Time.Delta;
-
-            if (Round.Timer >= WaitTime)
-            {
-                Round.Continue<Preparing>();
-            }
-        }
-        else
-        {
-			Round.Timer = 0f;
-        }
-    }
 
     void WaitingForPlayersMessage()
     {
