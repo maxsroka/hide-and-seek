@@ -2,7 +2,6 @@
 @using Sandbox.UI;
 @inherits PanelComponent
 @implements Chat.IMessageListener
-@implements NameTracer.ITraceListener
 @namespace HNS
 
 <root>
@@ -22,8 +21,6 @@
 
 	void Chat.IMessageListener.OnUserMessage(string message, Connection sender) => ChatBox.AddMessage(new ChatBox.UserMessage(message, sender));
 	void Chat.IMessageListener.OnSystemMessage(string message) => ChatBox.AddMessage(new ChatBox.SystemMessage(message));
-	void NameTracer.ITraceListener.OnStart(Player player) => NameTag.Show(player);
-	void NameTracer.ITraceListener.OnEnd() => NameTag.Hide();
 
 	protected override int BuildHash() => System.HashCode.Combine(ChatBox.GetHashCode());
 }

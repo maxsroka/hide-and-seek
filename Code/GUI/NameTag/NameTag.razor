@@ -12,18 +12,26 @@
 {
 	Label Label { get; set; }
 
-	public void Show(Player player)
+	public override void Tick()
 	{
-		Label.SetClass("hider", player.IsHider);
-		Label.SetClass("seeker", player.IsSeeker);
-		var name = player.Network.Owner.DisplayName;
-		var role = player.IsHider ? "Hider" : "Seeker";
-		Label.Text = $"{name} ({role})";
-	}
+		var localPlayer = Player.GetLocal();
+		if (localPlayer == null) return;
 
-	public void Hide()
-	{
-		Label.Text = "";
+		var trace = localPlayer.Trace;
+		if (trace.Hit && trace.GameObject.Components.TryGet<Player>(out var otherPlayer))
+		{
+			var role = otherPlayer.CurrentRole;
+
+			Label.SetClass("hider", role is HiderRole);
+			Label.SetClass("seeker", role is SeekerRole);
+
+			var name = otherPlayer.Network.Owner.DisplayName;
+			Label.Text = $"{name} ({role.Name})";
+		}
+		else
+		{
+			Label.Text = "";
+		}
 	}
 
 	protected override int BuildHash() => System.HashCode.Combine(Label.Text);

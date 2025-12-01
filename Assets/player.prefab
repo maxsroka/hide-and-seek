@@ -135,6 +135,17 @@
         "WalkSpeed": 200
       },
       {
+        "__type": "Tracer",
+        "__guid": "10ba604f-5b1c-4f52-a223-a859280af9d5",
+        "__enabled": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      },
+      {
         "__type": "HNS.Pushing",
         "__guid": "cc469f9a-dd5b-4ae2-86ce-38297e458969",
         "__enabled": true,

@@ -8,6 +8,7 @@ public class Player : Component
     [RequireComponent] Stamina Stamina { get; set; }
     [RequireComponent] Freezing Freezing { get; set; }
     [RequireComponent] Teleporting Teleporting { get; set; }
+    [RequireComponent] Tracing Tracing { get; set; }
 
 	public static List<Player> GetAll() => Game.ActiveScene.GetAllComponents<Player>().ToList();
     public static Player GetOwnedBy(Connection connection) => GetAll().Find(p => p.Network.OwnerId == connection.Id);
@@ -27,7 +28,9 @@ public class Player : Component
 	public void Teleport(Vector3 worldPosition) => Teleporting.Teleport(worldPosition);
 	
 	public void Equip(Clothing suit) => Clothes.Equip(suit);
-	
+
+	public SceneTraceResult Trace => Tracing.Result;
+
 	[System.Obsolete]
     public bool IsSeeker => Role.Current is SeekerRole;
 	[System.Obsolete]
