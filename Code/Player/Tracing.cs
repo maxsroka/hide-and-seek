@@ -36,7 +36,7 @@ public class Tracing : Component
 		}
 		else
 		{
-			origin = GameObject.WorldPosition + Vector3.Up * Controller.BodyHeight;
+			origin = GameObject.WorldPosition + Vector3.Up * Controller.CurrentHeight;
 		}
 
 		var direction = Scene.Camera.WorldTransform.Forward;
