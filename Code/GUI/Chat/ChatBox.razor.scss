@@ -1,6 +1,7 @@
 @import '../GUI.razor.scss';
 
 #chatbox-container {
+    position: absolute;
     padding-bottom: 120px;
     align-items: flex-end;
     opacity: 0;

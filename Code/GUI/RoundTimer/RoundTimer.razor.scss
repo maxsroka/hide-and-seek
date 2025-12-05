@@ -1,5 +1,18 @@
 @import '../GUI.razor.scss';
 
 #roundtimer-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
     align-items: flex-start;
+    padding: $container-padding;
+    font-size: $large-font-size;
+    flex-direction: column;
+
+    #roundtimer-background {
+        background-color: $background-color;
+        border: $background-border;
+        border-radius: $background-border-radius;
+        padding: $background-padding;
+    }
 }

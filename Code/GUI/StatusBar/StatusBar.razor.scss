@@ -1,24 +1,31 @@
 @import '../GUI.razor.scss';
 
 #statusbar-container {
-	justify-content: flex-end;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: $container-padding;
+    justify-content: flex-end;
     flex-direction: column;
+    font-size: $large-font-size;
 
     #statusbar-background {
-        width: 550px;
-        height: 35px;
-        padding: 0px;
-        
+        width: 450px;
+        height: 30px;
+        background-color: $background-color;
+        border: $background-border;
+        border-radius: $background-border-radius;
+
         #statusbar-fill {
             width: 100%;
             height: 100%;
-            
+
             &.hider {
-                background-color: rgba(58, 139, 214, 0.8);
+                background-color: $hider-color;
             }
-            
+
             &.seeker {
-                background-color: rgba(214, 68, 58, 0.8);
+                background-color: $seeker-color;
             }
         }
     }

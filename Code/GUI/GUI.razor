@@ -5,22 +5,14 @@
 @namespace HNS
 
 <root id="root">
-	<BlindScreen @ref="BlindScreen"></BlindScreen>
-	<ChatBox @ref="ChatBox"></ChatBox>
-	<StatusBar @ref="StatusBar"></StatusBar>
-	<NameTag @ref="NameTag"></NameTag>
+	<BlindScreen></BlindScreen>
+	<NameTag></NameTag>
+	<StatusBar></StatusBar>
 	<RoundTimer></RoundTimer>
 </root>
 
 @code
 {
-	public BlindScreen BlindScreen { get; private set; }
-	public ChatBox ChatBox { get; private set; }
-	public StatusBar StatusBar { get; private set; }
-	public NameTag NameTag { get; set; }
-
-	void Chat.IMessageListener.OnUserMessage(string message, Connection sender) => ChatBox.AddMessage(new ChatBox.UserMessage(message, sender));
-	void Chat.IMessageListener.OnSystemMessage(string message) => ChatBox.AddMessage(new ChatBox.SystemMessage(message));
-
-	protected override int BuildHash() => System.HashCode.Combine(ChatBox.GetHashCode());
+	// void Chat.IMessageListener.OnUserMessage(string message, Connection sender) => ChatBox.AddMessage(new ChatBox.UserMessage(message, sender));
+	// void Chat.IMessageListener.OnSystemMessage(string message) => ChatBox.AddMessage(new ChatBox.SystemMessage(message));
 }
