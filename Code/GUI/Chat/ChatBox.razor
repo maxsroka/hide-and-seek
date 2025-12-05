@@ -3,9 +3,9 @@
 @inherits Panel
 @namespace HNS
 
-<div id="chatbox-container" @ref="Container">
-    <div id="chatbox">
-        <VirtualList ItemHeight=@(20) @ref="VirtualList" id="list">
+<div id="chatbox-container" @ref="Container" class="container">
+    <div id="chatbox-background">
+        <VirtualList ItemHeight=@(20) @ref="VirtualList" id="chatbox-list">
             <Item Context="item">
                 @if (item is IMessage)
                 {
@@ -27,7 +27,7 @@
                 }
             </Item>
         </VirtualList>
-        <TextEntry id="input" @ref="TextEntry" onsubmit=@OnSubmit></TextEntry>
+        <TextEntry id="chatbox-input" @ref="TextEntry" onsubmit=@OnSubmit></TextEntry>
     </div>
 </div>
 

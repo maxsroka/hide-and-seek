@@ -1,20 +1,5 @@
-﻿#nametag-container {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	align-items: center;
+﻿@import '../GUI.razor.scss';
+
+#nametag-container {
 	justify-content: center;
-	font-size: 30px;
-	color: white;
-	font-family: 'Cascadia Code';
-
-	#nametag-label {
-		&.hider {
-			color: rgb(130, 179, 221);
-		}
-
-		&.seeker {
-			color: rgb(209, 132, 121);
-		}
-	}
 }
