@@ -12,6 +12,9 @@ public class Stamina : Component
 	[RequireComponent]
 	PlayerController Controller { get; set; }
 
+	[RequireComponent]
+	Player Player { get; set; }
+
 	protected override void OnStart()
 	{
 		if (!Network.IsOwner) return;
@@ -23,7 +26,7 @@ public class Stamina : Component
 	{
 		if (!Network.IsOwner) return;
 
-		if (Input.Down("run"))
+		if (Input.Down("run") && !Player.IsFrozen)
 		{
 			Current = MathF.Max(0, Current - Time.Delta);
 		}
