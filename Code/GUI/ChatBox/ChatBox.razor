@@ -1,0 +1,84 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits Panel
+@namespace HNS
+
+<div id="chatbox-container" @ref="Container">
+	<div id="chatbox-list">
+		@foreach (var data in messages)
+		{
+			<ChatMessage Data="@data"></ChatMessage>
+		}
+	</div>
+	<TextEntry id="chatbox-input" onsubmit="@OnSubmit" @ref="TextEntry"></TextEntry>
+</div>
+
+@code
+{
+	const int MESSAGE_LIMIT = 32;
+
+	Panel Container { get; set; }
+	TextEntry TextEntry { get; set; }
+
+	Queue<ChatMessage.IData> messages = new();
+
+	public void OnSystemMessage(string content)
+	{
+		AddMessage(new ChatMessage.SystemData(content));
+	}
+
+	public void OnUserMessage(string content, Connection sender)
+	{
+		AddMessage(new ChatMessage.UserData(content, sender));
+	}
+
+	void AddMessage(ChatMessage.IData data)
+	{
+		messages.Enqueue(data);
+
+		if (messages.Count > MESSAGE_LIMIT)
+		{
+			messages.Dequeue();
+		}
+	}
+
+	public override void Tick()
+	{
+		if (Input.Pressed("chat"))
+		{
+			Open();
+		}
+	}
+
+	public void OnSubmit()
+	{
+		var content = TextEntry.Text;
+		if (!string.IsNullOrWhiteSpace(content))
+		{
+			Chat.UserMessage(content);
+			TextEntry.AddToHistory(content);
+		}
+
+		Close();
+	}
+
+	protected override void OnEscape(PanelEvent e)
+	{
+		Close();
+	}
+
+	void Open()
+	{
+		Container.SetClass("open", true);
+		InputFocus.Set(TextEntry);
+	}
+
+	void Close()
+	{
+		Container.SetClass("open", false);
+		TextEntry.Text = "";
+		InputFocus.Clear();	
+	}
+
+	protected override int BuildHash() => messages.Count;
+}

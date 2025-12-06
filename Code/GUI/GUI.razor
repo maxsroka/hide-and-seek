@@ -8,14 +8,17 @@
 	<BlindScreen></BlindScreen>
 	<NameTag></NameTag>
 	<StatusBar></StatusBar>
+	<ChatBox @ref="ChatBox"></ChatBox>
 	<RoundTimer></RoundTimer>
 </root>
 
 @code
 {
 	Panel Root { get; set; }
-	// void Chat.IMessageListener.OnUserMessage(string message, Connection sender) => ChatBox.AddMessage(new ChatBox.UserMessage(message, sender));
-	// void Chat.IMessageListener.OnSystemMessage(string message) => ChatBox.AddMessage(new ChatBox.SystemMessage(message));
+	ChatBox ChatBox { get; set; }
+
+	void Chat.IMessageListener.OnUserMessage(string content, Connection sender) => ChatBox.OnUserMessage(content, sender);
+	void Chat.IMessageListener.OnSystemMessage(string content) => ChatBox.OnSystemMessage(content);
 
 	bool isSans = false;
 
