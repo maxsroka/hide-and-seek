@@ -4,7 +4,7 @@
 @implements Chat.IMessageListener
 @namespace HNS
 
-<root id="root" @ref="Root">
+<root>
 	<BlindScreen></BlindScreen>
 	<NameTag></NameTag>
 	<StatusBar></StatusBar>
@@ -14,7 +14,6 @@
 
 @code
 {
-	Panel Root { get; set; }
 	ChatBox ChatBox { get; set; }
 
 	void Chat.IMessageListener.OnUserMessage(string content, Connection sender) => ChatBox.OnUserMessage(content, sender);
@@ -26,7 +25,7 @@
 	static void Sans(Connection caller)
 	{
 		var gui = Game.ActiveScene.Get<GUI>();
-		var style = gui.Root.Style;
+		var style = gui.Panel.Style;
 
 		gui.isSans = !gui.isSans;
 		style.FontFamily = gui.isSans ? "Comic Sans MS" : "Outfit";
