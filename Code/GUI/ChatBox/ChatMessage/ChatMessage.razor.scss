@@ -1,11 +1,6 @@
 @import '../../GUI.razor.scss';
 
 ChatMessage {
-    min-height: 0;
-    flex-shrink: 0;
-}
-
-#chatmessage-background {
     width: 100%;
     min-height: 40px;
     max-height: 120px;
@@ -19,9 +14,11 @@ ChatMessage {
     backdrop-filter: $background-backdrop-filter;
 
     .chatmessage-content {
+
     }
 
     .chatmessage-name {
+
     }
 
     .chatmessage-semicolon {

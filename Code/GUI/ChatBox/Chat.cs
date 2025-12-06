@@ -1,4 +1,5 @@
 using Sandbox;
+using System;
 namespace HNS;
 
 public static class Chat
@@ -14,7 +15,7 @@ public static class Chat
     {
 		if (!ValidateUserMessage(message)) return;
 
-		BroadcastUserMessage(message, Rpc.Caller);
+		BroadcastUserMessage(message, Rpc.Caller.Id);
 	}
 
 	static bool ValidateUserMessage(string message)
@@ -25,8 +26,11 @@ public static class Chat
 	}
 
 	[Rpc.Broadcast(NetFlags.HostOnly)]
-	static void BroadcastUserMessage(string message, Connection sender)
+	static void BroadcastUserMessage(string message, Guid senderId)
 	{
+		var sender = Connection.Find(senderId);
+		if (sender == null) return;
+
 		IMessageListener.Post(e => e.OnUserMessage(message, sender));
 	}
 

@@ -3,22 +3,21 @@
 @inherits Panel
 @namespace HNS
 
-<div id="chatbox-container" @ref="Container">
-	<div id="chatbox-list">
-		@foreach (var data in messages)
-		{
-			<ChatMessage Data="@data"></ChatMessage>
-		}
-	</div>
-	<TextEntry id="chatbox-input" onsubmit="@OnSubmit" @ref="TextEntry"></TextEntry>
+<div id="chatbox-list" @ref="List">
+	@foreach (var data in messages)
+	{
+		<ChatMessage Data="@data"></ChatMessage>
+	}
 </div>
+<TextEntry id="chatbox-input" onsubmit="@OnSubmit" @ref="TextEntry"></TextEntry>
 
 @code
 {
 	const int MESSAGE_LIMIT = 32;
+	const float FLASH_TIME = 5f;
 
-	Panel Container { get; set; }
 	TextEntry TextEntry { get; set; }
+	Panel List { get; set; }
 
 	Queue<ChatMessage.IData> messages = new();
 
@@ -40,6 +39,11 @@
 		{
 			messages.Dequeue();
 		}
+
+		if (!HasClass("open"))
+		{
+			FlashClass("visible", FLASH_TIME);
+		}
 	}
 
 	public override void Tick()
@@ -47,6 +51,11 @@
 		if (Input.Pressed("chat"))
 		{
 			Open();
+		}
+
+		if (HasClass("open") && !TextEntry.HasFocus)
+		{
+			TextEntry.Focus();
 		}
 	}
 
@@ -69,15 +78,15 @@
 
 	void Open()
 	{
-		Container.SetClass("open", true);
-		InputFocus.Set(TextEntry);
+		SetClass("open", true);
+		FlashClass("visible", 999999f);
 	}
 
 	void Close()
 	{
-		Container.SetClass("open", false);
+		SetClass("open", false);
+		FlashClass("visible", FLASH_TIME);
 		TextEntry.Text = "";
-		InputFocus.Clear();	
 	}
 
 	protected override int BuildHash() => messages.Count;

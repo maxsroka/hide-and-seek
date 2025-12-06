@@ -3,18 +3,16 @@
 @inherits Panel
 @namespace HNS
 
-<div id="chatmessage-background">
-	@if (Data is SystemData systemData)
-	{
-		<Label class="chatmessage-content">@systemData.Content</Label>
-	}
-	else if (Data is UserData userData)
-	{
-		<Label class="chatmessage-name" Text="@userData.Name"></Label>
-		<Label class="chatmessage-semicolon" Text=":"></Label>
-		<Label class="chatmessage-content" Text="@userData.Content"></Label>
-	}
-</div>
+@if (Data is SystemData systemData)
+{
+	<Label class="chatmessage-content">@systemData.Content</Label>
+}
+else if (Data is UserData userData)
+{
+	<Label class="chatmessage-name" Text="@userData.Name"></Label>
+	<Label class="chatmessage-semicolon" Text=":"></Label>
+	<Label class="chatmessage-content" Text="@userData.Content"></Label>
+}
 
 @code
 {
