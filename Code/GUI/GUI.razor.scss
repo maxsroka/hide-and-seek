@@ -1,14 +1,21 @@
 $large-font-size: 20px;
 $small-font-size: 15px;
-$hider-color: rgb(130, 179, 221);
+$large-font-weight: 700;
+$small-font-weight: 500;
+$hider-color: #4d7a96;
 $seeker-color: rgb(209, 132, 121);
-$background-color: rgba(44, 44, 44, 0.8);
-$background-border: 2px solid rgba(11, 11, 11, 0.8);
+$background-color: rgba(44, 44, 44, 0.69);
+$background-border: 1px solid rgba(0, 0, 0, 0.33);
 $background-border-radius: 2px;
 $background-padding: 5px;
+$background-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.69);
+$background-backdrop-filter: blur(1px);
 $container-padding: 30px;
+$label-text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.69);
+$label-color: rgb(245, 245, 245);
 
 #root {
-    font-family: 'Comic Sans MS';
-    color: white;
+    font-family: 'Outfit';
+    font-weight: $small-font-weight;
+    color: $label-color;
 }

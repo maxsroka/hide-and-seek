@@ -11,8 +11,11 @@
 
     #roundtimer-background {
         background-color: $background-color;
-        border: $background-border;
         border-radius: $background-border-radius;
+        box-shadow: $background-box-shadow;
+        border: $background-border;
         padding: $background-padding;
+        text-shadow: $label-text-shadow;
+        backdrop-filter: $background-backdrop-filter;
     }
 }
