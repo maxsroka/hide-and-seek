@@ -21,12 +21,16 @@ public class Pushing : Component
 	protected override void OnUpdate()
 	{
 		if (!Network.IsOwner) return;
+		if (Player.IsFrozen) return;
 
 		if (Input.Pressed("use"))
 		{
 			var trace = Player.Trace;
-			if (trace.Hit && trace.GameObject.Components.TryGet(out Pushing pushing))
+			if (trace.Hit && trace.GameObject.Components.TryGet(out Player pushedPlayer))
 			{
+				if (pushedPlayer.IsFrozen) return;
+
+				var pushing = pushedPlayer.GetComponent<Pushing>();
 				pushing.Push(trace.Direction);
 			}
 		}
