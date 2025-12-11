@@ -5,7 +5,6 @@ namespace HNS;
 public class Waiting : Stage
 {
     [ConVar("min_players", ConVarFlags.GameSetting)]
-    [Change(nameof(OnMinPlayersChanged))]
     [Range(1, 20)]
     public static int MinPlayers { get; set; } = 2;
 
@@ -16,21 +15,22 @@ public class Waiting : Stage
 
 	int MissingPlayersCount => Math.Max(0, MinPlayers - Player.Count);
     bool IsStarting => MissingPlayersCount == 0;
-    
-    static void OnMinPlayersChanged(int oldValue, int newValue)
-    {
-        if (!Game.IsPlaying) return;
-        if (!Networking.IsHost) return;
 
-        var instance = Game.ActiveScene.Get<Waiting>();
-        if (instance == null) return;
-        if (instance.IsStarting) return;
+	// [ConVar] and [Change] are currently working only in the editor 
+	// https://github.com/Facepunch/sbox-issues/issues/9344
+	//static void OnMinPlayersChanged(int oldValue, int newValue)
+	//{
+	//    if (!Game.IsPlaying) return;
+	//    if (!Networking.IsHost) return;
 
-        instance.WaitingForPlayersMessage();
-    }
+	//    var instance = Game.ActiveScene.Get<Waiting>();
+	//    if (instance == null) return;
+	//    if (instance.IsStarting) return;
 
+	//    instance.WaitingForPlayersMessage();
+	//}
 
-    public override void OnRun()
+	public override void OnRun()
     {
 		if (IsStarting)
 		{
