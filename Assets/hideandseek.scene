@@ -337,7 +337,7 @@
     {
       "__guid": "b2eb034d-ea0d-4432-81de-41c5c430feb7",
       "__version": 1,
-      "Flags": 0,
+      "Flags": 32,
       "Name": "Map",
       "Position": "0,0,0",
       "Rotation": "0,0,0,1",
@@ -356,7 +356,7 @@
           "__enabled": true,
           "__version": 1,
           "EnableCollision": true,
-          "MapName": "facepunch.construct23",
+          "MapName": "facepunch.construct",
           "NoOrigin": false,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
