@@ -11,26 +11,40 @@ StatusBar {
     font-weight: $large-font-weight;
     text-shadow: $label-text-shadow;
 
-    #statusbar-background {
-        width: 450px;
-        height: 30px;
-        background-color: $background-color;
-        border-radius: $background-border-radius;
-        box-shadow: $background-box-shadow;
-        border: $background-border;
-        backdrop-filter: $background-backdrop-filter;
+    #statusbar-label {
+        padding-left: 32px;
+    }
 
-        #statusbar-fill {
-            border-radius: 2px;
-            width: 100%;
-            height: 100%;
+    #statusbar-horizontal-container {
+        column-gap: 2px;
+        align-items: center;
 
-            &.hider {
-                background-color: $hider-color;
-            }
+        #statusbar-icon {
+            width: 30px;
+            height: 28px;
+        }
 
-            &.seeker {
-                background-color: $seeker-color;
+        #statusbar-background {
+            width: 450px;
+            height: 30px;
+            background-color: $background-color;
+            border-radius: $background-border-radius;
+            box-shadow: $background-box-shadow;
+            border: $background-border;
+            backdrop-filter: $background-backdrop-filter;
+
+            #statusbar-fill {
+                border-radius: 2px;
+                width: 100%;
+                height: 100%;
+
+                &.hider {
+                    background-color: $hider-color;
+                }
+
+                &.seeker {
+                    background-color: $seeker-color;
+                }
             }
         }
     }
