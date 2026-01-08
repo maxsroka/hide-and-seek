@@ -14,10 +14,11 @@
 
 @code
 {
+	// note: that's null on dedicated server
 	ChatBox ChatBox { get; set; }
 
-	void Chat.IMessageListener.OnUserMessage(string content, Connection sender) => ChatBox.OnUserMessage(content, sender);
-	void Chat.IMessageListener.OnSystemMessage(string content) => ChatBox.OnSystemMessage(content);
+	void Chat.IMessageListener.OnUserMessage(string content, Connection sender) => ChatBox?.OnUserMessage(content, sender);
+	void Chat.IMessageListener.OnSystemMessage(string content) => ChatBox?.OnSystemMessage(content);
 
 	bool isSans = false;
 
