@@ -5,7 +5,7 @@
   "Ident": "hideandseek",
   "Schema": 1,
   "IncludeSourceFiles": false,
-  "Resources": "Assets/Fonts/*",
+  "Resources": "icons/google/run.svg",
   "PackageReferences": [],
   "EditorReferences": null,
   "Mounts": null,

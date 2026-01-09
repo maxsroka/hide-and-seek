@@ -371,7 +371,7 @@
           "Flags": 0,
           "__version": 1,
           "EnableCollision": true,
-          "MapName": "facepunch.construct",
+          "MapName": "facepunch.flatgrass",
           "NoOrigin": false,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
@@ -386,7 +386,7 @@
       ],
       "Children": [
         {
-          "__guid": "516b7fd4-fa24-4212-8974-0f8a259bceb1",
+          "__guid": "690f9cae-bd24-47dc-ac25-75057efc2573",
           "__version": 2,
           "__Prefab": "prefabs/construct_map_logic.prefab",
           "__PrefabInstancePatch": {
@@ -396,7 +396,7 @@
             "MovedObjects": []
           },
           "__PrefabIdToInstanceId": {
-            "b7fd3174-3c7e-4c24-bfec-d8e7de862823": "af46d987-8d8d-4aa5-ac3d-74112aa770fa"
+            "6c388db2-087b-46cc-bd0e-fdd70a323a92": "84396b8a-e6e6-49e4-82d8-3381d0b41328"
           }
         }
       ]
