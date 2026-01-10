@@ -39,7 +39,8 @@ StatusBar {
                 height: 100%;
 
                 &.hider {
-                    background-color: $hider-color;
+                    background-image-tint: $hider-color;
+                    background-image: url("textures/stamina_bar.png");
 
                     &.flash {
                         animation: 0.6s flash-fill-hider infinite;
@@ -47,8 +48,9 @@ StatusBar {
                 }
 
                 &.seeker {
-                    background-color: $seeker-color;
-                    
+                    background-image-tint: $seeker-color;
+                    background-image: url("textures/stamina_bar.png");
+
                     &.flash {
                         animation: 0.6s flash-fill-seeker infinite;
                     }
@@ -60,28 +62,28 @@ StatusBar {
 
 @keyframes flash-fill-hider {
     0% {
-        background-color: $hider-color;
+        background-image-tint: $hider-color;
     }
 
     50% {
-        background-color: #7a8c91;
+        background-image-tint: #7a8c91;
     }
 
     100% {
-        background-color: $hider-color;
+        background-image-tint: $hider-color;
     }
 }
 
 @keyframes flash-fill-seeker {
     0% {
-        background-color: $seeker-color;
+        background-image-tint: $seeker-color;
     }
 
     50% {
-        background-color: #f2a091;
+        background-image-tint: #f2a091;
     }
 
     100% {
-        background-color: $seeker-color;
+        background-image-tint: $seeker-color;
     }
 }
