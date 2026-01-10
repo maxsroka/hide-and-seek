@@ -22,6 +22,7 @@ public class Player : Component
 
 	public float CurrentStamina => Stamina.Current;
 	public float MaxStamina => Stamina.Max;
+	public bool IsSprinting => Stamina.IsSprinting;
 
 	public bool IsFrozen { get => Freezing.IsFrozen; set => Freezing.IsFrozen = value; }
 	
