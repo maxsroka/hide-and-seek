@@ -4,24 +4,42 @@ ChatMessage {
     width: 100%;
     min-height: 40px;
     max-height: 120px;
-    align-items: center;
-    background-color: $background-color;
-    border-radius: $background-border-radius;
-    box-shadow: $background-box-shadow;
-    border: $background-border;
-    padding: $background-padding;
-    text-shadow: $label-text-shadow;
-    backdrop-filter: $background-backdrop-filter;
 
-    .chatmessage-content {
-
+    .chatmessage-avatar {
+        border-top-left-radius: $background-border-radius;
+        border-bottom-left-radius: $background-border-radius;
     }
 
-    .chatmessage-name {
+    .chatmessage-background {
+        flex-grow: 1;
+        align-items: center;
+        background-color: $background-color;
+        box-shadow: $background-box-shadow;
+        border: $background-border;
+        padding: $background-padding;
+        text-shadow: $label-text-shadow;
+        backdrop-filter: $background-backdrop-filter;
 
-    }
+        &.system {
+            border-radius: $background-border-radius;
+            font-style: italic;
+        }
 
-    .chatmessage-semicolon {
-        margin-right: 0.3em;
+        &.user {
+            border-top-right-radius: $background-border-radius;
+            border-bottom-right-radius: $background-border-radius;
+        }
+
+        .chatmessage-content {
+
+        }
+
+        .chatmessage-name {
+
+        }
+
+        .chatmessage-semicolon {
+            margin-right: 0.3em;
+        }
     }
 }

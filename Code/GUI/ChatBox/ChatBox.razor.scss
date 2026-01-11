@@ -11,6 +11,7 @@ ChatBox {
     row-gap: 5px;
     transition: opacity 3s ease-out;
     opacity: 0;
+    padding-left: 63px;
 
     &.visible {
         transition: opacity 0s none;

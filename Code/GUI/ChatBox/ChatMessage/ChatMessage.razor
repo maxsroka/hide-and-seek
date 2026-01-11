@@ -5,13 +5,18 @@
 
 @if (Data is SystemData systemData)
 {
-	<Label class="chatmessage-content">@systemData.Content</Label>
+	<div class="chatmessage-background system">
+		<Label class="chatmessage-content">@systemData.Content</Label>
+	</div>
 }
 else if (Data is UserData userData)
 {
-	<Label class="chatmessage-name" Text="@userData.Name"></Label>
-	<Label class="chatmessage-semicolon" Text=":"></Label>
-	<Label class="chatmessage-content" Text="@userData.Content"></Label>
+	<Image class="chatmessage-avatar" Texture="@userData.Avatar"></Image>
+	<div class="chatmessage-background user">
+		<Label class="chatmessage-name" Text="@userData.Name"></Label>
+		<Label class="chatmessage-semicolon" Text=":"></Label>
+		<Label class="chatmessage-content" Text="@userData.Content"></Label>
+	</div>
 }
 
 @code
@@ -34,11 +39,13 @@ else if (Data is UserData userData)
 	{
 		public string Content { get; set; }
 		public string Name { get; set; }
+		public Texture Avatar { get; set; }
 
 		public UserData(string content, Connection sender)
 		{
 			Content = content;
 			Name = sender.DisplayName;
+			Avatar = Texture.LoadAvatar(sender.SteamId, size: 40);
 		}
 	}
 }
