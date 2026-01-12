@@ -1,18 +1,20 @@
 @import '../../GUI.razor.scss';
 
 ChatMessage {
-    width: 100%;
+    flex: 0 0 auto;
     min-height: 40px;
     max-height: 120px;
 
     .chatmessage-avatar {
+        flex: 0 0 auto;
         border-top-left-radius: $background-border-radius;
         border-bottom-left-radius: $background-border-radius;
+        height: 40px;
+        width: 40px;
     }
 
     .chatmessage-background {
-        flex-grow: 1;
-        align-items: center;
+        flex: 1 1 auto;
         background-color: $background-color;
         box-shadow: $background-box-shadow;
         border: $background-border;
@@ -31,14 +33,16 @@ ChatMessage {
         }
 
         .chatmessage-content {
-
+            flex: 1 1 auto;
         }
 
         .chatmessage-name {
-
+            flex: 0 0 auto;
+            white-space: nowrap;
         }
 
         .chatmessage-semicolon {
+            flex: 0 0 auto;
             margin-right: 0.3em;
         }
     }
