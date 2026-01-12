@@ -4,8 +4,11 @@
 @inherits Panel
 @namespace HNS
 
-<div id="roundtimer-background">
-	<Label id="roundtimer-label" Text="@Time"></Label>
+<div id="roundtimer-horizontal-container">
+	<SvgPanel id="roundtimer-icon" src="icons/google/timer.svg"></SvgPanel>
+	<div id="roundtimer-background">
+		<Label id="roundtimer-label" Text="@Time"></Label>
+	</div>
 </div>
 
 @code 
