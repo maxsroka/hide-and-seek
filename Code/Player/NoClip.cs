@@ -9,7 +9,7 @@ public class NoClip : MoveMode
 
 	bool isOn = false;
 
-	[ConCmd("noclip", ConVarFlags.Cheat, Help = "Toggle flying on and off.")]
+	[ConCmd("noclip", ConVarFlags.Cheat, Help = "Toggle flying on or off.")]
 	static void Toggle(Connection caller)
 	{
 		var player = Player.GetOwnedBy(caller);
