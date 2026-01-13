@@ -4,11 +4,11 @@ namespace HNS;
 
 public class Waiting : Stage
 {
-    [ConVar("min_players", ConVarFlags.GameSetting)]
+    [ConVar("min_players", ConVarFlags.GameSetting, Help = "Set the minimum number of players required to begin.")]
     [Range(1, 20)]
     public static int MinPlayers { get; set; } = 2;
 
-    [ConVar("wait_time", ConVarFlags.GameSetting)]
+    [ConVar("wait_time", ConVarFlags.GameSetting, Help = "Set the delay before a round starts.")]
     [Range(0, 30)]
     public static int WaitTime { get; set; } = 10;
 	public override float Duration => WaitTime;
