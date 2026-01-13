@@ -4,12 +4,12 @@ namespace HNS;
 
 public class NoClip : MoveMode
 {
-	[ConVar("noclip_speed", ConVarFlags.Replicated)]
+	[ConVar("noclip_speed", ConVarFlags.Replicated, Help = "Set the flying speed.")]
 	public static float Speed { get; set; } = 1000f;
 
 	bool isOn = false;
 
-	[ConCmd("noclip", ConVarFlags.Cheat)]
+	[ConCmd("noclip", ConVarFlags.Cheat, Help = "Toggle flying on and off.")]
 	static void Toggle(Connection caller)
 	{
 		var player = Player.GetOwnedBy(caller);
