@@ -1,4 +1,4 @@
-using HNS;
+namespace HNS;
 
 public class Tracing : Component
 {
