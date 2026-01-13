@@ -3,7 +3,7 @@ namespace HNS;
 
 public class Clothes : Component
 {
-	[ConVar("wear_suits", ConVarFlags.GameSetting)]
+	[ConVar("wear_suits", ConVarFlags.GameSetting, Help = "Set whether players wear suits or their own clothing.")]
 	public static bool WearSuits { get; set; } = true;
 
     [Property]
