@@ -4,7 +4,7 @@ namespace HNS;
 
 public class Stamina : Component
 {
-	[ConVar("max_stamina", ConVarFlags.Replicated)]
+	[ConVar("max_stamina", ConVarFlags.Replicated, Help = "Set the maximum sprint duration.")]
 	public static float Max { get; set; } = 5f;
 	
 	public float Current { get; private set; } = 0f;
