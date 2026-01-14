@@ -21,6 +21,8 @@ ChatMessage {
         padding: $background-padding;
         text-shadow: $label-text-shadow;
         backdrop-filter: $background-backdrop-filter;
+        line-height: 18px;
+        text-overflow: ellipsis;
 
         &.system {
             border-radius: $background-border-radius;
