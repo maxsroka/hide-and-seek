@@ -4,7 +4,7 @@ namespace HNS;
 
 public class Ending : Stage
 {
-	[ConVar("end_time", ConVarFlags.GameSetting, Help = "Set the delay before a round ends.")]
+	[ConVar("end_time", ConVarFlags.GameSetting, Help = "Set the delay before a round ends.", Min = 0)]
 	[Range(0, 30)]
 	public static int EndTime { get; set; } = 5;
 	public override float Duration => EndTime;

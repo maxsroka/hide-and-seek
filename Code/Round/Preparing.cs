@@ -3,7 +3,7 @@ namespace HNS;
 
 public class Preparing : Stage
 {
-	[ConVar("prep_time", ConVarFlags.GameSetting, Help = "Set the preparation time before a round begins.")]
+	[ConVar("prep_time", ConVarFlags.GameSetting, Help = "Set the preparation time before a round begins.", Min = 0)]
 	[Range(0, 30)]
 	public static int PrepTime { get; set; } = 10;
 	public override float Duration => PrepTime;

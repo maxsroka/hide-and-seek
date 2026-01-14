@@ -3,7 +3,7 @@ namespace HNS;
 
 public class Pushing : Component
 {
-	[ConVar("push_strength", ConVarFlags.Replicated, Help = "Set how far players are pushed away.")]
+	[ConVar("push_strength", ConVarFlags.Replicated, Help = "Set how far players are pushed away.", Min = 0)]
 	static float Strength { get; set; } = 500f;
 
 	[RequireComponent]
