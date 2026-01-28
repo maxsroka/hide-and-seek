@@ -32,11 +32,6 @@ public class Player : Component
 
 	public SceneTraceResult Trace => Tracing.Result;
 
-	[System.Obsolete]
-    public bool IsSeeker => Role.Current is SeekerRole;
-	[System.Obsolete]
-    public bool IsHider => Role.Current is HiderRole;
-
 	public interface ISpawnListener : ISceneEvent<ISpawnListener>
 	{
 		void OnSpawned(Player player);
