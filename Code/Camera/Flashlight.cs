@@ -11,6 +11,12 @@ public class Flashlight : Component
 		if (Input.Pressed("flashlight"))
         {
             SpotLight.Enabled = !SpotLight.Enabled;
-        }
+			PlaySound(SpotLight.Enabled);
+		}
+	}
+
+	void PlaySound(bool enabled)
+	{
+		Sound.Play(enabled ? "flashlight_on" : "flashlight_off");
 	}
 }
