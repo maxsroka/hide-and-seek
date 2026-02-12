@@ -1,27 +1,51 @@
 @import '../../GUI.razor.scss';
 
 ChatMessage {
-    width: 100%;
+    flex: 0 0 auto;
     min-height: 40px;
     max-height: 120px;
-    align-items: center;
-    background-color: $background-color;
-    border-radius: $background-border-radius;
-    box-shadow: $background-box-shadow;
-    border: $background-border;
-    padding: $background-padding;
-    text-shadow: $label-text-shadow;
-    backdrop-filter: $background-backdrop-filter;
 
-    .chatmessage-content {
-
+    .chatmessage-avatar {
+        flex: 0 0 auto;
+        border-top-left-radius: $background-border-radius;
+        border-bottom-left-radius: $background-border-radius;
+        height: 40px;
+        width: 40px;
     }
 
-    .chatmessage-name {
+    .chatmessage-background {
+        flex: 1 1 auto;
+        background-color: $background-color;
+        box-shadow: $background-box-shadow;
+        border: $background-border;
+        padding: $background-padding;
+        text-shadow: $label-text-shadow;
+        backdrop-filter: $background-backdrop-filter;
+        line-height: 18px;
+        text-overflow: ellipsis;
 
-    }
+        &.system {
+            border-radius: $background-border-radius;
+            font-style: italic;
+        }
 
-    .chatmessage-semicolon {
-        margin-right: 0.3em;
+        &.user {
+            border-top-right-radius: $background-border-radius;
+            border-bottom-right-radius: $background-border-radius;
+        }
+
+        .chatmessage-content {
+            flex: 1 1 auto;
+        }
+
+        .chatmessage-name {
+            flex: 0 0 auto;
+            white-space: nowrap;
+        }
+
+        .chatmessage-semicolon {
+            flex: 0 0 auto;
+            margin-right: 0.3em;
+        }
     }
 }

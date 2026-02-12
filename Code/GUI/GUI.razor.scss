@@ -15,7 +15,7 @@ $label-text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.69);
 $label-color: rgb(245, 245, 245);
 
 GUI {
-    font-family: 'Outfit';
+    font-family: 'Segoe UI'; // bug: wrong fonts are loaded?
     font-weight: $small-font-weight;
     color: $label-color;
 }

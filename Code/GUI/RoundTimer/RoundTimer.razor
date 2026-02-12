@@ -4,8 +4,11 @@
 @inherits Panel
 @namespace HNS
 
-<div id="roundtimer-background">
-	<Label id="roundtimer-label" Text="@Time"></Label>
+<div id="roundtimer-horizontal-container">
+	<SvgPanel id="roundtimer-icon" src="icons/google/timer.svg"></SvgPanel>
+	<div id="roundtimer-background">
+		<Label id="roundtimer-label" Text="@Time"></Label>
+	</div>
 </div>
 
 @code 
@@ -15,6 +18,8 @@
 	public override void Tick()
 	{
 		var round = Scene.Get<Round>();
+		if (round == null) return;
+
 		var time = MathF.Ceiling(round.TimeLeft);
 		var timeSpan = TimeSpan.FromSeconds(time);
 		Time = timeSpan.ToString("mm\\:ss");

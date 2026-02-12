@@ -10,13 +10,30 @@ RoundTimer {
     font-weight: $large-font-weight;
     flex-direction: column;
 
-    #roundtimer-background {
-        background-color: $background-color;
-        border-radius: $background-border-radius;
-        box-shadow: $background-box-shadow;
-        border: $background-border;
-        padding: $background-padding;
-        text-shadow: $label-text-shadow;
-        backdrop-filter: $background-backdrop-filter;
+    #roundtimer-horizontal-container {
+        column-gap: 2px;
+        align-items: center;
+
+        #roundtimer-icon {
+            width: 30px;
+            height: 28px;
+            background-image-tint: $label-color;
+        }
+
+        #roundtimer-background {
+            height: 40px;
+            align-items: center;
+            background-color: $background-color;
+            border-radius: $background-border-radius;
+            box-shadow: $background-box-shadow;
+            border: $background-border;
+            padding: $background-padding;
+            text-shadow: $label-text-shadow;
+            backdrop-filter: $background-backdrop-filter;
+
+            #roundtimer-label {
+            
+            }
+        }
     }
 }

@@ -1,13 +1,13 @@
-using HNS;
+namespace HNS;
 
 public class Tracing : Component
 {
 	public SceneTraceResult Result { get; private set; }
 
-	[ConVar("debug_tracing")]
+	[ConVar("debug_tracing", Help = "Show or hide the tracing debug overlay.")]
 	static bool IsDebugging { get; set; } = false;
 
-	[ConVar("trace_distance", ConVarFlags.Replicated)]
+	[ConVar("trace_distance", ConVarFlags.Replicated, Help = "Set the tracing distance.", Min = 0)]
 	static float Distance { get; set; } = 100f;
 
 	const float RADIUS = 10f;

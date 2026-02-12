@@ -4,33 +4,19 @@ namespace HNS;
 
 public class Waiting : Stage
 {
-    [ConVar("min_players", ConVarFlags.GameSetting)]
-    [Change(nameof(OnMinPlayersChanged))]
+    [ConVar("min_players", ConVarFlags.GameSetting | ConVarFlags.Replicated, Help = "Set the minimum number of players required to begin.", Min = 1)]
     [Range(1, 20)]
     public static int MinPlayers { get; set; } = 2;
 
-    [ConVar("wait_time", ConVarFlags.GameSetting)]
+    [ConVar("wait_time", ConVarFlags.GameSetting | ConVarFlags.Replicated, Help = "Set the delay before a round starts.", Min = 0)]
     [Range(0, 30)]
     public static int WaitTime { get; set; } = 10;
 	public override float Duration => WaitTime;
 
 	int MissingPlayersCount => Math.Max(0, MinPlayers - Player.Count);
     bool IsStarting => MissingPlayersCount == 0;
-    
-    static void OnMinPlayersChanged(int oldValue, int newValue)
-    {
-        if (!Game.IsPlaying) return;
-        if (!Networking.IsHost) return;
 
-        var instance = Game.ActiveScene.Get<Waiting>();
-        if (instance == null) return;
-        if (instance.IsStarting) return;
-
-        instance.WaitingForPlayersMessage();
-    }
-
-
-    public override void OnRun()
+	public override void OnRun()
     {
 		if (IsStarting)
 		{

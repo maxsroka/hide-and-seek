@@ -33,7 +33,7 @@ public class Console : Component
 
 		foreach (var line in lines)
 		{
-			Log.Info(line);
+			Log.Info(line.Trim());
 		}
 	}
 }

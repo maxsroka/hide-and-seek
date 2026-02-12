@@ -22,6 +22,7 @@ public class Player : Component
 
 	public float CurrentStamina => Stamina.Current;
 	public float MaxStamina => Stamina.Max;
+	public bool IsSprinting => Stamina.IsSprinting;
 
 	public bool IsFrozen { get => Freezing.IsFrozen; set => Freezing.IsFrozen = value; }
 	
@@ -30,11 +31,6 @@ public class Player : Component
 	public void Equip(Clothing suit) => Clothes.Equip(suit);
 
 	public SceneTraceResult Trace => Tracing.Result;
-
-	[System.Obsolete]
-    public bool IsSeeker => Role.Current is SeekerRole;
-	[System.Obsolete]
-    public bool IsHider => Role.Current is HiderRole;
 
 	public interface ISpawnListener : ISceneEvent<ISpawnListener>
 	{

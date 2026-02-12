@@ -22,10 +22,10 @@ public class Role : Component
         newRole.Enabled = true;
     }
 
-    [ConCmd("hide", ConVarFlags.Server)]
+    [ConCmd("hide", ConVarFlags.Server | ConVarFlags.Cheat, Help = "Change your role to Hider.")]
     static void Hide(Connection caller) => Player.GetOwnedBy(caller).SetRole<HiderRole>();
 
-    [ConCmd("seek", ConVarFlags.Server)]
+    [ConCmd("seek", ConVarFlags.Server | ConVarFlags.Cheat, Help = "Change your role to Seeker.")]
     static void Seek(Connection caller) => Player.GetOwnedBy(caller).SetRole<SeekerRole>();
 }
 

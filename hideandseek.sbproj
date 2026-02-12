@@ -5,7 +5,7 @@
   "Ident": "hideandseek",
   "Schema": 1,
   "IncludeSourceFiles": false,
-  "Resources": "Assets/Fonts/*",
+  "Resources": "icons/*\ntextures/*",
   "PackageReferences": [],
   "EditorReferences": null,
   "Mounts": null,
