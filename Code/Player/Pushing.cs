@@ -18,6 +18,12 @@ public class Pushing : Component
 		Controller.Jump(direction * Strength);
 	}
 
+	[Rpc.Broadcast(NetFlags.Unreliable | NetFlags.OwnerOnly)]
+	void PlaySound(Vector3 position)
+	{
+		Sound.Play("push", position);
+	}
+
 	protected override void OnUpdate()
 	{
 		if (!Network.IsOwner) return;
@@ -32,6 +38,7 @@ public class Pushing : Component
 
 				var pushing = pushedPlayer.GetComponent<Pushing>();
 				pushing.Push(trace.Direction);
+				PlaySound(pushedPlayer.WorldPosition);
 			}
 		}
 	}

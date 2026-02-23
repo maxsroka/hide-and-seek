@@ -386,7 +386,7 @@
       ],
       "Children": [
         {
-          "__guid": "690f9cae-bd24-47dc-ac25-75057efc2573",
+          "__guid": "c1b98f0f-782e-4f00-ba65-b052331bd252",
           "__version": 2,
           "__Prefab": "prefabs/construct_map_logic.prefab",
           "__PrefabInstancePatch": {
@@ -396,7 +396,7 @@
             "MovedObjects": []
           },
           "__PrefabIdToInstanceId": {
-            "6c388db2-087b-46cc-bd0e-fdd70a323a92": "84396b8a-e6e6-49e4-82d8-3381d0b41328"
+            "4ea106cd-d513-4dfe-9610-52013e0e8ab2": "8733701d-6e13-4345-8c8c-1aeb8f1885b0"
           }
         }
       ]
