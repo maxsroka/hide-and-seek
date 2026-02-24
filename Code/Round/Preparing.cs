@@ -25,6 +25,8 @@ public class Preparing : Stage
 
 	public override void OnRun()
 	{
+		base.OnRun();
+
 		Round.Timer += Time.Delta;
 
 		if (Round.Timer >= PrepTime)

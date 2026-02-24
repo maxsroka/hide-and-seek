@@ -14,6 +14,8 @@ public class Playing : Stage
 
 	public override void OnRun()
 	{
+		base.OnRun();
+
 		Round.Timer += Time.Delta;
 
 		if (Round.Timer < PlayTime)

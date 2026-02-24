@@ -18,6 +18,8 @@ public class Waiting : Stage
 
 	public override void OnRun()
     {
+		base.OnRun();
+
 		if (IsStarting)
 		{
 			Round.Timer += Time.Delta;

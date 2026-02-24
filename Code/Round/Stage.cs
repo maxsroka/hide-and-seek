@@ -7,10 +7,26 @@ public abstract class Stage : Component
 	public abstract float Duration { get; }
     
     public virtual void OnEnter() { }
-    public virtual void OnRun() { }
+    
+	public virtual void OnRun() 
+	{
+		TryPlayTimerSound();
+	}
+
     public virtual void OnExit() { }
 	public virtual void OnJoin(Player player) { }
 	
 	[RequireComponent]
     protected Round Round { get; set; }
+
+	bool DidPlayTimerSound { get; set; }
+
+	void TryPlayTimerSound()
+	{
+		if (!DidPlayTimerSound && Round.TimeLeft <= 5f)
+		{
+			Round.PlayTimerSound();
+			DidPlayTimerSound = true;
+		}
+	}
 }
