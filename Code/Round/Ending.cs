@@ -36,6 +36,8 @@ public class Ending : Stage
 
 	public override void OnRun()
 	{
+		base.OnRun();
+
 		Round.Timer += Time.Delta;
 
 		if (Round.Timer >= EndTime)

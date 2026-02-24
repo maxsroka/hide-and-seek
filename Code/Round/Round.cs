@@ -35,7 +35,7 @@ public class Round : Component, Component.INetworkListener, Player.ISpawnListene
         if (Stage == null) return;
 
         Stage.OnRun();
-    }
+	}
     
     void Player.ISpawnListener.OnSpawned(Player player)
     {
@@ -52,7 +52,7 @@ public class Round : Component, Component.INetworkListener, Player.ISpawnListene
     {
         Assert.True(Networking.IsHost);
         Stage = GetComponent<T>(true);
-    }
+	}
 
 	public void Restart()
 	{
@@ -60,5 +60,11 @@ public class Round : Component, Component.INetworkListener, Player.ISpawnListene
 		var options = new SceneLoadOptions();
 		options.SetScene("hideandseek.scene");
 		Game.ChangeScene(options);
+	}
+
+	[Rpc.Broadcast(NetFlags.Unreliable | NetFlags.HostOnly)]
+	public void PlayTimerSound()
+	{
+		Sound.Play("timer");
 	}
 }
