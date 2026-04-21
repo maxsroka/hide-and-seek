@@ -1,21 +1,24 @@
-$large-font-size: 20px;
-$small-font-size: 15px;
-$large-font-weight: 700;
-$small-font-weight: 600;
 $background-color: rgba(44, 44, 44, 0.69);
 $background-border: 1px solid rgba(0, 0, 0, 0.33);
 $background-border-radius: 4px;
 $background-padding: 5px;
 $background-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.69);
 $background-backdrop-filter: blur(1px);
-$container-padding: 60px;
 $label-text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.69);
+
+$gui-padding: 60px;
 
 $hider-color: #5D8291;
 $seeker-color: #F17560;
 
 $primary-color: rgb(245, 245, 245);
 $secondary-color: rgb(200, 200, 200);
+
+$large-font-size: 20px;
+$small-font-size: 15px;
+
+$large-font-weight: 700;
+$small-font-weight: 600;
 
 GUI {
     font-family: 'Outfit';
