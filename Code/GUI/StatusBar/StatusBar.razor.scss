@@ -8,8 +8,6 @@ StatusBar {
     padding: $container-padding;
     justify-content: flex-end;
     flex-direction: column;
-    transform: rotateZ(-1.5deg) translateX(-10);
-    transform-origin: 0% 0%;
 
     #statusbar-label {
         font-size: $large-font-size;
