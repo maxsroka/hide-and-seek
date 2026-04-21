@@ -4,6 +4,7 @@ ChatMessage {
     flex: 0 0 auto;
     min-height: 40px;
     max-height: 120px;
+    color: $primary-color;
 
     .chatmessage-avatar {
         flex: 0 0 auto;
@@ -27,7 +28,7 @@ ChatMessage {
 
         &.system {
             border-radius: $background-border-radius;
-            font-style: italic;
+            font-style: italic; // doesn't work with Outfit
         }
 
         &.user {

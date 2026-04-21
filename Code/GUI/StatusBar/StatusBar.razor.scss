@@ -13,6 +13,7 @@ StatusBar {
         font-size: $large-font-size;
         font-weight: $large-font-weight;
         text-shadow: $label-text-shadow;
+        color: $primary-color;
     }
 
     #statusbar-horizontal-container {

@@ -26,7 +26,7 @@ RoundTimer {
             border-radius: $background-border-radius;
 
             #roundtimer-status {
-                color: rgb(200, 200, 200);
+                color: $secondary-color;
                 font-weight: $small-font-weight;
                 padding: $background-padding;
                 flex-grow: 1;
@@ -49,6 +49,7 @@ RoundTimer {
                 border-top-left-radius: $background-border-radius;
                 border-bottom-left-radius: $background-border-radius;
                 font-size: $large-font-size;
+                color: $primary-color;
             }
         }
     }

@@ -49,5 +49,6 @@ ChatBox {
         padding: $background-padding;
         text-shadow: $label-text-shadow;
         backdrop-filter: $background-backdrop-filter;
+        color: $primary-color;
     }
 }
