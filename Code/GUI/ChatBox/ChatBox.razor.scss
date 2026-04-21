@@ -29,7 +29,7 @@ ChatBox {
     }
 
     #chatbox-list {
-        width: 400px;
+        width: 350px;
         max-height: 300px;
         flex-direction: column;
         justify-content: flex-end;
@@ -38,7 +38,7 @@ ChatBox {
     }
 
     #chatbox-input {
-        width: 400px;
+        width: 350px;
         height: 40px;
         pointer-events: none;
         opacity: 0;
@@ -51,5 +51,6 @@ ChatBox {
         backdrop-filter: $panel-backdrop-filter;
         color: $primary-color;
         font-family: $secondary-font-family;
+        font-weight: $secondary-font-weight;
     }
 }

@@ -20,7 +20,7 @@ ChatMessage {
         flex: 1 1 auto;
         background-color: $panel-background-color;
         // bug: shadows overflow
-        //box-shadow: $background-box-shadow;
+        //box-shadow: $panel-box-shadow;
         border: $panel-border;
         padding: $panel-padding;
         text-shadow: $primary-text-shadow;
