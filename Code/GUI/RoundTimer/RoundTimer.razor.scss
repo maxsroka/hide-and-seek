@@ -25,20 +25,6 @@ RoundTimer {
             backdrop-filter: $panel-backdrop-filter;
             border-radius: $panel-border-radius;
 
-            #roundtimer-status {
-                color: $secondary-color;
-                font-weight: $small-font-weight;
-                padding: $panel-padding;
-                flex-grow: 1;
-                border-top-right-radius: $panel-border-radius;
-                border-bottom-right-radius: $panel-border-radius;
-                justify-content: center;
-                font-size: $small-font-size;
-                min-width: 200px;
-                align-items: center;
-                height: 100%;
-            }
-
             #roundtimer-time {
                 align-items: center;
                 height: 100%;
@@ -50,6 +36,22 @@ RoundTimer {
                 border-bottom-left-radius: $panel-border-radius;
                 font-size: $large-font-size;
                 color: $primary-color;
+                font-family: $primary-font-family;
+            }
+
+            #roundtimer-status {
+                font-family: $secondary-font-family;
+                color: $secondary-color;
+                font-weight: $small-font-weight;
+                padding: $panel-padding;
+                flex-grow: 1;
+                border-top-right-radius: $panel-border-radius;
+                border-bottom-right-radius: $panel-border-radius;
+                justify-content: center;
+                font-size: $small-font-size;
+                min-width: 200px;
+                align-items: center;
+                height: 100%;
             }
         }
     }

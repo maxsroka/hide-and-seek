@@ -5,6 +5,8 @@ ChatMessage {
     min-height: 40px;
     max-height: 120px;
     color: $primary-color;
+    font-family: $secondary-font-family;
+    font-weight: $small-font-weight;
 
     .chatmessage-avatar {
         flex: 0 0 auto;
@@ -29,6 +31,8 @@ ChatMessage {
         &.system {
             border-radius: $panel-border-radius;
             font-style: italic; // doesn't work with Outfit
+            font-family: "Inter Italic";
+            font-weight: $small-font-weight;
         }
 
         &.user {

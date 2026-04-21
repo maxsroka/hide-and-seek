@@ -50,5 +50,6 @@ ChatBox {
         text-shadow: $primary-text-shadow;
         backdrop-filter: $panel-backdrop-filter;
         color: $primary-color;
+        font-family: $secondary-font-family;
     }
 }
