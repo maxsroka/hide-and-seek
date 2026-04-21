@@ -1,21 +1,21 @@
 $large-font-size: 20px;
 $small-font-size: 15px;
 $large-font-weight: 700;
-$small-font-weight: 500;
+$small-font-weight: 600;
 $hider-color: #5D8291;
 $seeker-color: #F17560;
 $background-color: rgba(44, 44, 44, 0.69);
 $background-border: 1px solid rgba(0, 0, 0, 0.33);
-$background-border-radius: 2px;
+$background-border-radius: 4px;
 $background-padding: 5px;
 $background-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.69);
 $background-backdrop-filter: blur(1px);
-$container-padding: 30px;
+$container-padding: 60px;
 $label-text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.69);
 $label-color: rgb(245, 245, 245);
 
 GUI {
-    font-family: 'Segoe UI'; // bug: wrong fonts are loaded?
+    font-family: 'Outfit';
     font-weight: $small-font-weight;
     color: $label-color;
 }
