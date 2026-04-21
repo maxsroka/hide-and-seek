@@ -5,9 +5,13 @@
 @namespace HNS
 
 <div id="roundtimer-horizontal-container">
-	<SvgPanel id="roundtimer-icon" src="icons/google/timer.svg"></SvgPanel>
 	<div id="roundtimer-background">
-		<Label id="roundtimer-label" Text="@Time"></Label>
+		<div id="roundtimer-time">
+			<Label Text="@Time"></Label>
+		</div>
+		<div id="roundtimer-status">
+			<Label Text="Waiting for players"></Label>
+		</div>
 	</div>
 </div>
 

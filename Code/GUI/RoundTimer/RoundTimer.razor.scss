@@ -4,35 +4,51 @@ RoundTimer {
     position: absolute;
     width: 100%;
     height: 100%;
-    align-items: flex-start;
+    align-items: center;
     padding: $container-padding;
     font-size: $large-font-size;
     font-weight: $large-font-weight;
     flex-direction: column;
+    transform-origin: 0% 0%;
 
     #roundtimer-horizontal-container {
         column-gap: 2px;
         align-items: center;
 
-        #roundtimer-icon {
-            width: 30px;
-            height: 28px;
-            background-image-tint: $label-color;
-        }
-
         #roundtimer-background {
             height: 40px;
             align-items: center;
             background-color: $background-color;
-            border-radius: $background-border-radius;
             box-shadow: $background-box-shadow;
             border: $background-border;
-            padding: $background-padding;
             text-shadow: $label-text-shadow;
             backdrop-filter: $background-backdrop-filter;
+            border-radius: $background-border-radius;
 
-            #roundtimer-label {
-            
+            #roundtimer-status {
+                color: rgb(200, 200, 200);
+                font-weight: $small-font-weight;
+                padding: $background-padding;
+                flex-grow: 1;
+                border-top-right-radius: $background-border-radius;
+                border-bottom-right-radius: $background-border-radius;
+                justify-content: center;
+                font-size: $small-font-size;
+                min-width: 200px;
+                align-items: center;
+                height: 100%;
+            }
+
+            #roundtimer-time {
+                align-items: center;
+                height: 100%;
+                min-width: 40px;
+                background-image: url("textures/stamina_bar.png");
+                background-image-tint: $hider-color;
+                padding: $background-padding;
+                border-top-left-radius: $background-border-radius;
+                border-bottom-left-radius: $background-border-radius;
+                font-size: $large-font-size;
             }
         }
     }
