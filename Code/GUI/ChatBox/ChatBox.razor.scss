@@ -42,13 +42,13 @@ ChatBox {
         height: 40px;
         pointer-events: none;
         opacity: 0;
-        background-color: $background-color;
-        border-radius: $background-border-radius;
-        box-shadow: $background-box-shadow;
-        border: $background-border;
-        padding: $background-padding;
-        text-shadow: $label-text-shadow;
-        backdrop-filter: $background-backdrop-filter;
+        background-color: $panel-background-color;
+        border-radius: $panel-border-radius;
+        box-shadow: $panel-box-shadow;
+        border: $panel-border;
+        padding: $panel-padding;
+        text-shadow: $primary-text-shadow;
+        backdrop-filter: $panel-backdrop-filter;
         color: $primary-color;
     }
 }

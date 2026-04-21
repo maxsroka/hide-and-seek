@@ -1,13 +1,3 @@
-$background-color: rgba(44, 44, 44, 0.69);
-$background-border: 1px solid rgba(0, 0, 0, 0.33);
-$background-border-radius: 4px;
-$background-padding: 5px;
-$background-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.69);
-$background-backdrop-filter: blur(1px);
-$label-text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.69);
-
-$gui-padding: 60px;
-
 $hider-color: #5D8291;
 $seeker-color: #F17560;
 
@@ -19,6 +9,17 @@ $small-font-size: 15px;
 
 $large-font-weight: 700;
 $small-font-weight: 600;
+
+$primary-text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.69);
+
+$panel-background-color: rgba(44, 44, 44, 0.69);
+$panel-border: 1px solid rgba(0, 0, 0, 0.33);
+$panel-border-radius: 4px;
+$panel-padding: 5px;
+$panel-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.69);
+$panel-backdrop-filter: blur(1px);
+
+$gui-padding: 60px;
 
 GUI {
     font-family: 'Outfit';

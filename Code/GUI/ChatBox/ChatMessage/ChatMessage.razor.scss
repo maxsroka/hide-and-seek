@@ -8,32 +8,32 @@ ChatMessage {
 
     .chatmessage-avatar {
         flex: 0 0 auto;
-        border-top-left-radius: $background-border-radius;
-        border-bottom-left-radius: $background-border-radius;
+        border-top-left-radius: $panel-border-radius;
+        border-bottom-left-radius: $panel-border-radius;
         height: 40px;
         width: 40px;
     }
 
     .chatmessage-background {
         flex: 1 1 auto;
-        background-color: $background-color;
+        background-color: $panel-background-color;
         // bug: shadows overflow
-        //box-shadow: $background-box-shadow; 
-        border: $background-border;
-        padding: $background-padding;
-        text-shadow: $label-text-shadow;
-        backdrop-filter: $background-backdrop-filter;
+        //box-shadow: $background-box-shadow;
+        border: $panel-border;
+        padding: $panel-padding;
+        text-shadow: $primary-text-shadow;
+        backdrop-filter: $panel-backdrop-filter;
         line-height: 18px;
         text-overflow: ellipsis;
 
         &.system {
-            border-radius: $background-border-radius;
+            border-radius: $panel-border-radius;
             font-style: italic; // doesn't work with Outfit
         }
 
         &.user {
-            border-top-right-radius: $background-border-radius;
-            border-bottom-right-radius: $background-border-radius;
+            border-top-right-radius: $panel-border-radius;
+            border-bottom-right-radius: $panel-border-radius;
         }
 
         .chatmessage-content {

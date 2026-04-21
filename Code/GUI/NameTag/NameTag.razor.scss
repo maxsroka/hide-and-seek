@@ -8,7 +8,7 @@ NameTag {
     justify-content: center;
     font-size: $large-font-size;
     font-weight: $large-font-weight;
-    text-shadow: $label-text-shadow;
+    text-shadow: $primary-text-shadow;
 
     #nametag-label {
         &.seeker {

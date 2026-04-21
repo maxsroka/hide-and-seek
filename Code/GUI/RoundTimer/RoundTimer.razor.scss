@@ -18,20 +18,20 @@ RoundTimer {
         #roundtimer-background {
             height: 40px;
             align-items: center;
-            background-color: $background-color;
-            box-shadow: $background-box-shadow;
-            border: $background-border;
-            text-shadow: $label-text-shadow;
-            backdrop-filter: $background-backdrop-filter;
-            border-radius: $background-border-radius;
+            background-color: $panel-background-color;
+            box-shadow: $panel-box-shadow;
+            border: $panel-border;
+            text-shadow: $primary-text-shadow;
+            backdrop-filter: $panel-backdrop-filter;
+            border-radius: $panel-border-radius;
 
             #roundtimer-status {
                 color: $secondary-color;
                 font-weight: $small-font-weight;
-                padding: $background-padding;
+                padding: $panel-padding;
                 flex-grow: 1;
-                border-top-right-radius: $background-border-radius;
-                border-bottom-right-radius: $background-border-radius;
+                border-top-right-radius: $panel-border-radius;
+                border-bottom-right-radius: $panel-border-radius;
                 justify-content: center;
                 font-size: $small-font-size;
                 min-width: 200px;
@@ -45,9 +45,9 @@ RoundTimer {
                 min-width: 40px;
                 background-image: url("textures/stamina_bar.png");
                 background-image-tint: $hider-color;
-                padding: $background-padding;
-                border-top-left-radius: $background-border-radius;
-                border-bottom-left-radius: $background-border-radius;
+                padding: $panel-padding;
+                border-top-left-radius: $panel-border-radius;
+                border-bottom-left-radius: $panel-border-radius;
                 font-size: $large-font-size;
                 color: $primary-color;
             }
