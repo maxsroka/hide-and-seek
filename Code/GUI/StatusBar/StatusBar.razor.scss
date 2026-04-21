@@ -10,8 +10,8 @@ StatusBar {
     flex-direction: column;
 
     #statusbar-label {
-        font-size: $large-font-size;
-        font-weight: $large-font-weight;
+        font-size: $primary-font-size;
+        font-weight: $primary-font-weight;
         text-shadow: $primary-text-shadow;
         color: $primary-color;
         font-family: $primary-font-family;

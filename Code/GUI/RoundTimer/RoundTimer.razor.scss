@@ -6,8 +6,8 @@ RoundTimer {
     height: 100%;
     align-items: center;
     padding: $gui-padding;
-    font-size: $large-font-size;
-    font-weight: $large-font-weight;
+    font-size: $primary-font-size;
+    font-weight: $primary-font-weight;
     flex-direction: column;
     transform-origin: 0% 0%;
 
@@ -34,7 +34,7 @@ RoundTimer {
                 padding: $panel-padding;
                 border-top-left-radius: $panel-border-radius;
                 border-bottom-left-radius: $panel-border-radius;
-                font-size: $large-font-size;
+                font-size: $primary-font-size;
                 color: $primary-color;
                 font-family: $primary-font-family;
             }
@@ -42,13 +42,13 @@ RoundTimer {
             #roundtimer-status {
                 font-family: $secondary-font-family;
                 color: $secondary-color;
-                font-weight: $small-font-weight;
+                font-weight: $secondary-font-weight;
                 padding: $panel-padding;
                 flex-grow: 1;
                 border-top-right-radius: $panel-border-radius;
                 border-bottom-right-radius: $panel-border-radius;
                 justify-content: center;
-                font-size: $small-font-size;
+                font-size: $secondary-font-size;
                 min-width: 200px;
                 align-items: center;
                 height: 100%;
