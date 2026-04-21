@@ -50,4 +50,9 @@ public class Waiting : Stage
         var players = MissingPlayersCount == 1 ? "player" : "players";
         Chat.SystemMessage($"Waiting for {MissingPlayersCount} more {players}...");
     }
+
+	public override string GetDescription()
+	{
+		return IsStarting ? "Starting..." : "Waiting for players...";
+	}
 }

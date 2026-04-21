@@ -46,4 +46,12 @@ public class Playing : Stage
 	{
 		player.SetRole<SeekerRole>();
 	}
+
+	public override string GetDescription()
+	{
+		var localPlayer = Player.GetLocal();
+		if (localPlayer == null) return "Loading...";
+
+		return localPlayer.CurrentRole is HiderRole ? "Don't get caught." : "Catch the hiders.";
+	}
 }

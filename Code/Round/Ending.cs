@@ -71,4 +71,9 @@ public class Ending : Stage
 			Stats.Increment("seeker-wins", 1);
 		}
 	}
+
+	public override string GetDescription()
+	{
+		return "Restarting...";
+	}
 }

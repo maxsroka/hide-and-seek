@@ -10,7 +10,7 @@
 			<Label Text="@Time"></Label>
 		</div>
 		<div id="roundtimer-status">
-			<Label Text="Waiting for players"></Label>
+			<Label Text="@Status"></Label>
 		</div>
 	</div>
 </div>
@@ -18,15 +18,35 @@
 @code 
 {
 	string Time { get; set; } = "";
+	string Status { get; set; } = "";
 
 	public override void Tick()
 	{
+		Time = GetTime();
+		Status = GetStatus();
+	}
+
+	string GetTime()
+	{
 		var round = Scene.Get<Round>();
-		if (round == null) return;
+		if (round == null) return "";
 
 		var time = MathF.Ceiling(round.TimeLeft);
 		var timeSpan = TimeSpan.FromSeconds(time);
-		Time = timeSpan.ToString("mm\\:ss");
+		var timeString = timeSpan.ToString("mm\\:ss");
+
+		return timeString;
+	}
+
+	string GetStatus()
+	{
+		var round = Scene.Get<Round>();
+		if (round == null) return "";
+
+		var description = round.GetDescription();
+		if (description == null) return "Loading...";
+
+		return description;
 	}
 
 	protected override int BuildHash() => Time.GetHashCode();
