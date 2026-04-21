@@ -16,7 +16,8 @@ ChatMessage {
     .chatmessage-background {
         flex: 1 1 auto;
         background-color: $background-color;
-        box-shadow: $background-box-shadow;
+        // bug: shadows overflow
+        //box-shadow: $background-box-shadow; 
         border: $background-border;
         padding: $background-padding;
         text-shadow: $label-text-shadow;
