@@ -4,87 +4,49 @@ StatusBar {
     position: absolute;
     width: 100%;
     height: 100%;
-    padding: $container-padding;
+    padding: $gui-padding;
     justify-content: flex-end;
     flex-direction: column;
-    font-size: $large-font-size;
-    font-weight: $large-font-weight;
-    text-shadow: $label-text-shadow;
 
     #statusbar-label {
-        padding-left: 32px;
+        font-size: $primary-font-size;
+        font-weight: $primary-font-weight;
+        text-shadow: $primary-text-shadow;
+        font-family: $primary-font-family;
+        color: $primary-color;
     }
 
-    #statusbar-horizontal-container {
-        column-gap: 2px;
-        align-items: center;
+    #statusbar-background {
+        width: 400px;
+        height: 35px;
+        @include panel;
 
-        #statusbar-icon {
-            width: 30px;
-            height: 28px;
-            background-image-tint: $label-color;
-        }
+        #statusbar-fill {
+            width: 100%;
+            height: 100%;
+            border-radius: $panel-border-radius;
 
-        #statusbar-background {
-            width: 450px;
-            height: 30px;
-            background-color: $background-color;
-            border-radius: $background-border-radius;
-            box-shadow: $background-box-shadow;
-            border: $background-border;
-            backdrop-filter: $background-backdrop-filter;
+            &.hider {
+                background-image-tint: $hider-color;
+                background-image: $noise-texture;
 
-            #statusbar-fill {
-                border-radius: 2px;
-                width: 100%;
-                height: 100%;
-
-                &.hider {
-                    background-image-tint: $hider-color;
-                    background-image: url("textures/stamina_bar.png");
-
-                    &.flash {
-                        animation: 0.6s flash-fill-hider infinite;
-                    }
+                &.flash {
+                    animation: 0.6s flash-hider infinite;
                 }
+            }
 
-                &.seeker {
-                    background-image-tint: $seeker-color;
-                    background-image: url("textures/stamina_bar.png");
+            &.seeker {
+                background-image-tint: $seeker-color;
+                background-image: $noise-texture;
 
-                    &.flash {
-                        animation: 0.6s flash-fill-seeker infinite;
-                    }
+                &.flash {
+                    animation: 0.6s flash-seeker infinite;
                 }
             }
         }
     }
-}
 
-@keyframes flash-fill-hider {
-    0% {
-        background-image-tint: $hider-color;
-    }
-
-    50% {
-        background-image-tint: #838e91;
-    }
-
-    100% {
-        background-image-tint: $hider-color;
-    }
-}
-
-@keyframes flash-fill-seeker {
-    0% {
-        background-image-tint: $seeker-color;
-    }
-
-    50% {
-        background-image-tint: #f2a091;
-    }
-
-    100% {
-        background-image-tint: $seeker-color;
+    .statusbar-bottom {
+        padding-top: 5px;
     }
 }

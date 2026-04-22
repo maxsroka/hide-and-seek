@@ -6,11 +6,11 @@
 @namespace HNS
 
 <Label id="statusbar-label" Text="@Label"></Label>
-<div id="statusbar-horizontal-container">
-	<SvgPanel src="icons/google/run.svg" id="statusbar-icon"></SvgPanel>
-	<div id="statusbar-background">
-		<div id="statusbar-fill" class="@Role @Flash" style="width: @Stamina;"></div>
-	</div>
+<div id="statusbar-background">
+	<div id="statusbar-fill" class="@Role @Flash" style="width: @Stamina;"></div>
+</div>
+<div class="statusbar-bottom">
+	<InputPrompt Action="Run"></InputPrompt>
 </div>
 
 @code

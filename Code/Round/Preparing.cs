@@ -54,4 +54,12 @@ public class Preparing : Stage
 
 		return spawnPoint.GameObject;
 	}
+
+	public override string GetDescription()
+	{
+		var localPlayer = Player.GetLocal();
+		if (localPlayer == null) return "Loading...";
+
+		return localPlayer.CurrentRole is HiderRole ? "Time to hide!" : "You're seeking!";
+	}
 }

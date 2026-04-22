@@ -6,9 +6,11 @@ NameTag {
     height: 100%;
     align-items: center;
     justify-content: center;
-    font-size: $large-font-size;
-    font-weight: $large-font-weight;
-    text-shadow: $label-text-shadow;
+    font-size: $primary-font-size;
+    font-weight: $primary-font-weight;
+    text-shadow: $primary-text-shadow;
+    font-family: $secondary-font-family;
+    color: $primary-color;
 
     #nametag-label {
         &.seeker {

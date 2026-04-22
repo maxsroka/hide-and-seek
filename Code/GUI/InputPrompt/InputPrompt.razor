@@ -1,0 +1,46 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits Panel
+@namespace HNS
+
+<root>@Text</root>
+
+@code
+{
+	public string Action { get; set; } = null;
+
+	string Text { get; set; } = BUTTON_NONE;
+
+	const string BUTTON_NONE = "None";
+
+	protected override void OnAfterTreeRender(bool firstTime)
+	{
+		var button = GetButtonFromAction(Action);
+		button = GetFormattedButton(button);
+
+		Text = button;
+	}
+
+	string GetButtonFromAction(string action)
+	{
+		if (action == null) return BUTTON_NONE;
+
+		var button = Input.GetButtonOrigin(Action);
+
+		if (button == null) return BUTTON_NONE;
+
+		return button;
+	}
+
+	string GetFormattedButton(string button)
+	{
+		button = button.Replace("Left ", "L");
+		button = button.Replace("Right ", "R");
+
+		button = button.Replace("Return", "Enter");
+
+		return button;
+	}
+
+	protected override int BuildHash() => Text.GetHashCode();
+}

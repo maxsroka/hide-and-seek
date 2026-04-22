@@ -13,6 +13,11 @@ public class Round : Component, Component.INetworkListener, Player.ISpawnListene
 
 	public float TimeLeft => Stage != null ? Stage.Duration - Timer : 0f;
 
+	public string GetDescription()
+	{
+		return Stage?.GetDescription();
+	}
+
     protected override void OnStart()
     {
         if (!Networking.IsHost) return;

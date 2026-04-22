@@ -46,4 +46,16 @@ public class Playing : Stage
 	{
 		player.SetRole<SeekerRole>();
 	}
+
+	public override string GetDescription()
+	{
+		var localPlayer = Player.GetLocal();
+		if (localPlayer == null) return null;
+
+		var players = Player.GetAll();
+		var hiderCount = players.Count(p => p.CurrentRole is HiderRole);
+		var hidersWord = hiderCount == 1 ? "hider" : "hiders";
+
+		return $"{hiderCount} {hidersWord} remaining.";
+	}
 }

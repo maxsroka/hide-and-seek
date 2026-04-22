@@ -1,0 +1,123 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits Panel
+@namespace HNS
+
+<div id="inputlist-container">
+	@foreach (var entry in entries)
+	{
+		@if (!entry.IsActive()) continue;
+		<div class="inputlist-entry">
+			<Label class="inputlist-entry-action" Text="@entry.Label"></Label>
+			<InputPrompt class="inputlist-entry-key" Action="@entry.Action"></InputPrompt>
+		</div>
+	}
+</div>
+
+@code
+{
+	IEntry[] entries = {
+		new PushEntry(),
+		new FlashlightEntry(),
+		new ViewEntry(),
+		new DuckEntry(),
+		new ChatEntry()
+	};
+
+	int ActiveEntryCount = 0;
+
+	interface IEntry
+	{
+		public bool IsActive();
+
+		public string Action { get; }
+		public string Label { get; }
+	}
+
+	public override void Tick()
+	{
+		ActiveEntryCount = 0;
+		foreach (var entry in entries)
+		{
+			if (entry.IsActive())
+			{
+				ActiveEntryCount += 1;
+			}
+		}
+	}
+
+	protected override int BuildHash() => ActiveEntryCount;
+
+	class ChatEntry : IEntry
+	{
+		public bool IsActive()
+		{
+			return true;
+		}
+
+		public string Action => "Chat";
+		public string Label => "Chat";
+	}
+
+	class ViewEntry : IEntry
+	{
+		public bool IsActive()
+		{
+			var localPlayer = Player.GetLocal();
+			if (localPlayer == null) return false;
+			if (localPlayer.IsFrozen) return false;
+
+			return true;
+		}
+
+		public string Action => "View";
+		public string Label => "View";
+	}
+
+	class FlashlightEntry : IEntry
+	{
+		public bool IsActive()
+		{
+			var localPlayer = Player.GetLocal();
+			if (localPlayer == null) return false;
+			if (localPlayer.IsFrozen) return false;
+
+			return true;
+		}
+
+		public string Action => "Flashlight";
+		public string Label => "Flashlight";
+	}
+
+	class PushEntry : IEntry
+	{
+		public bool IsActive()
+		{
+			var localPlayer = Player.GetLocal();
+			if (localPlayer == null) return false;
+			if (localPlayer.IsFrozen) return false;
+
+			if (!localPlayer.Trace.Hit || !localPlayer.Trace.GameObject.Components.TryGet<Player>(out var _)) return false;
+
+			return true;
+		}
+
+		public string Action => "Use";
+		public string Label => "Push";
+	}
+
+	class DuckEntry : IEntry
+	{
+		public bool IsActive()
+		{
+			var localPlayer = Player.GetLocal();
+			if (localPlayer == null) return false;
+			if (localPlayer.IsFrozen) return false;
+
+			return true;
+		}
+
+		public string Action => "Duck";
+		public string Label => "Duck";
+	}
+}

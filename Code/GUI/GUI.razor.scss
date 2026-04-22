@@ -1,21 +1,64 @@
-$large-font-size: 20px;
-$small-font-size: 15px;
-$large-font-weight: 700;
-$small-font-weight: 500;
 $hider-color: #5D8291;
 $seeker-color: #F17560;
-$background-color: rgba(44, 44, 44, 0.69);
-$background-border: 1px solid rgba(0, 0, 0, 0.33);
-$background-border-radius: 2px;
-$background-padding: 5px;
-$background-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.69);
-$background-backdrop-filter: blur(1px);
-$container-padding: 30px;
-$label-text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.69);
-$label-color: rgb(245, 245, 245);
 
-GUI {
-    font-family: 'Segoe UI'; // bug: wrong fonts are loaded?
-    font-weight: $small-font-weight;
-    color: $label-color;
+$primary-color: rgb(245, 245, 245);
+$secondary-color: rgb(200, 200, 200);
+
+$primary-font-size: 20px;
+$secondary-font-size: 15px;
+
+$primary-font-weight: 700;
+$secondary-font-weight: 600;
+
+$primary-text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.69);
+
+$primary-font-family: "Outfit";
+$secondary-font-family: "Inter";
+
+$panel-background-color: rgba(44, 44, 44, 0.69);
+$panel-border: 1px solid rgba(0, 0, 0, 0.33);
+$panel-border-radius: 4px;
+$panel-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.59);
+$panel-backdrop-filter: blur(1px);
+
+$panel-padding: 5px;
+$gui-padding: 60px;
+$noise-texture: url("textures/noise.png");
+
+@mixin panel {
+    background-color: $panel-background-color;
+    border: $panel-border;
+    border-radius: $panel-border-radius;
+    box-shadow: $panel-box-shadow;
+    backdrop-filter: $panel-backdrop-filter;
 }
+
+@keyframes flash-hider {
+    0% {
+        background-image-tint: $hider-color;
+    }
+
+    50% {
+        background-image-tint: #838e91;
+    }
+
+    100% {
+        background-image-tint: $hider-color;
+    }
+}
+
+@keyframes flash-seeker {
+    0% {
+        background-image-tint: $seeker-color;
+    }
+
+    50% {
+        background-image-tint: #f2a091;
+    }
+
+    100% {
+        background-image-tint: $seeker-color;
+    }
+}
+
+GUI { }

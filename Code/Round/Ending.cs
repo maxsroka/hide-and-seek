@@ -9,6 +9,8 @@ public class Ending : Stage
 	public static int EndTime { get; set; } = 5;
 	public override float Duration => EndTime;
 
+	bool hasHiders = false;
+
 	public override void OnEnter()
 	{
 		var players = Player.GetAll();
@@ -19,7 +21,7 @@ public class Ending : Stage
 			return;
 		}
 
-		var hasHiders = players.Any(p => p.CurrentRole is HiderRole);
+		hasHiders = players.Any(p => p.CurrentRole is HiderRole);
 
 		if (hasHiders)
 		{
@@ -70,5 +72,10 @@ public class Ending : Stage
 		{
 			Stats.Increment("seeker-wins", 1);
 		}
+	}
+
+	public override string GetDescription()
+	{
+		return hasHiders ? "The Hiders win!" : "The Seekers win!";
 	}
 }

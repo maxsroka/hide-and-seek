@@ -5,7 +5,9 @@ namespace HNS;
 public abstract class Stage : Component
 {
 	public abstract float Duration { get; }
-    
+
+	public abstract string GetDescription();
+
     public virtual void OnEnter() { }
     
 	public virtual void OnRun() 

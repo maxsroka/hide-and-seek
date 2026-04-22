@@ -1,0 +1,12 @@
+@import '../GUI.razor.scss';
+
+InputPrompt {
+    height: 33px;
+    align-items: center;
+    @include panel;
+    padding: $panel-padding;
+    font-size: $secondary-font-size;
+    font-weight: $secondary-font-weight;
+    font-family: $secondary-font-family;
+    color: $secondary-color;
+}
