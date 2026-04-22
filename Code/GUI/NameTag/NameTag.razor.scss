@@ -9,6 +9,8 @@ NameTag {
     font-size: $primary-font-size;
     font-weight: $primary-font-weight;
     text-shadow: $primary-text-shadow;
+    font-family: $secondary-font-family;
+    color: $primary-color;
 
     #nametag-label {
         &.seeker {
