@@ -25,13 +25,11 @@ ChatMessage {
         padding: $panel-padding;
         text-shadow: $primary-text-shadow;
         backdrop-filter: $panel-backdrop-filter;
-        line-height: 18px;
+        line-height: 21px;
         text-overflow: ellipsis;
 
         &.system {
             border-radius: $panel-border-radius;
-            font-style: italic; // doesn't work with Outfit
-            font-family: "Inter Italic";
             font-weight: $secondary-font-weight;
         }
 

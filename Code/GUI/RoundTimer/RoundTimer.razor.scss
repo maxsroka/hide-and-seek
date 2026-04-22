@@ -17,13 +17,9 @@ RoundTimer {
 
         #roundtimer-background {
             height: 45px;
+            @include panel;
             align-items: center;
-            background-color: $panel-background-color;
-            box-shadow: $panel-box-shadow;
-            border: $panel-border;
             text-shadow: $primary-text-shadow;
-            backdrop-filter: $panel-backdrop-filter;
-            border-radius: $panel-border-radius;
 
             #roundtimer-time {
                 align-items: center;

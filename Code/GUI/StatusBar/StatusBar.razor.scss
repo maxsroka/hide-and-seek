@@ -24,11 +24,7 @@ StatusBar {
         #statusbar-background {
             width: 400px;
             height: 35px;
-            background-color: $panel-background-color;
-            border-radius: $panel-border-radius;
-            box-shadow: $panel-box-shadow;
-            border: $panel-border;
-            backdrop-filter: $panel-backdrop-filter;
+            @include panel;
 
             #statusbar-fill {
                 border-radius: $panel-border-radius;
