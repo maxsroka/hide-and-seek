@@ -23,7 +23,9 @@
 			Label.SetClass("hider", role is HiderRole);
 			Label.SetClass("seeker", role is SeekerRole);
 
-			var name = otherPlayer.Network.Owner.DisplayName;
+			var name = otherPlayer.Network?.Owner?.DisplayName;
+			if (name == null) return;
+
 			Label.Text = $"{name} ({role.Name})";
 		}
 		else
