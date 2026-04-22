@@ -15,21 +15,9 @@
 
 @code
 {
-	// note: that's null on dedicated server
+	// note: that's null on a dedicated server
 	ChatBox ChatBox { get; set; }
 
 	void Chat.IMessageListener.OnUserMessage(string content, Connection sender) => ChatBox?.OnUserMessage(content, sender);
 	void Chat.IMessageListener.OnSystemMessage(string content) => ChatBox?.OnSystemMessage(content);
-
-	bool isSans = false;
-
-	[ConCmd("sans")]
-	static void Sans(Connection caller)
-	{
-		var gui = Game.ActiveScene.Get<GUI>();
-		var style = gui.Panel.Style;
-
-		gui.isSans = !gui.isSans;
-		style.FontFamily = gui.isSans ? "Comic Sans MS" : "Outfit";
-	}
 }
