@@ -191,7 +191,7 @@
         },
         {
           "__type": "HNS.GUI",
-          "__guid": "242bedfd-6ba9-420f-ba86-eb9fcbd69281",
+          "__guid": "5ccdcb0e-8631-4ea1-ac36-beaecaa50dc6",
           "__enabled": true,
           "Flags": 0,
           "OnComponentDestroy": null,
@@ -398,7 +398,7 @@
             "MovedObjects": []
           },
           "__PrefabIdToInstanceId": {
-            "b75bcb39-9e15-4c24-a256-6033c2627769": "3b421245-729d-4261-b39d-425f5f508baf"
+            "25c372a6-2c50-4e0b-934f-5ce04b98c763": "ac848354-0f9d-4ed7-9064-11bcf45493e3"
           }
         }
       ]
