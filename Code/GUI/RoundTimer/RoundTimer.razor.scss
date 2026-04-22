@@ -4,67 +4,61 @@ RoundTimer {
     position: absolute;
     width: 100%;
     height: 100%;
+    flex-direction: column;
     align-items: center;
     padding: $gui-padding;
     font-size: $primary-font-size;
     font-weight: $primary-font-weight;
-    flex-direction: column;
-    transform-origin: 0% 0%;
 
-    #roundtimer-horizontal-container {
-        column-gap: 2px;
+    #roundtimer-background {
+        height: 45px;
+        @include panel;
         align-items: center;
+        text-shadow: $primary-text-shadow;
 
-        #roundtimer-background {
-            height: 45px;
-            @include panel;
+        #roundtimer-time {
+            height: 100%;
+            min-width: 70px;
             align-items: center;
-            text-shadow: $primary-text-shadow;
+            justify-content: center;
+            background-image: $noise-texture;
+            padding: $panel-padding;
+            border-top-left-radius: $panel-border-radius;
+            border-bottom-left-radius: $panel-border-radius;
+            font-size: $primary-font-size;
+            font-family: $primary-font-family;
+            color: $primary-color;
 
-            #roundtimer-time {
-                align-items: center;
-                height: 100%;
-                justify-content: center;
-                min-width: 70px;
-                background-image: $noise-texture;
-                padding: $panel-padding;
-                border-top-left-radius: $panel-border-radius;
-                border-bottom-left-radius: $panel-border-radius;
-                font-size: $primary-font-size;
-                color: $primary-color;
-                font-family: $primary-font-family;
+            &.hider {
+                background-image-tint: $hider-color;
 
-                &.hider {
-                    background-image-tint: $hider-color;
-
-                    &.flash {
-                        animation: 1s flash-hider infinite;
-                    }
-                }
-
-                &.seeker {
-                    background-image-tint: $seeker-color;
-
-                    &.flash {
-                        animation: 1s flash-seeker infinite;
-                    }
+                &.flash {
+                    animation: 1s flash-hider infinite;
                 }
             }
 
-            #roundtimer-status {
-                font-family: $secondary-font-family;
-                color: $secondary-color;
-                font-weight: $secondary-font-weight;
-                padding: $panel-padding;
-                flex-grow: 1;
-                border-top-right-radius: $panel-border-radius;
-                border-bottom-right-radius: $panel-border-radius;
-                justify-content: center;
-                font-size: $secondary-font-size;
-                min-width: 250px;
-                align-items: center;
-                height: 100%;
+            &.seeker {
+                background-image-tint: $seeker-color;
+
+                &.flash {
+                    animation: 1s flash-seeker infinite;
+                }
             }
+        }
+
+        #roundtimer-status {
+            height: 100%;
+            min-width: 250px;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+            padding: $panel-padding;
+            border-top-right-radius: $panel-border-radius;
+            border-bottom-right-radius: $panel-border-radius;
+            font-weight: $secondary-font-weight;
+            font-size: $secondary-font-size;
+            font-family: $secondary-font-family;
+            color: $secondary-color;
         }
     }
 }
