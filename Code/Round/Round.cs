@@ -15,9 +15,7 @@ public class Round : Component, Component.INetworkListener, Player.ISpawnListene
 
 	public string GetDescription()
 	{
-		if (Stage == null) return "Loading...";
-
-		return Stage.GetDescription();
+		return Stage?.GetDescription();
 	}
 
     protected override void OnStart()

@@ -50,8 +50,12 @@ public class Playing : Stage
 	public override string GetDescription()
 	{
 		var localPlayer = Player.GetLocal();
-		if (localPlayer == null) return "Loading...";
+		if (localPlayer == null) return null;
 
-		return localPlayer.CurrentRole is HiderRole ? "Don't get caught." : "Catch the hiders.";
+		var players = Player.GetAll();
+		var hiderCount = players.Count(p => p.CurrentRole is HiderRole);
+		var hidersWord = hiderCount == 1 ? "hider" : "hiders";
+
+		return $"{hiderCount} {hidersWord} remaining.";
 	}
 }
