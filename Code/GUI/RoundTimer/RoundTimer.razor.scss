@@ -27,13 +27,28 @@ RoundTimer {
                 justify-content: center;
                 min-width: 70px;
                 background-image: $noise-texture;
-                background-image-tint: $hider-color;
                 padding: $panel-padding;
                 border-top-left-radius: $panel-border-radius;
                 border-bottom-left-radius: $panel-border-radius;
                 font-size: $primary-font-size;
                 color: $primary-color;
                 font-family: $primary-font-family;
+
+                &.hider {
+                    background-image-tint: $hider-color;
+
+                    &.flash {
+                        animation: 1s flash-hider infinite;
+                    }
+                }
+
+                &.seeker {
+                    background-image-tint: $seeker-color;
+
+                    &.flash {
+                        animation: 1s flash-seeker infinite;
+                    }
+                }
             }
 
             #roundtimer-status {

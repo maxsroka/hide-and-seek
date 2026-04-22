@@ -6,7 +6,7 @@
 
 <div id="roundtimer-horizontal-container">
 	<div id="roundtimer-background">
-		<div id="roundtimer-time">
+		<div id="roundtimer-time" class="@Role @Flash">
 			<Label Text="@Time"></Label>
 		</div>
 		<div id="roundtimer-status">
@@ -19,6 +19,31 @@
 {
 	string Time { get; set; } = "";
 	string Status { get; set; } = "";
+
+	string Role
+	{
+		get
+		{
+			var player = Player.GetLocal();
+			if (player == null) return "";
+
+			var role = player.CurrentRole;
+			if (role == null) return "";
+
+			return role.Name;
+		}
+	}
+
+	string Flash
+	{
+		get
+		{
+			var round = Scene.Get<Round>();
+			if (round == null) return "";
+
+			return round.TimeLeft <= 5f ? "flash" : "";
+		}
+	}
 
 	public override void Tick()
 	{
@@ -49,5 +74,5 @@
 		return description;
 	}
 
-	protected override int BuildHash() => Time.GetHashCode();
+	protected override int BuildHash() => HashCode.Combine(Time, Status, Role);
 }

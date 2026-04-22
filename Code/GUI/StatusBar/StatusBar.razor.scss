@@ -36,7 +36,7 @@ StatusBar {
                     background-image: $noise-texture;
 
                     &.flash {
-                        animation: 0.6s flash-fill-hider infinite;
+                        animation: 0.6s flash-hider infinite;
                     }
                 }
 
@@ -45,38 +45,10 @@ StatusBar {
                     background-image: $noise-texture;
 
                     &.flash {
-                        animation: 0.6s flash-fill-seeker infinite;
+                        animation: 0.6s flash-seeker infinite;
                     }
                 }
             }
         }
-    }
-}
-
-@keyframes flash-fill-hider {
-    0% {
-        background-image-tint: $hider-color;
-    }
-
-    50% {
-        background-image-tint: #838e91;
-    }
-
-    100% {
-        background-image-tint: $hider-color;
-    }
-}
-
-@keyframes flash-fill-seeker {
-    0% {
-        background-image-tint: $seeker-color;
-    }
-
-    50% {
-        background-image-tint: #f2a091;
-    }
-
-    100% {
-        background-image-tint: $seeker-color;
     }
 }

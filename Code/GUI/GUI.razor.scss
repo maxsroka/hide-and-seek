@@ -35,4 +35,32 @@ $secondary-font-family: "Inter";
 
 $noise-texture: url("textures/noise.png");
 
+@keyframes flash-hider {
+    0% {
+        background-image-tint: $hider-color;
+    }
+
+    50% {
+        background-image-tint: #838e91;
+    }
+
+    100% {
+        background-image-tint: $hider-color;
+    }
+}
+
+@keyframes flash-seeker {
+    0% {
+        background-image-tint: $seeker-color;
+    }
+
+    50% {
+        background-image-tint: #f2a091;
+    }
+
+    100% {
+        background-image-tint: $seeker-color;
+    }
+}
+
 GUI { }
