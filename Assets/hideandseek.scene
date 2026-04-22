@@ -398,7 +398,7 @@
             "MovedObjects": []
           },
           "__PrefabIdToInstanceId": {
-            "25c372a6-2c50-4e0b-934f-5ce04b98c763": "ac848354-0f9d-4ed7-9064-11bcf45493e3"
+            "d9095223-f931-4fec-a58b-ad1db4864d98": "3f8060e9-d5fb-405e-8e5d-31c38bf9e558"
           }
         }
       ]
@@ -426,13 +426,13 @@
       "CustomBounds": false
     },
     "GameObjectSystems": {
-      "Sandbox.MovieMaker.MovieRecorderSystem": {
-        "DisableClientRecording": false
-      },
       "Sandbox.Clutter.ClutterGridSystem": {
         "Storage": {
           "$blob": "41583e3d-5111-4adc-91d5-5deedb2305c9"
         }
+      },
+      "Sandbox.MovieMaker.MovieRecorderSystem": {
+        "DisableClientRecording": false
       }
     }
   },
