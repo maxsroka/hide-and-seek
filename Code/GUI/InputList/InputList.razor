@@ -4,20 +4,54 @@
 @namespace HNS
 
 <div id="inputlist-container">
-	<div class="inputlist-entry">
-		<Label class="inputlist-entry-action" Text="Chat"></Label>
-		<InputPrompt class="inputlist-entry-key" Action="Chat"></InputPrompt>
-	</div>
-	<div class="inputlist-entry">
-		<Label class="inputlist-entry-action" Text="Flashlight"></Label>
-		<InputPrompt class="inputlist-entry-key" Action="Flashlight"></InputPrompt>
-	</div>
-	<div class="inputlist-entry">
-		<Label class="inputlist-entry-action" Text="Push"></Label>
-		<InputPrompt class="inputlist-entry-key" Action="Use"></InputPrompt>
-	</div>
-	<div class="inputlist-entry">
-		<Label class="inputlist-entry-action" Text="View"></Label>
-		<InputPrompt class="inputlist-entry-key" Action="View"></InputPrompt>
-	</div>
+	@foreach (var entry in entries)
+	{
+		@if (!entry.IsActive()) continue;
+		<div class="inputlist-entry">
+			<Label class="inputlist-entry-action" Text="@entry.Label"></Label>
+			<InputPrompt class="inputlist-entry-key" Action="@entry.Action"></InputPrompt>
+		</div>
+	}
 </div>
+
+@code
+{
+	IEntry[] entries = {
+		new ChatEntry()
+	};
+
+	int ActiveEntryCount = 0;
+
+	interface IEntry
+	{
+		public bool IsActive();
+
+		public string Action { get; }
+		public string Label { get; }
+	}
+
+	public override void Tick()
+	{
+		ActiveEntryCount = 0;
+		foreach (var entry in entries)
+		{
+			if (entry.IsActive())
+			{
+				ActiveEntryCount += 1;
+			}
+		}
+	}
+
+	protected override int BuildHash() => ActiveEntryCount;
+
+	class ChatEntry : IEntry
+	{
+		public bool IsActive()
+		{
+			return true;
+		}
+
+		public string Action => "Chat";
+		public string Label => "Chat";
+	}
+}
