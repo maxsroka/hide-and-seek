@@ -1,20 +1,12 @@
 @import '../GUI.razor.scss';
 
 InputPrompt {
-    background-color: $panel-background-color;
-    border-radius: $panel-border-radius;
-    border: $panel-border;
-    backdrop-filter: $panel-backdrop-filter;
+    height: 33px;
+    align-items: center;
+    @include panel;
     padding: $panel-padding;
-
-    box-shadow: $panel-box-shadow;
-    
     font-size: $secondary-font-size;
     font-weight: $secondary-font-weight;
-    
-    color: $secondary-color;
     font-family: $secondary-font-family;
-
-    align-items: center;
-    height: 33px;
+    color: $secondary-color;
 }
