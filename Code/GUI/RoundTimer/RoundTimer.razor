@@ -66,10 +66,7 @@
 		var round = Scene.Get<Round>();
 		if (round == null) return "";
 
-		var description = round.GetDescription();
-		if (description == null) return "Loading...";
-
-		return description;
+		return round.GetDescription();
 	}
 
 	protected override int BuildHash() => HashCode.Combine(Time, Status, Role);
