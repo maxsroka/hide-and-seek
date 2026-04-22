@@ -37,7 +37,7 @@ StatusBar {
 
                 &.hider {
                     background-image-tint: $hider-color;
-                    background-image: url("textures/stamina_bar.png");
+                    background-image: $noise-texture;
 
                     &.flash {
                         animation: 0.6s flash-fill-hider infinite;
@@ -46,7 +46,7 @@ StatusBar {
 
                 &.seeker {
                     background-image-tint: $seeker-color;
-                    background-image: url("textures/stamina_bar.png");
+                    background-image: $noise-texture;
 
                     &.flash {
                         animation: 0.6s flash-fill-seeker infinite;

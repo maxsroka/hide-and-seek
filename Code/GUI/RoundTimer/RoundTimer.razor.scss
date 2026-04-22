@@ -30,7 +30,7 @@ RoundTimer {
                 height: 100%;
                 justify-content: center;
                 min-width: 70px;
-                background-image: url("textures/stamina_bar.png");
+                background-image: $noise-texture;
                 background-image-tint: $hider-color;
                 padding: $panel-padding;
                 border-top-left-radius: $panel-border-radius;
