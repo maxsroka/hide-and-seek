@@ -17,6 +17,10 @@
 @code
 {
 	IEntry[] entries = {
+		new PushEntry(),
+		new FlashlightEntry(),
+		new ViewEntry(),
+		new DuckEntry(),
 		new ChatEntry()
 	};
 
@@ -53,5 +57,67 @@
 
 		public string Action => "Chat";
 		public string Label => "Chat";
+	}
+
+	class ViewEntry : IEntry
+	{
+		public bool IsActive()
+		{
+			var localPlayer = Player.GetLocal();
+			if (localPlayer == null) return false;
+			if (localPlayer.IsFrozen) return false;
+
+			return true;
+		}
+
+		public string Action => "View";
+		public string Label => "View";
+	}
+
+	class FlashlightEntry : IEntry
+	{
+		public bool IsActive()
+		{
+			var localPlayer = Player.GetLocal();
+			if (localPlayer == null) return false;
+			if (localPlayer.IsFrozen) return false;
+
+			return true;
+		}
+
+		public string Action => "Flashlight";
+		public string Label => "Flashlight";
+	}
+
+	class PushEntry : IEntry
+	{
+		public bool IsActive()
+		{
+			var localPlayer = Player.GetLocal();
+			if (localPlayer == null) return false;
+			if (localPlayer.IsFrozen) return false;
+
+			if (!localPlayer.Trace.Hit || !localPlayer.Trace.GameObject.Components.TryGet<Player>(out var _)) return false;
+
+			return true;
+		}
+
+		public string Action => "Use";
+		public string Label => "Push";
+	}
+
+	class DuckEntry : IEntry
+	{
+		public bool IsActive()
+		{
+			var localPlayer = Player.GetLocal();
+			if (localPlayer == null) return false;
+			if (localPlayer.IsFrozen) return false;
+
+			return true;
+		}
+
+		public string Action => "Duck";
+		public string Label => "Duck";
 	}
 }
