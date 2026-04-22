@@ -1,9 +1,5 @@
 @import '../GUI.razor.scss';
 
-.input-prompt-group {
-    padding-top: 5px;
-}
-
 InputPrompt {
     background-color: $panel-background-color;
     border-radius: $panel-border-radius;

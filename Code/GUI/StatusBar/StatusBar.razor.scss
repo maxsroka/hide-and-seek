@@ -1,5 +1,4 @@
 @import '../GUI.razor.scss';
-@import '../InputPrompt/InputPrompt.razor.scss';
 
 StatusBar {
     position: absolute;
@@ -50,5 +49,9 @@ StatusBar {
                 }
             }
         }
+    }
+
+    .statusbar-bottom-container {
+        padding-top: 5px;
     }
 }
