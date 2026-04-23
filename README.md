@@ -1,4 +1,5 @@
 <h1>Hide & Seek</h1>
+<h2>About</h2>
 <p>Classic hide and seek game.</p>
 <h2>Showcase</h2>
 <img width="100%" height="1080" alt="5b856578-b023-4339-8e36-88dc46afcafd" src="https://github.com/user-attachments/assets/ebc6caf2-7461-4edf-b0f4-6bd3e8562ff1" />
