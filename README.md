@@ -1,6 +1,6 @@
 <h1>Hide & Seek</h1>
 <h2>About</h2>
-<p><b>Hide & Seek</b> is a classic multiplayer game where players either hide in clever spots or try to find and tag the others.</p>
+<p><b>Hide & Seek</b> is a classic multiplayer game where players either hide in clever spots or try to find and tag the others. Developed with the s&box engine (C#, SCSS, HTML, Razor) and <a href="https://sbox.game/maxsroka/hideandseek">available on its platform</a>.</p>
 <h2>Features</h2>
 <ul>
   <li><b>Modular & Interactive UI</b>: Includes dynamic input prompts (bottom right), round status and timer (top), an animated stamina bar (bottom left) and a chatbox (top left).</li>
