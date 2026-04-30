@@ -4,6 +4,7 @@ namespace HNS;
 public class Playing : Stage
 {
 	[ConVar("play_time", ConVarFlags.GameSetting | ConVarFlags.Replicated, Help = "Set the duration of a round.", Min = 0)]
+	[Range(0, 300)]
 	public static int PlayTime { get; set; } = 180;
 	public override float Duration => PlayTime;
 
