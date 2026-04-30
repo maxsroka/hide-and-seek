@@ -19,6 +19,7 @@
 		if (trace.Hit && trace.GameObject.Components.TryGet<Player>(out var otherPlayer))
 		{
 			var role = otherPlayer.CurrentRole;
+			if (role == null) return;
 
 			Label.SetClass("hider", role is HiderRole);
 			Label.SetClass("seeker", role is SeekerRole);
